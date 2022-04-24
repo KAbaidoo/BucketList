@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.Arrays;
 import java.util.List;
 
-public class FirebaseUIActivity extends AppCompatActivity {
+public class FirebaseAuthUIActivity extends AppCompatActivity {
 
     // See: https://developer.android.com/training/basics/intents/result
     private final ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
@@ -31,11 +31,23 @@ public class FirebaseUIActivity extends AppCompatActivity {
             }
     );
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        createSignInIntent();
+//        setContentView(R.layout.activity_main);
+
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        if (auth.getCurrentUser() != null) {
+            // already signed in
+            startMainActivity();
+            finish();
+
+        } else {
+            // not signed in
+            createSignInIntent();
+        }
+
 
     }
 
@@ -43,10 +55,10 @@ public class FirebaseUIActivity extends AppCompatActivity {
         // [START auth_fui_create_intent]
         // Choose authentication providers
         List<AuthUI.IdpConfig> providers = Arrays.asList(
-//                new AuthUI.IdpConfig.EmailBuilder().build(),
-//                new AuthUI.IdpConfig.PhoneBuilder().build(),
-                new AuthUI.IdpConfig.GoogleBuilder().build()
-//                ,new AuthUI.IdpConfig.FacebookBuilder().build()
+                new AuthUI.IdpConfig.EmailBuilder().build(),
+                new AuthUI.IdpConfig.GoogleBuilder().build(),
+                new AuthUI.IdpConfig.FacebookBuilder().build()
+                // new AuthUI.IdpConfig.PhoneBuilder().build(),
 //                ,new AuthUI.IdpConfig.TwitterBuilder().build()
         );
 
@@ -65,7 +77,8 @@ public class FirebaseUIActivity extends AppCompatActivity {
             // Successfully signed in
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             showToast("User signed in");
-
+            startMainActivity();
+            finish();
 
             // ...
         } else {
@@ -74,9 +87,17 @@ public class FirebaseUIActivity extends AppCompatActivity {
             // response.getError().getErrorCode() and handle the error.
             // ...
             showToast("User is not signed in");
+            return;
         }
     }
 
+
+
+    protected void startMainActivity() {
+        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(i);
+        finish();
+    }
 
     private void showToast(String msg) {
         Toast toast = Toast.makeText(this, msg, Toast.LENGTH_SHORT);
@@ -85,3 +106,4 @@ public class FirebaseUIActivity extends AppCompatActivity {
 
 
 }
+

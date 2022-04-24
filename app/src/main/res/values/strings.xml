@@ -6,4 +6,7 @@
     <string name="slide_2_description">Bucket list helps you find things to do where you are or where you are heading.</string>
     <string name="slide_1_title">Welcome to Bucket list!</string>
     <string name="slide_1_description">Bucket list helps you find and do the things you love</string>
+    <string name="facebook_application_id" translatable="false">1466260597124884</string>
+    <!-- Facebook Application ID, prefixed by 'fb'. Enables Chrome Custom tabs. -->
+    <string name="facebook_login_protocol_scheme" translatable="false">fb1466260597124884</string>
 </resources>

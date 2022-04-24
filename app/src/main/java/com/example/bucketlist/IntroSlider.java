@@ -81,7 +81,7 @@ public class IntroSlider extends AppIntro {
     }
 
     protected void startMainActivity() {
-        Intent i = new Intent(getApplicationContext(), FirebaseUIActivity.class);
+        Intent i = new Intent(getApplicationContext(), FirebaseAuthUIActivity.class);
         startActivity(i);
         finish();
     }
