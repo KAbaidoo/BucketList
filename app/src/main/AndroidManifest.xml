@@ -11,7 +11,7 @@
         android:theme="@style/Theme.Bucketlist" >
         <activity
             android:name=".IntroSlider"
-            android:label="My Custom AppIntro"
+            android:label="Bucket List"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".FirebaseUIActivity"
             android:exported="false" >
         </activity>
     </application>

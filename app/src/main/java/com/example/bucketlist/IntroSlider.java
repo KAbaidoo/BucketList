@@ -16,6 +16,8 @@ public class IntroSlider extends AppIntro {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         mPreferences = new PreferencesManager(this);
 
         if (mPreferences.isFirstRun()) {
@@ -28,17 +30,20 @@ public class IntroSlider extends AppIntro {
 
     protected void showIntroSlides() {
         mPreferences.setFirstRun();
-        addSlide(AppIntroFragment.createInstance("Welcome to Bucket list!", "Bucket list helps you find and do the things you love", R.drawable.ic_humaaans_1, R.color.yellow));
+        addSlide(AppIntroFragment.createInstance(
+                getString(R.string.slide_1_title),
+                getString(R.string.slide_1_description),
+                R.drawable.ic_humaaans_1, R.color.yellow));
 
         addSlide(AppIntroFragment.createInstance(
-                "Carefully curated activities around you",
-                "Bucket list helps you find things to do where you are or where you are heading.",
+                getString(R.string.slide_2_title),
+                getString(R.string.slide_2_description),
                 R.drawable.ic_humaaans_2, R.color.celtic_blue
         ));
-
+//slide
         addSlide(AppIntroFragment.createInstance(
-                "Easy reservations",
-                "Make reservations and book tickets for experiences right in the app.",
+                getString(R.string.slide_3_title),
+                getString(R.string.slide_3_description),
                 R.drawable.ic_humaaans_3, R.color.cinnabar
         ));
 
@@ -62,7 +67,7 @@ public class IntroSlider extends AppIntro {
         setWizardMode(true);
 
         //Show/hide skip button
-        setSkipButtonEnabled(false);
+        setSkipButtonEnabled(true);
 
         //Enable immersive mode (no status and nav bar)
         setImmersiveMode();
@@ -76,7 +81,7 @@ public class IntroSlider extends AppIntro {
     }
 
     protected void startMainActivity() {
-        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+        Intent i = new Intent(getApplicationContext(), FirebaseUIActivity.class);
         startActivity(i);
         finish();
     }

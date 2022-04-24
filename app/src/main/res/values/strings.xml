@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">bucketlist</string>
+    <string name="slide_3_title">Simple reservation</string>
+    <string name="slide_3_description">Make reservations and book tickets for experiences right in the app.</string>
+    <string name="slide_2_title">Carefully curated activities around you</string>
+    <string name="slide_2_description">Bucket list helps you find things to do where you are or where you are heading.</string>
+    <string name="slide_1_title">Welcome to Bucket list!</string>
+    <string name="slide_1_description">Bucket list helps you find and do the things you love</string>
 </resources>
