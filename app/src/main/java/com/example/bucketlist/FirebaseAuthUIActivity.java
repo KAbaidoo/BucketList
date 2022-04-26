@@ -2,6 +2,8 @@ package com.example.bucketlist;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultCallback;
@@ -30,12 +32,21 @@ public class FirebaseAuthUIActivity extends AppCompatActivity {
                 }
             }
     );
+    private Button mSignInButton;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_firebase_auth_ui);
+
+        mSignInButton = (Button) findViewById(R.id.button_signIn);
+        mSignInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createSignInIntent();
+            }
+        });
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         if (auth.getCurrentUser() != null) {
@@ -48,8 +59,8 @@ public class FirebaseAuthUIActivity extends AppCompatActivity {
             createSignInIntent();
         }
 
-
     }
+
 
     public void createSignInIntent() {
         // [START auth_fui_create_intent]
@@ -76,7 +87,7 @@ public class FirebaseAuthUIActivity extends AppCompatActivity {
         if (result.getResultCode() == RESULT_OK) {
             // Successfully signed in
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-            showToast("User signed in");
+            showToast("You signed in successfully");
             startMainActivity();
             finish();
 
@@ -86,11 +97,11 @@ public class FirebaseAuthUIActivity extends AppCompatActivity {
             // sign-in flow using the back button. Otherwise check
             // response.getError().getErrorCode() and handle the error.
             // ...
-            showToast("User is not signed in");
+            showToast("You signed out!");
             return;
         }
     }
-
+// TODO: 4/24/2022 handle back click during sign in and no internet connection during sign in
 
 
     protected void startMainActivity() {
