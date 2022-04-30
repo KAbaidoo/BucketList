@@ -9,7 +9,7 @@ import com.github.appintro.AppIntro;
 import com.github.appintro.AppIntroFragment;
 import com.github.appintro.AppIntroPageTransformerType;
 
-public class IntroSlider extends AppIntro {
+public class IntroSliderActivity extends AppIntro {
     PreferencesManager mPreferences;
 
 
@@ -86,17 +86,19 @@ public class IntroSlider extends AppIntro {
         finish();
     }
 
-//    @Override
-//    protected void onSkipPressed(Fragment currentFragment) {
-//        super.onSkipPressed(currentFragment);
-//        finish();
-//    }
+    @Override
+    protected void onSkipPressed(Fragment currentFragment) {
+        super.onSkipPressed(currentFragment);
+        startMainActivity();
+        finish();
+    }
 
     @Override
     protected void onDonePressed(Fragment currentFragment) {
         super.onDonePressed(currentFragment);
 //        finish();
         startMainActivity();
+        finish();
     }
 }
 

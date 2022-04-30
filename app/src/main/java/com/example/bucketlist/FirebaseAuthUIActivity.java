@@ -22,7 +22,7 @@ import java.util.List;
 
 public class FirebaseAuthUIActivity extends AppCompatActivity {
 
-    // See: https://developer.android.com/training/basics/intents/result
+
     private final ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
             new FirebaseAuthUIActivityResultContract(),
             new ActivityResultCallback<FirebaseAuthUIAuthenticationResult>() {
@@ -32,6 +32,7 @@ public class FirebaseAuthUIActivity extends AppCompatActivity {
                 }
             }
     );
+
     private Button mSignInButton;
 
 
@@ -40,6 +41,8 @@ public class FirebaseAuthUIActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_firebase_auth_ui);
 
+
+        // Grab button
         mSignInButton = (Button) findViewById(R.id.button_signIn);
         mSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,8 +51,10 @@ public class FirebaseAuthUIActivity extends AppCompatActivity {
             }
         });
 
+//        Create instance of FirebaseAuth
         FirebaseAuth auth = FirebaseAuth.getInstance();
         if (auth.getCurrentUser() != null) {
+
             // already signed in
             startMainActivity();
             finish();
@@ -101,10 +106,12 @@ public class FirebaseAuthUIActivity extends AppCompatActivity {
             return;
         }
     }
-// TODO: 4/24/2022 handle back click during sign in and no internet connection during sign in
+
+    // TODO: 4/24/2022 handle back click during sign in and no internet connection during sign in
 
 
     protected void startMainActivity() {
+//        Start the main activity
         Intent i = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(i);
         finish();
@@ -114,6 +121,7 @@ public class FirebaseAuthUIActivity extends AppCompatActivity {
         Toast toast = Toast.makeText(this, msg, Toast.LENGTH_SHORT);
         toast.show();
     }
+
 
 
 }
