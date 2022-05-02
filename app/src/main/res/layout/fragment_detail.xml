@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.SearchFragment">
+    tools:context=".ui.DetailFragment">
 
     <TextView
-        android:id="@+id/search_fragment"
+        android:id="@+id/detail_fragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Search Fragment"
+        android:text="Detail Fragment"
         android:textColor="#43a047"
         android:textSize="40sp"
         android:textStyle="italic|bold"
