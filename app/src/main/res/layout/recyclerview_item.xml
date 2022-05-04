@@ -1,6 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<com.google.android.material.card.MaterialCardView
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="180dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="0dp"
+    app:strokeColor="@color/stroke_color"
+    app:strokeWidth="1dp">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageView_banner"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/kids_pool" />
+
+        <TextView
+            android:id="@+id/textView_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/imageView_banner"
+            android:padding="8dp"
+            android:text="Kids Pool Party"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            android:textColor="?android:textColorPrimary"
+            android:theme="@style/ThemeOverlay.MaterialComponents.Dark" />
+
+        <TextView
+            android:id="@+id/textView_curator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageView_banner"
+            android:padding="8dp"
+            android:text="by Jessica Events"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+            android:textColor="?android:textColorSecondary" />
+
+
+        <TextView
+            android:id="@+id/textView_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_curator"
+            android:padding="8dp"
+            android:text="GH¢ 50"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1" />
+
+    </RelativeLayout>
+</com.google.android.material.card.MaterialCardView>

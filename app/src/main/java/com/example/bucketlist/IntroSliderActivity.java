@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.bucketlist.util.PreferencesManager;
 import com.github.appintro.AppIntro;
 import com.github.appintro.AppIntroFragment;
 import com.github.appintro.AppIntroPageTransformerType;
@@ -29,7 +30,10 @@ public class IntroSliderActivity extends AppIntro {
 
 
     protected void showIntroSlides() {
+        //Sets value of first run to true indicating the application has been run on this device before
         mPreferences.setFirstRun();
+
+
         addSlide(AppIntroFragment.createInstance(
                 getString(R.string.slide_1_title),
                 getString(R.string.slide_1_description),

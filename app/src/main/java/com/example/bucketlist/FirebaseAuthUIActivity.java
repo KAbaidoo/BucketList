@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,12 +24,7 @@ public class FirebaseAuthUIActivity extends AppCompatActivity {
 
     private final ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
             new FirebaseAuthUIActivityResultContract(),
-            new ActivityResultCallback<FirebaseAuthUIAuthenticationResult>() {
-                @Override
-                public void onActivityResult(FirebaseAuthUIAuthenticationResult result) {
-                    onSignInResult(result);
-                }
-            }
+            result -> onSignInResult(result)
     );
 
     private Button mSignInButton;
@@ -40,6 +34,8 @@ public class FirebaseAuthUIActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_firebase_auth_ui);
+
+
 
 
         // Grab button
@@ -53,6 +49,7 @@ public class FirebaseAuthUIActivity extends AppCompatActivity {
 
 //        Create instance of FirebaseAuth
         FirebaseAuth auth = FirebaseAuth.getInstance();
+
         if (auth.getCurrentUser() != null) {
 
             // already signed in

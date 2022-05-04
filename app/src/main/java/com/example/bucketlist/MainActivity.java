@@ -2,6 +2,7 @@ package com.example.bucketlist;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,16 +12,20 @@ import com.example.bucketlist.ui.DetailFragment;
 import com.example.bucketlist.ui.HomeFragment;
 import com.example.bucketlist.ui.ListFragment;
 import com.example.bucketlist.ui.SearchFragment;
+import com.example.bucketlist.util.OnItemSelectedListener;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnItemSelectedListener {
 
     HomeFragment homeFragment = new HomeFragment();
     SearchFragment searchFragment = new SearchFragment();
     ListFragment listFragment = new ListFragment();
-    DetailFragment detailFragment = new DetailFragment();
     int container = R.id.fragment_container;
+    BottomNavigationView mBottomNavigationView;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
 //        grab bottom navigation button
 //        open fragment when button clicked
-        BottomNavigationView mBottomNavigationView = findViewById(R.id.bottom_navigation);
+         mBottomNavigationView = findViewById(R.id.bottom_navigation);
         mBottomNavigationView.setOnItemSelectedListener(item -> {
 
             switch (item.getItemId()) {
@@ -57,19 +62,39 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(container, fragment).commit();
     }
 
-//    @Override
-//    public void onSignOutSelected() {
-//        signOut();
-//    }
-//
-//    @Override
-//    public void onDetailSelected() {
-//        replaceFragment(detailFragment);
-//    }
-//
+    @Override
+    public void onSignOutSelected() {
+        signOut();
+    }
+
+    @Override
+    public void onDetailSelected() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(container, new DetailFragment())
+                .addToBackStack(null)
+                .commit();
+        showToast("Detail button clicked!");
+
+    }
+
+    @Override
+    public void onSearchSelected() {
+        showToast("Search selected!");
+    }
+
+    @Override
+    public void hideBottomNavView() {
+        mBottomNavigationView.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void unHideBottomNavView() {
+        mBottomNavigationView.setVisibility(View.VISIBLE);
+    }
+
 
     public void signOut() {
-        // [START auth_fui_signout]
+        // [START auth_fui_signOut]
         AuthUI.getInstance()
                 .signOut(this)
                 .addOnCompleteListener(task -> {
@@ -77,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                     startFirebaseAuthUiActivity();
                     // ...
                 });
-        // [END auth_fui_signout]
+        // [END auth_fui_signOut]
 
     }
 

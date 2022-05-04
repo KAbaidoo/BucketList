@@ -1,4 +1,4 @@
-package com.example.bucketlist;
+package com.example.bucketlist.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -17,12 +17,12 @@ public class PreferencesManager {
     }
 
 
-    protected void setFirstRun() {
+    public void setFirstRun() {
         editor.putBoolean(FIRST_TIME, false).commit();
         editor.commit();
     }
 
-    protected boolean isFirstRun() {
+    public boolean isFirstRun() {
         return sharedPref.getBoolean(FIRST_TIME, true);
     }
 }
