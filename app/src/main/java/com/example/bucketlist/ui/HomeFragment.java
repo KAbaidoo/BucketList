@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -41,38 +40,39 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
-        Button mSignOutButton = view.findViewById(R.id.button_signOut);
-        mSignOutButton.setOnClickListener(v -> listener.onSignOutSelected()
-        );
-
-        Button mDetilsButton = view.findViewById(R.id.button_detail);
-        mDetilsButton.setOnClickListener(v ->
-
-                listener.onDetailSelected()
-//                        openDetail()
-        );
-
+//        Button mSignOutButton = view.findViewById(R.id.button_signOut);
+//        mSignOutButton.setOnClickListener(v -> listener.onSignOutSelected()
+//        );
+////grab the detail button
+//        Button mDetailsButton = view.findViewById(R.id.button_detail);
+//        mDetailsButton.setOnClickListener(v ->
+//
+//                        listener.onDetailSelected()
+////                        openDetail()
+//        );
 
 
 //        Set up recyclerView
-        RecyclerView mRecyclerView = view.findViewById(R.id.recyclerView_recommended);
+        RecyclerView mRecommendedRecyclerView = view.findViewById(R.id.recyclerView_recommended);
+        RecyclerView mFeaturedRecyclerView = view.findViewById(R.id.recyclerView_featured);
+        RecyclerView mTopRecyclerView = view.findViewById(R.id.recyclerView_top);
+
         mAdapter = new EventsAdapter( getContext(),mRecommendedEvents );
-        mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        mRecommendedRecyclerView.setAdapter(mAdapter);
+        mFeaturedRecyclerView.setAdapter(mAdapter);
+        mTopRecyclerView.setAdapter(mAdapter);
+
+        mRecommendedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        mFeaturedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        mTopRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
 
 
         mHomeFragViewModel = new ViewModelProvider(this).get(HomeFragViewModel.class);
-        final Observer<List<Event>> eventObserver = new Observer<List<Event>>() {
-            @Override
-            public void onChanged(List<Event> events) {
-                mAdapter.setEvents(events);
-            }
-        };
+        final Observer<List<Event>> eventObserver = events -> mAdapter.setEvents(events);
 
         mHomeFragViewModel.getRecommendedEvents().observe(this, eventObserver);
         mHomeFragViewModel.getFeaturedEvents().observe(this, eventObserver);
-
-
+        mHomeFragViewModel.getTopEvents().observe(this, eventObserver);
     }
 
     private void openDetail() {

@@ -14,8 +14,9 @@ import java.util.List;
 
 public class HomeFragViewModel extends AndroidViewModel {
     private Repository mRepository;
-    private LiveData<List<Event>> mRecommendedEvents;
+    private LiveData<List<Event>> mRecommendedEvents ;
     private LiveData<List<Event>> mFeaturedEvents;
+    private LiveData<List<Event>> mTopEvents;
 
 
     public HomeFragViewModel(@NonNull Application application) {
@@ -23,20 +24,28 @@ public class HomeFragViewModel extends AndroidViewModel {
         mRepository = new Repository();
         mRecommendedEvents = mRepository.getRecommendedEvents();
         mFeaturedEvents = mRepository.getFeaturedEvents();
+        mTopEvents = mRepository.getTopEvents();
     }
 
     public LiveData<List<Event>> getRecommendedEvents() {
-        if (mRecommendedEvents == null) {
-            mRecommendedEvents = new MutableLiveData<>();
+        if (mRecommendedEvents == null){
+            mRecommendedEvents  = new MutableLiveData<>();
         }
         return mRecommendedEvents;
     }
 
+
     public LiveData<List<Event>> getFeaturedEvents() {
-        if (mFeaturedEvents == null) {
-            mFeaturedEvents = new MutableLiveData<>();
+        if (mFeaturedEvents == null){
+            mFeaturedEvents  = new MutableLiveData<>();
         }
         return mFeaturedEvents;
     }
 
+    public LiveData<List<Event>> getTopEvents() {
+        if (mTopEvents == null){
+            mTopEvents  = new MutableLiveData<>();
+        }
+        return mTopEvents;
+    }
 }

@@ -1,6 +1,7 @@
 package com.example.bucketlist.util;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.example.bucketlist.model.Event;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -8,19 +9,50 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.List;
 
 public class Repository {
-    private final FirebaseFirestore FIRESTORE;
-    private LiveData<List<Event>> mRecommendedEvents;
-    private LiveData<List<Event>> mFeaturedEvents;
+    FirebaseFirestore db;
+    private MutableLiveData<List<Event>> mRecommendedEvents;
+    private MutableLiveData<List<Event>> mFeaturedEvents;
+    private MutableLiveData<List<Event>> mTopEvents;
+
 
     public Repository() {
-        this.FIRESTORE = FirebaseUtil.getFirestore();
+        this.mRecommendedEvents = new MutableLiveData<>();
+        this.db = FirebaseUtil.getFirestore();
+        loadEvents();
     }
 
+    void loadEvents() {
+        db.collection("events").get().addOnSuccessListener(queryDocumentSnapshots -> {
+            List<Event> events = queryDocumentSnapshots.toObjects(Event.class);
+            mRecommendedEvents.setValue(events);
+            mFeaturedEvents.setValue(events);
+            mTopEvents.setValue(events);
+
+
+        });
+
+    }
+
+
+
     public LiveData<List<Event>> getRecommendedEvents() {
+        if (mRecommendedEvents == null) {
+            mRecommendedEvents = new MutableLiveData<>();
+        }
         return mRecommendedEvents;
     }
 
     public LiveData<List<Event>> getFeaturedEvents() {
+        if (mFeaturedEvents == null){
+            mFeaturedEvents  = new MutableLiveData<>();
+        }
         return mFeaturedEvents;
+    }
+
+    public LiveData<List<Event>> getTopEvents() {
+        if (mTopEvents == null){
+            mTopEvents  = new MutableLiveData<>();
+        }
+        return mTopEvents;
     }
 }

@@ -8,7 +8,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.example.bucketlist.ui.DetailFragment;
 import com.example.bucketlist.ui.HomeFragment;
 import com.example.bucketlist.ui.ListFragment;
 import com.example.bucketlist.ui.SearchFragment;
@@ -69,13 +68,16 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
 
     @Override
     public void onDetailSelected() {
-        getSupportFragmentManager().beginTransaction()
-                .replace(container, new DetailFragment())
-                .addToBackStack(null)
-                .commit();
-        showToast("Detail button clicked!");
-
+        Intent i = new Intent(getApplicationContext(), DetailActivity.class);
+        startActivity(i);
     }
+////        getSupportFragmentManager().beginTransaction()
+////                .replace(container, new DetailFragment())
+////                .addToBackStack(null)
+////                .commit();
+////        showToast("Detail button clicked!");
+//
+//    }
 
     @Override
     public void onSearchSelected() {
@@ -108,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
 
     protected void startFirebaseAuthUiActivity() {
 //        Take user back to sign in activity
-        Intent i = new Intent(this, FirebaseAuthUIActivity.class);
+        Intent i = new Intent(this, FirebaseLoginActivity.class);
         startActivity(i);
     }
 

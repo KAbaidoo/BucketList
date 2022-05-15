@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.Arrays;
 import java.util.List;
 
-public class FirebaseAuthUIActivity extends AppCompatActivity {
+public class FirebaseLoginActivity extends AppCompatActivity {
 
 
     private final ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
@@ -49,13 +49,10 @@ public class FirebaseAuthUIActivity extends AppCompatActivity {
 
 //        Create instance of FirebaseAuth
         FirebaseAuth auth = FirebaseAuth.getInstance();
-
         if (auth.getCurrentUser() != null) {
-
             // already signed in
             startMainActivity();
             finish();
-
         } else {
             // not signed in
             createSignInIntent();

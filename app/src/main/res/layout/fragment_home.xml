@@ -1,220 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.HomeFragment">
-
     <RelativeLayout
-        android:id="@+id/greeting_header"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="16dp"
-        android:padding="8dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Good Afternoon"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/recommended_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/greeting_header"
-        android:layout_marginTop="40dp">
-
-        <TextView
-            android:id="@+id/recommended"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-           android:layout_margin="8dp"
-            android:text="Recommended for you"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
-
-        <LinearLayout
+        android:layout_height="match_parent">
+        <!--    Greeting header -->
+        <RelativeLayout
+            android:id="@+id/greeting_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/recommended">
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="16dp"
+            android:padding="8dp">
 
-<!--            <com.google.android.material.card.MaterialCardView-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Good Afternoon"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
+        </RelativeLayout>
 
-<!--                xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--                xmlns:app="http://schemas.android.com/apk/res-auto"-->
-<!--                android:layout_width="180dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_margin="8dp"-->
-<!--                app:cardCornerRadius="5dp"-->
-<!--                app:cardElevation="0dp"-->
-<!--                app:strokeColor="@color/stroke_color"-->
-<!--                app:strokeWidth="1dp">-->
-
-
-<!--                <RelativeLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content">-->
-
-<!--                    <ImageView-->
-<!--                        android:id="@+id/imageView_banner"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="110dp"-->
-<!--                        android:scaleType="centerCrop"-->
-<!--                        android:src="@drawable/kids_pool" />-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/textView_title"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_alignBottom="@id/imageView_banner"-->
-<!--                        android:padding="8dp"-->
-<!--                        android:text="Kids Pool Party"-->
-<!--                        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"-->
-<!--                        android:textColor="?android:textColorPrimary"-->
-<!--                        android:theme="@style/ThemeOverlay.MaterialComponents.Dark" />-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/textView_curator"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_below="@id/imageView_banner"-->
-<!--                        android:padding="8dp"-->
-<!--                        android:text="by Jessica Events"-->
-<!--                        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"-->
-<!--                        android:textColor="?android:textColorSecondary" />-->
-
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/textView_price"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_below="@id/textView_curator"-->
-<!--                        android:padding="8dp"-->
-<!--                        android:text="GH¢ 50"-->
-<!--                        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1" />-->
-
-<!--                </RelativeLayout>-->
-<!--            </com.google.android.material.card.MaterialCardView>-->
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recyclerView_recommended"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:scrollbars="horizontal" />
-
-        </LinearLayout>
-
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/featured_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/recommended_container"
-        android:layout_marginTop="16dp">
-
-        <TextView
-            android:id="@+id/featured"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-           android:layout_margin="8dp"
-            android:text="Featured"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
-
-        <LinearLayout
+        <!-- Recommended container -->
+        <RelativeLayout
+            android:id="@+id/recommended_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/featured">
+            android:layout_below="@id/greeting_header"
+            android:layout_marginTop="40dp">
 
-            <com.google.android.material.card.MaterialCardView
-
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:layout_width="180dp"
+            <TextView
+                android:id="@+id/recommended"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                app:cardCornerRadius="5dp"
-                app:cardElevation="0dp"
-                app:strokeColor="@color/stroke_color"
-                app:strokeWidth="1dp">
+                android:text="Recommended for you"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/recommended">
 
 
-                <RelativeLayout
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView_recommended"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true" />
 
-                    <ImageView
-                        android:id="@+id/imageView_banner1"
-                        android:layout_width="match_parent"
-                        android:layout_height="110dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/kids_pool" />
-
-                    <TextView
-                        android:id="@+id/textView_title1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@id/imageView_banner1"
-                        android:padding="8dp"
-                        android:text="Kids Pool Party"
-                        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-                        android:textColor="?android:textColorPrimary"
-                        android:theme="@style/ThemeOverlay.MaterialComponents.Dark" />
-
-                    <TextView
-                        android:id="@+id/textView_curator1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/imageView_banner1"
-                        android:padding="8dp"
-                        android:text="by Jessica Events"
-                        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
-                        android:textColor="?android:textColorSecondary" />
+            </LinearLayout>
 
 
-                    <TextView
-                        android:id="@+id/textView_price1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/textView_curator1"
-                        android:padding="8dp"
-                        android:text="GH¢ 50"
-                        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1" />
+        </RelativeLayout>
 
-                </RelativeLayout>
-            </com.google.android.material.card.MaterialCardView>
-        </LinearLayout>
-        <!--        <androidx.recyclerview.widget.RecyclerView-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_below="@id/recommended"-->
-        <!--            android:layout_centerHorizontal="true"-->
-        <!--            android:scrollbars="horizontal" />-->
+        <!--  Featured container -->
+        <RelativeLayout
+            android:id="@+id/top_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/featured_container"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:id="@+id/top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="Featured"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/top">
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView_featured"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true" />
+
+            </LinearLayout>
+
+
+
+
+        </RelativeLayout>
+
+        <!--  Top container -->
+        <RelativeLayout
+            android:id="@+id/featured_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/recommended_container"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:id="@+id/featured"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="Top"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/featured">
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true" />
+
+            </LinearLayout>
+
+
+
+
+        </RelativeLayout>
 
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/button_detail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="24dp"
-        android:text="Details" />
-
-    <Button
-        android:id="@+id/button_signOut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:layout_margin="24dp"
-        android:text="@string/sign_out" />
-
-
-</RelativeLayout>
+</ScrollView>

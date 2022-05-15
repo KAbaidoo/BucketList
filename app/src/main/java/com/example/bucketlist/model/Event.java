@@ -2,7 +2,7 @@ package com.example.bucketlist.model;
 
 public class Event {
 
-
+    private String id;
     private String title;
     private String info;
     private String date;
@@ -10,7 +10,7 @@ public class Event {
     private String curator;
     private int imageResource;
     private int price;
-    private String id;
+
 
     public Event() {
     }
