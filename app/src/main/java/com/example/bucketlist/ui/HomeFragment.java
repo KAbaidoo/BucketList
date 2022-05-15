@@ -9,24 +9,16 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bucketlist.R;
 import com.example.bucketlist.adapter.EventsAdapter;
-import com.example.bucketlist.model.Event;
 import com.example.bucketlist.util.OnItemSelectedListener;
 import com.example.bucketlist.viewmodel.HomeFragViewModel;
 
-import java.util.List;
-
 public class HomeFragment extends Fragment {
-    EventsAdapter mAdapter;
-    HomeFragViewModel mHomeFragViewModel;
-   List<Event> mRecommendedEvents;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,22 +49,21 @@ public class HomeFragment extends Fragment {
         RecyclerView mFeaturedRecyclerView = view.findViewById(R.id.recyclerView_featured);
         RecyclerView mTopRecyclerView = view.findViewById(R.id.recyclerView_top);
 
-        mAdapter = new EventsAdapter( getContext(),mRecommendedEvents );
+        EventsAdapter mAdapter = new EventsAdapter(getContext());
         mRecommendedRecyclerView.setAdapter(mAdapter);
         mFeaturedRecyclerView.setAdapter(mAdapter);
         mTopRecyclerView.setAdapter(mAdapter);
 
-        mRecommendedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
-        mFeaturedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
-        mTopRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+
+        mRecommendedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        mFeaturedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        mTopRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
 
-        mHomeFragViewModel = new ViewModelProvider(this).get(HomeFragViewModel.class);
-        final Observer<List<Event>> eventObserver = events -> mAdapter.setEvents(events);
-
-        mHomeFragViewModel.getRecommendedEvents().observe(this, eventObserver);
-        mHomeFragViewModel.getFeaturedEvents().observe(this, eventObserver);
-        mHomeFragViewModel.getTopEvents().observe(this, eventObserver);
+        HomeFragViewModel mHomeFragViewModel = new ViewModelProvider(this).get(HomeFragViewModel.class);
+        mHomeFragViewModel.getRecommendedEvents().observe(this, events -> mAdapter.setEvents(events));
+        mHomeFragViewModel.getFeaturedEvents().observe(this, events -> mAdapter.setEvents(events));
+        mHomeFragViewModel.getTopEvents().observe(this, events -> mAdapter.setEvents(events));
     }
 
     private void openDetail() {

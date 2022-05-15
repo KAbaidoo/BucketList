@@ -27,11 +27,31 @@ public class Repository {
             mRecommendedEvents.setValue(events);
             mFeaturedEvents.setValue(events);
             mTopEvents.setValue(events);
-
-
         });
 
     }
+
+//    public void loadEvents(FirebaseFirestore db){
+//        new loadEventsAsyncTask(db).execute();
+//    }
+//
+//    private  class loadEventsAsyncTask extends AsyncTask<Void, Void, Void> {
+//        private final FirebaseFirestore db;
+//
+//        loadEventsAsyncTask(FirebaseFirestore db) {
+//            this.db = db;
+//        }
+//        @Override
+//        protected Void doInBackground(Void... voids) {
+//            db.collection("events").get().addOnSuccessListener(queryDocumentSnapshots -> {
+//                List<Event> events = queryDocumentSnapshots.toObjects(Event.class);
+//                mRecommendedEvents.setValue(events);
+//                mFeaturedEvents.setValue(events);
+//                mTopEvents.setValue(events);
+//            });
+//            return null;
+//        }
+//    }
 
 
 

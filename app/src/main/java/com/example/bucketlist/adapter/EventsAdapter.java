@@ -23,10 +23,8 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventViewH
     private static List<Event> mEvents; // Cached copy of events
     private static Context mContext;
 
-    public EventsAdapter(Context context, List<Event> eventsData) {
-        this.mEvents = eventsData;
+    public EventsAdapter(Context context) {
         this.mContext = context;
-
 //        OnItemSelectedListener listener;
     }
 
