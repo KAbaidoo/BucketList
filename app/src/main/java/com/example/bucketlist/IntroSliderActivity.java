@@ -24,7 +24,7 @@ public class IntroSliderActivity extends AppIntro {
         if (mPreferences.isFirstRun()) {
             showIntroSlides();
         } else {
-            startMainActivity();
+            startLoginActivity();
         }
     }
 
@@ -84,8 +84,8 @@ public class IntroSliderActivity extends AppIntro {
 
     }
 
-    protected void startMainActivity() {
-        Intent i = new Intent(getApplicationContext(), FirebaseLoginActivity.class);
+    protected void startLoginActivity() {
+        Intent i = new Intent(getApplicationContext(), FBLoginActivity.class);
         startActivity(i);
         finish();
     }
@@ -93,7 +93,7 @@ public class IntroSliderActivity extends AppIntro {
     @Override
     protected void onSkipPressed(Fragment currentFragment) {
         super.onSkipPressed(currentFragment);
-        startMainActivity();
+        startLoginActivity();
         finish();
     }
 
@@ -101,7 +101,7 @@ public class IntroSliderActivity extends AppIntro {
     protected void onDonePressed(Fragment currentFragment) {
         super.onDonePressed(currentFragment);
 //        finish();
-        startMainActivity();
+        startLoginActivity();
         finish();
     }
 }

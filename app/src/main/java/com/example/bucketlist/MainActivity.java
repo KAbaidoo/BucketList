@@ -24,8 +24,6 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
     BottomNavigationView mBottomNavigationView;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
 
     protected void startFirebaseAuthUiActivity() {
 //        Take user back to sign in activity
-        Intent i = new Intent(this, FirebaseLoginActivity.class);
+        Intent i = new Intent(this, FBLoginActivity.class);
         startActivity(i);
     }
 

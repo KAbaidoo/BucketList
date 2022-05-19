@@ -8,9 +8,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.HomeFragment">
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+       >
         <!--    Greeting header -->
         <RelativeLayout
             android:id="@+id/greeting_header"
@@ -21,10 +23,11 @@
             android:padding="8dp">
 
             <TextView
+                android:id="@+id/textView_greeting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Good Afternoon"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+                tools:text="Good Afternoon" />
         </RelativeLayout>
 
         <!-- Recommended container -->
@@ -59,42 +62,7 @@
 
 
         </RelativeLayout>
-
-        <!--  Featured container -->
-        <RelativeLayout
-            android:id="@+id/top_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/featured_container"
-            android:layout_marginTop="16dp">
-
-            <TextView
-                android:id="@+id/top"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:text="Featured"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/top">
-
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerView_featured"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true" />
-
-            </LinearLayout>
-
-
-
-
-        </RelativeLayout>
-
-        <!--  Top container -->
+        <!--  Top container  -->
         <RelativeLayout
             android:id="@+id/featured_container"
             android:layout_width="match_parent"
@@ -109,6 +77,7 @@
                 android:layout_margin="8dp"
                 android:text="Top"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -124,9 +93,81 @@
             </LinearLayout>
 
 
+        </RelativeLayout>
+        <!--  Featured container -->
+        <RelativeLayout
+            android:id="@+id/top_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/featured_container"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:id="@+id/top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="Featured"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/top">
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView_featured"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true" />
+
+            </LinearLayout>
 
 
         </RelativeLayout>
+
+        <!--        Near me -->
+        <RelativeLayout
+            android:id="@+id/near_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/top_container"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:id="@+id/near"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="Near me"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="34dp"
+                android:layout_below="@+id/near">
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView_near"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true" />
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
 
     </RelativeLayout>
 

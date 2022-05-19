@@ -40,6 +40,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventViewH
 
         Event current = mEvents.get(position);
         // Populate the textviews with data.
+
         holder.bindTo(current);
 
         // Covers the case of data not being ready yet.

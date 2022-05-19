@@ -8,14 +8,14 @@ public class Event {
     private String date;
     private String venue;
     private String curator;
-    private int imageResource;
+    private String imageResource;
     private int price;
 
 
     public Event() {
     }
 
-    public Event(String id, String title, String info, String date, String venue, String curator, int imageResource, int price) {
+    public Event(String id, String title, String info, String date, String venue, String curator, String imageResource, int price) {
         this.id = id;
         this.title = title;
         this.info = info;
@@ -74,11 +74,11 @@ public class Event {
         this.curator = curator;
     }
 
-    public int getImageResource() {
+    public String getImageResource() {
         return imageResource;
     }
 
-    public void setImageResource(int imageResource) {
+    public void setImageResource(String imageResource) {
         this.imageResource = imageResource;
     }
 

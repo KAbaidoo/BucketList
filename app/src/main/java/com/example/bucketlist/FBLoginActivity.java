@@ -8,19 +8,21 @@ import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
+import com.example.bucketlist.ui.ListFragment;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
 import com.firebase.ui.auth.IdpResponse;
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class FirebaseLoginActivity extends AppCompatActivity {
-
+public class FBLoginActivity extends AppCompatActivity {
+    ListFragment interestsFragment = new ListFragment();
+    int container = R.id.fragment_container_login;
 
     private final ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
             new FirebaseAuthUIActivityResultContract(),
@@ -85,7 +87,7 @@ public class FirebaseLoginActivity extends AppCompatActivity {
         IdpResponse response = result.getIdpResponse();
         if (result.getResultCode() == RESULT_OK) {
             // Successfully signed in
-            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             showToast("You signed in successfully");
             startMainActivity();
             finish();
@@ -99,6 +101,9 @@ public class FirebaseLoginActivity extends AppCompatActivity {
             showToast("You signed out!");
             return;
         }
+    }
+    void replaceFragment(Fragment fragment) {
+        getSupportFragmentManager().beginTransaction().replace(container, fragment).commit();
     }
 
     // TODO: 4/24/2022 handle back click during sign in and no internet connection during sign in
