@@ -1,43 +1,68 @@
 package com.example.bucketlist;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
-import com.example.bucketlist.ui.ListFragment;
+import com.example.bucketlist.util.PreferencesManager;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
 import com.firebase.ui.auth.IdpResponse;
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class FBLoginActivity extends AppCompatActivity {
-    ListFragment interestsFragment = new ListFragment();
-    int container = R.id.fragment_container_login;
+
+    public static final String TAG = ".FBLoginActivity.TAG";
+    private PreferencesManager mPreferences;
+    private Button mSignInButton;
+    FirebaseAuth auth;
+    FirebaseFirestore db;
 
     private final ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
             new FirebaseAuthUIActivityResultContract(),
             result -> onSignInResult(result)
     );
 
-    private Button mSignInButton;
 
+    ActivityResultLauncher<Intent> mStartInterest = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    Intent intent = result.getData();
+                    // Handle the Intent
+                    ArrayList interests = intent.getStringArrayListExtra(InterestsActivity.INTERESTS);
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    saveUser(interests, user.getUid(), user.getEmail(), user.getDisplayName(), user.getPhoneNumber());
+
+                }
+            });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_firebase_auth_ui);
-
-
+        db = FirebaseFirestore.getInstance();
+        mPreferences = new PreferencesManager(this);
 
 
         // Grab button
@@ -50,18 +75,29 @@ public class FBLoginActivity extends AppCompatActivity {
         });
 
 //        Create instance of FirebaseAuth
-        FirebaseAuth auth = FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance();
         if (auth.getCurrentUser() != null) {
             // already signed in
             startMainActivity();
-            finish();
+//            finish();
         } else {
             // not signed in
             createSignInIntent();
         }
 
+
     }
 
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//        if(requestCode == 2){
+//           ArrayList interest =  data.getStringArrayListExtra(InterestsActivity.INTERESTS);
+//            Log.d("onActivityResult", String.valueOf(interest));
+//
+//        }
+//    }
 
     public void createSignInIntent() {
         // [START auth_fui_create_intent]
@@ -83,14 +119,22 @@ public class FBLoginActivity extends AppCompatActivity {
         // [END auth_fui_create_intent]
     }
 
+
     private void onSignInResult(FirebaseAuthUIAuthenticationResult result) {
         IdpResponse response = result.getIdpResponse();
         if (result.getResultCode() == RESULT_OK) {
             // Successfully signed in
-//            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//            startInterestActivity();
             showToast("You signed in successfully");
-            startMainActivity();
-            finish();
+            mPreferences = new PreferencesManager(this);
+            if (mPreferences.isFirstRun()) {
+                mStartInterest.launch(new Intent(FBLoginActivity.this, InterestsActivity.class));
+                mPreferences.setFirstRun();
+            } else {
+                startMainActivity();
+            }
+
 
             // ...
         } else {
@@ -102,15 +146,19 @@ public class FBLoginActivity extends AppCompatActivity {
             return;
         }
     }
-    void replaceFragment(Fragment fragment) {
-        getSupportFragmentManager().beginTransaction().replace(container, fragment).commit();
-    }
+//
+//    private void startInterestActivity() {
+//       Intent i = new Intent(FBLoginActivity.this, InterestsActivity.class);
+//       startActivityForResult(i, 2);
+//    }
+
 
     // TODO: 4/24/2022 handle back click during sign in and no internet connection during sign in
 
 
     protected void startMainActivity() {
 //        Start the main activity
+        mPreferences.setFirstRun();
         Intent i = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(i);
         finish();
@@ -121,7 +169,33 @@ public class FBLoginActivity extends AppCompatActivity {
         toast.show();
     }
 
+    public void saveUser(ArrayList interests, String uid, String email, String displayName, String phoneNumber) {
 
+        Map<String, Object> user = new HashMap<>();
+
+        user.put("uid", uid);
+        user.put("email", email);
+        user.put("name", displayName);
+        user.put("phone", phoneNumber);
+        user.put("interests", interests);
+
+
+        db.collection("users").add(user).addOnSuccessListener(
+                new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d(TAG, "DocumentSnapshot successfully written!");
+                        startMainActivity();
+                    }
+                }
+        ).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+            }
+        });
+    }
 
 }
+
 

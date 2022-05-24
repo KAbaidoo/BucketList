@@ -16,6 +16,8 @@ public class Repository {
     private MutableLiveData<List<Event>> mNearEvents;
 
 
+
+
     public Repository() {
         this.mRecommendedEvents = new MutableLiveData<>();
         this.db = FirebaseFirestore.getInstance();
@@ -63,4 +65,8 @@ public class Repository {
         }
         return mNearEvents;
     }
+
+
+
+
 }

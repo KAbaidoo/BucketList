@@ -31,7 +31,7 @@ public class IntroSliderActivity extends AppIntro {
 
     protected void showIntroSlides() {
         //Sets value of first run to true indicating the application has been run on this device before
-        mPreferences.setFirstRun();
+//        mPreferences.setFirstRun();
 
 
         addSlide(AppIntroFragment.createInstance(

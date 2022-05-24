@@ -130,34 +130,34 @@
 
         </RelativeLayout>
 
-        <!--        Near me -->
+        <!--        New me -->
         <RelativeLayout
-            android:id="@+id/near_container"
+            android:id="@+id/new_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/top_container"
             android:layout_marginTop="16dp">
 
             <TextView
-                android:id="@+id/near"
+                android:id="@+id/textView_new"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="Near me"
+                android:text="New"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="34dp"
-                android:layout_below="@+id/near">
+                android:layout_below="@+id/textView_new">
 
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerView_near"
+                    android:id="@+id/recyclerView_new"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true" />

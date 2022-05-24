@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
     }
 
 
+
     public void signOut() {
         // [START auth_fui_signOut]
         AuthUI.getInstance()

@@ -1,6 +1,5 @@
 package com.example.bucketlist.ui;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,43 +50,43 @@ public class HomeFragment extends Fragment {
 
 
 //        Set up recyclerView
-//        RecyclerView mRecommendedRecyclerView = view.findViewById(R.id.recyclerView_recommended);
-//        RecyclerView mFeaturedRecyclerView = view.findViewById(R.id.recyclerView_featured);
-//        RecyclerView mTopRecyclerView = view.findViewById(R.id.recyclerView_top);
-//        RecyclerView mNearRecyclerView = view.findViewById(R.id.recyclerView_near);
+        RecyclerView mRecommendedRecyclerView = view.findViewById(R.id.recyclerView_recommended);
+        RecyclerView mFeaturedRecyclerView = view.findViewById(R.id.recyclerView_featured);
+        RecyclerView mTopRecyclerView = view.findViewById(R.id.recyclerView_top);
+        RecyclerView mNewRecyclerView = view.findViewById(R.id.recyclerView_new);
 
 
-//        EventsAdapter mRAdapter = new EventsAdapter(getContext());
-//        EventsAdapter mFAdapter = new EventsAdapter(getContext());
-//        EventsAdapter mTAdapter = new EventsAdapter(getContext());
-//        EventsAdapter mNAdapter = new EventsAdapter(getContext());
+        EventsAdapter mRAdapter = new EventsAdapter(getContext());
+        EventsAdapter mFAdapter = new EventsAdapter(getContext());
+        EventsAdapter mTAdapter = new EventsAdapter(getContext());
+        EventsAdapter mNAdapter = new EventsAdapter(getContext());
 
-//        mRecommendedRecyclerView.setAdapter(mRAdapter);
-//        mFeaturedRecyclerView.setAdapter(mFAdapter);
-//        mTopRecyclerView.setAdapter(mTAdapter);
-//        mNearRecyclerView.setAdapter(mTAdapter);
+        mRecommendedRecyclerView.setAdapter(mRAdapter);
+        mFeaturedRecyclerView.setAdapter(mFAdapter);
+        mTopRecyclerView.setAdapter(mTAdapter);
+        mNewRecyclerView.setAdapter(mTAdapter);
 
-//        mRecommendedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-//        mFeaturedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-//        mTopRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-//        mNearRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        mRecommendedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        mFeaturedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        mTopRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        mNewRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
 
-        Context context = getContext();
+
         HomeFragViewModel mHomeFragViewModel = new ViewModelProvider(this).get(HomeFragViewModel.class);
-        mHomeFragViewModel.getRecommendedEvents().observe(this, events -> createRecyclerView(view, R.id.recyclerView_recommended, context).setEvents(events));
-        mHomeFragViewModel.getFeaturedEvents().observe(this, events -> createRecyclerView(view, R.id.recyclerView_top, context).setEvents(events));
-        mHomeFragViewModel.getTopEvents().observe(this, events -> createRecyclerView(view, R.id.recyclerView_featured, context).setEvents(events));
-        mHomeFragViewModel.getNearEvents().observe(this, events ->createRecyclerView(view, R.id.recyclerView_near, context).setEvents(events));
+        mHomeFragViewModel.getRecommendedEvents().observe(this, events -> mRAdapter.setEvents(events));
+        mHomeFragViewModel.getFeaturedEvents().observe(this, events -> mFAdapter.setEvents(events));
+        mHomeFragViewModel.getTopEvents().observe(this, events -> mTAdapter.setEvents(events));
+        mHomeFragViewModel.getNearEvents().observe(this, events ->mNAdapter.setEvents(events));
     }
 
-    private EventsAdapter createRecyclerView(View view, int recyclerView, Context context) {
-        RecyclerView mRecyclerView = view.findViewById(recyclerView);
-        EventsAdapter mAdapter = new EventsAdapter(context);
-        mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-        return mAdapter;
-    }
+//    private EventsAdapter createRecyclerView(View view, int recyclerView, Context context) {
+//        RecyclerView mRecyclerView = view.findViewById(recyclerView);
+//        EventsAdapter mAdapter = new EventsAdapter(context);
+//        mRecyclerView.setAdapter(mAdapter);
+//        mRecyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+//        return mAdapter;
+//    }
 
     private void setGreeting(View v) {
         TextView mGreeting = v.findViewById(R.id.textView_greeting);
