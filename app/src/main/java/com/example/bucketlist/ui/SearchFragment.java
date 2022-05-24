@@ -1,5 +1,6 @@
 package com.example.bucketlist.ui;
 
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,9 +18,10 @@ import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 
 import com.example.bucketlist.R;
+import com.example.bucketlist.util.OnItemSelectedListener;
 
 public class SearchFragment extends Fragment {
-
+    private OnItemSelectedListener listener;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -45,7 +47,9 @@ public class SearchFragment extends Fragment {
           rl.setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View v) {
-                 showToast(tv.getText().toString());
+
+                  listener.onCategorySelected(tv.getText().toString());
+//                 showToast(tv.getText().toString());
               }
           });
 
@@ -73,17 +77,17 @@ public class SearchFragment extends Fragment {
 
     }
 
-//    private OnItemSelectedListener listener;
-//
-//    @Override
-//    public void onAttach(@NonNull Context context) {
-//        super.onAttach(context);
-//        if (context instanceof OnItemSelectedListener) {
-//            listener = (OnItemSelectedListener) context;
-//        } else {
-//            throw new ClassCastException(context.toString() + " must implement OnItemSelectedListener");
-//        }
-//    }
+
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof OnItemSelectedListener) {
+            listener = (OnItemSelectedListener) context;
+        } else {
+            throw new ClassCastException(context.toString() + " must implement OnItemSelectedListener");
+        }
+    }
 
     private void showToast(String msg) {
         Toast toast = Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT);

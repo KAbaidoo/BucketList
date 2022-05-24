@@ -10,6 +10,7 @@ public interface OnItemSelectedListener {
     void hideBottomNavView();
 
     void unHideBottomNavView();
+    void onCategorySelected(String category);
 
 
 }

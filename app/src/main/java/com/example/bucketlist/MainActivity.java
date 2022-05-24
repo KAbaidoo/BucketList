@@ -8,6 +8,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.example.bucketlist.ui.CategoryFragment;
 import com.example.bucketlist.ui.HomeFragment;
 import com.example.bucketlist.ui.ListFragment;
 import com.example.bucketlist.ui.SearchFragment;
@@ -51,14 +52,10 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
             }
             return false;
         });
-
-
     }
-
     void replaceFragment(Fragment fragment) {
-        getSupportFragmentManager().beginTransaction().replace(container, fragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(container, fragment).addToBackStack("fragment").commit();
     }
-
     @Override
     public void onSignOutSelected() {
         signOut();
@@ -69,13 +66,10 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
         Intent i = new Intent(getApplicationContext(), DetailActivity.class);
         startActivity(i);
     }
-////        getSupportFragmentManager().beginTransaction()
-////                .replace(container, new DetailFragment())
-////                .addToBackStack(null)
-////                .commit();
-////        showToast("Detail button clicked!");
-//
+
+
 //    }
+
 
     @Override
     public void onSearchSelected() {
@@ -92,6 +86,14 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
         mBottomNavigationView.setVisibility(View.VISIBLE);
     }
 
+    @Override
+    public void onCategorySelected(String category) {
+        getSupportFragmentManager().beginTransaction()
+                .replace(container,  CategoryFragment.newInstance(category))
+                .addToBackStack(null)
+                .commit();
+        showToast(category + " selected");
+    }
 
 
     public void signOut() {
