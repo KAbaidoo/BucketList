@@ -13,7 +13,9 @@ import com.example.bucketlist.util.Repository;
 import java.util.List;
 
 public class HomeFragViewModel extends AndroidViewModel {
+
     private Repository mRepository;
+
     private LiveData<List<Event>> mRecommendedEvents ;
     private LiveData<List<Event>> mFeaturedEvents;
     private LiveData<List<Event>> mTopEvents;
@@ -21,11 +23,11 @@ public class HomeFragViewModel extends AndroidViewModel {
 
     public HomeFragViewModel(@NonNull Application application) {
         super(application);
-        mRepository = new Repository();
-        mRecommendedEvents = mRepository.getRecommendedEvents();
-        mFeaturedEvents = mRepository.getFeaturedEvents();
-        mTopEvents = mRepository.getTopEvents();
-        mNearEvents = mRepository.geNearEvents();
+        mRepository= new Repository();
+        this.mRecommendedEvents = mRepository.getRecommendedEvents();
+        this.mFeaturedEvents =mRepository.getFeaturedEvents();
+        this.mTopEvents = mRepository.getTopEvents();
+        this.mNearEvents = mRepository.getNearEvents();
     }
 
     public LiveData<List<Event>> getRecommendedEvents() {
@@ -44,10 +46,12 @@ public class HomeFragViewModel extends AndroidViewModel {
     }
 
     public LiveData<List<Event>> getTopEvents() {
-        if (mTopEvents == null){
-            mTopEvents  = new MutableLiveData<>();
+
+        if (mTopEvents == null) {
+            mTopEvents = new MutableLiveData<>();
         }
         return mTopEvents;
+
     }
 
     public  LiveData<List<Event>> getNearEvents() {

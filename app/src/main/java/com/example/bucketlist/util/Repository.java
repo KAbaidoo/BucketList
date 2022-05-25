@@ -16,10 +16,11 @@ public class Repository {
     private MutableLiveData<List<Event>> mNearEvents;
 
 
-
-
     public Repository() {
         this.mRecommendedEvents = new MutableLiveData<>();
+        this.mFeaturedEvents = new MutableLiveData<>();
+        this.mTopEvents = new MutableLiveData<>();
+        this.mNearEvents = new MutableLiveData<>();
         this.db = FirebaseFirestore.getInstance();
         loadEvents();
     }
@@ -36,8 +37,6 @@ public class Repository {
     }
 
 
-
-
     public LiveData<List<Event>> getRecommendedEvents() {
         if (mRecommendedEvents == null) {
             mRecommendedEvents = new MutableLiveData<>();
@@ -46,27 +45,26 @@ public class Repository {
     }
 
     public LiveData<List<Event>> getFeaturedEvents() {
-        if (mFeaturedEvents == null){
-            mFeaturedEvents  = new MutableLiveData<>();
+        if (mFeaturedEvents == null) {
+            mFeaturedEvents = new MutableLiveData<>();
         }
         return mFeaturedEvents;
     }
 
     public LiveData<List<Event>> getTopEvents() {
-        if (mTopEvents == null){
-            mTopEvents  = new MutableLiveData<>();
+
+        if (mTopEvents == null) {
+            mTopEvents = new MutableLiveData<>();
         }
         return mTopEvents;
     }
 
-    public LiveData<List<Event>> geNearEvents() {
-        if (mNearEvents == null){
-            mNearEvents  = new MutableLiveData<>();
+    public LiveData<List<Event>> getNearEvents() {
+        if (mNearEvents == null) {
+            mNearEvents = new MutableLiveData<>();
         }
         return mNearEvents;
     }
-
-
 
 
 }

@@ -4,13 +4,17 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bucketlist.R;
+import com.example.bucketlist.adapter.SearchAdapter;
+import com.example.bucketlist.viewmodel.CatFragViewModel;
 
 
 public class CategoryFragment extends Fragment {
@@ -57,8 +61,17 @@ public class CategoryFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-      TextView textView =  view.findViewById(R.id.textView_category);
-      textView.setText(mCategory + " Selected");
+//      TextView textView =  view.findViewById(R.id.textView_category);
+//      textView.setText(mCategory + " Selected");
+
+
+
+        RecyclerView mRecyclerView = view.findViewById(R.id.recyclerView_category);
+        SearchAdapter mAdapter = new SearchAdapter(getContext());
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        CatFragViewModel mFragViewModel = new ViewModelProvider(this).get(CatFragViewModel.class);
+        mFragViewModel.getEventsByCategory(mCategory).observe(this, events -> mAdapter.setEvents(events));
 
     }
 }

@@ -64,7 +64,7 @@ public class HomeFragment extends Fragment {
         mRecommendedRecyclerView.setAdapter(mRAdapter);
         mFeaturedRecyclerView.setAdapter(mFAdapter);
         mTopRecyclerView.setAdapter(mTAdapter);
-        mNewRecyclerView.setAdapter(mTAdapter);
+        mNewRecyclerView.setAdapter(mNAdapter);
 
         mRecommendedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         mFeaturedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
