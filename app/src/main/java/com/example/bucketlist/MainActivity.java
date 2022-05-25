@@ -18,7 +18,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity implements OnItemSelectedListener {
 
-    HomeFragment homeFragment = new HomeFragment();
+    HomeFragment homeFragment =new HomeFragment();
     SearchFragment searchFragment = new SearchFragment();
     ListFragment listFragment = new ListFragment();
     int container = R.id.fragment_container;

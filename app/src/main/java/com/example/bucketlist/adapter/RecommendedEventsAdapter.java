@@ -17,13 +17,13 @@ import com.example.bucketlist.model.Event;
 
 import java.util.List;
 
-public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventViewHolder> {
+public class RecommendedEventsAdapter extends RecyclerView.Adapter<RecommendedEventsAdapter.EventViewHolder> {
 
     //    Member variables
     private static List<Event> mEvents; // Cached copy of events
     private static Context mContext;
 
-    public EventsAdapter(Context context) {
+    public RecommendedEventsAdapter(Context context) {
         this.mContext = context;
 //        OnItemSelectedListener listener;
     }
@@ -36,7 +36,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventViewH
     }
 
     @Override
-    public void onBindViewHolder(EventsAdapter.EventViewHolder holder, int position) {
+    public void onBindViewHolder(RecommendedEventsAdapter.EventViewHolder holder, int position) {
 
         Event current = mEvents.get(position);
         // Populate the textviews with data.
