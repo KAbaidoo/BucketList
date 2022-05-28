@@ -1,5 +1,6 @@
 package com.example.bucketlist.ui;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,9 +17,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bucketlist.R;
-import com.example.bucketlist.adapter.RecommendedEventsAdapter;
-import com.example.bucketlist.adapter.TopEventsAdapter;
-import com.example.bucketlist.viewmodel.MainViewModel;
+import com.example.bucketlist.adapters.NewEventsAdapter;
+import com.example.bucketlist.adapters.RecommendedEventsAdapter;
+import com.example.bucketlist.adapters.TopEventsAdapter;
+import com.example.bucketlist.viewmodel.HomeViewModel;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -38,46 +40,47 @@ public class HomeFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         setGreeting(view);
-
-
+        Context context = getContext();
 
 //        Set up recyclerView
         RecyclerView mRecommendedRecyclerView = view.findViewById(R.id.recyclerView_recommended);
 //        RecyclerView mFeaturedRecyclerView = view.findViewById(R.id.recyclerView_featured);
         RecyclerView mTopRecyclerView = view.findViewById(R.id.recyclerView_top);
-//        RecyclerView mNewRecyclerView = view.findViewById(R.id.recyclerView_new);
+        RecyclerView mNewRecyclerView = view.findViewById(R.id.recyclerView_new);
 
 
-        RecommendedEventsAdapter mRAdapter = new RecommendedEventsAdapter(getContext());
-        TopEventsAdapter mTAdapter = new TopEventsAdapter(getContext());
+        RecommendedEventsAdapter mRAdapter = new RecommendedEventsAdapter(context);
+        TopEventsAdapter mTAdapter = new TopEventsAdapter(context);
+        NewEventsAdapter mNAdapter = new NewEventsAdapter(context);
 
 
 
-        mRecommendedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        mTopRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        mRecommendedRecyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+        mTopRecyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+        mNewRecyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+
         mRecommendedRecyclerView.setAdapter(mRAdapter);
         mTopRecyclerView.setAdapter(mTAdapter);
+        mNewRecyclerView.setAdapter(mNAdapter);
 
 
         FragmentActivity fragmentActivity = requireActivity();
         LifecycleOwner lifecycleOwner = getViewLifecycleOwner();
 
-       MainViewModel viewModel = new ViewModelProvider(fragmentActivity).get(MainViewModel.class);
+       HomeViewModel viewModel = new ViewModelProvider(fragmentActivity).get(HomeViewModel.class);
         viewModel.getTopEvents().observe(lifecycleOwner, events -> mTAdapter.setEvents(events));
-
-//        RecommendViewModel recommendViewModel = new ViewModelProvider(fragmentActivity).get(RecommendViewModel.class);
         viewModel.getRecommendedEvents().observe(lifecycleOwner, events -> mRAdapter.setEvents(events));
+        viewModel.getNewEvents().observe(lifecycleOwner, events -> mNAdapter.setEvents(events));
 
 
 //        mTopRecyclerView.setAdapter(mTAdapter);
 //        mNewRecyclerView.setAdapter(mNAdapter);
     }
-
 
     private void setGreeting(View v) {
         TextView mGreeting = v.findViewById(R.id.textView_greeting);
@@ -95,12 +98,8 @@ public class HomeFragment extends Fragment {
         } else {
             greeting = "Good evening";
         }
-
         mGreeting.setText(greeting);
 
     }
-
-
-
 
 }

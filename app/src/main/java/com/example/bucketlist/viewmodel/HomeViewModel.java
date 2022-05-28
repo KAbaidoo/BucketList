@@ -12,30 +12,32 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
-public class MainViewModel extends ViewModel {
+public class HomeViewModel extends ViewModel {
     private final MutableLiveData<List<Event>> topEvents = new MutableLiveData<>();
     private final MutableLiveData<List<Event>> recEvents = new MutableLiveData<>();
-    private final MutableLiveData<List<Event>> searchEvents = new MutableLiveData<>();
+    private final MutableLiveData<List<Event>> newEvents = new MutableLiveData<>();
+
 
     private FirebaseFirestore db;
     CollectionReference eventsRef;
 
-    public MainViewModel() {
+    public HomeViewModel() {
         this.db = FirebaseFirestore.getInstance();
         eventsRef = db.collection("events");
         loadTopEvents();
         loadRecommendedEvents();
+        loadNewEvents();
     }
 
 
     public LiveData<List<Event>> getTopEvents() {
-//       loadTopEvents();
         return topEvents;
     }
     public LiveData<List<Event>> getRecommendedEvents() {
-//        loadRecommendedEvents();
+        return recEvents;
+    }
+    public LiveData<List<Event>> getNewEvents() {
         return recEvents;
     }
 
@@ -70,16 +72,20 @@ public class MainViewModel extends ViewModel {
 
                 });
     }
+    private void loadNewEvents() {
+        List<Event> list = new ArrayList<>();
+        eventsRef.get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            list.add(document.toObject(Event.class));
+                        }
+                        recEvents.setValue(list);
+                    }
 
-    public LiveData<List<Event>> getEventsByCategory(String category) {
-        eventsRef
-                .whereEqualTo("category", category.toLowerCase(Locale.ROOT))
-                .get().addOnSuccessListener(queryDocumentSnapshots -> {
-            List<Event> events = queryDocumentSnapshots.toObjects(Event.class);
-            searchEvents.setValue(events);
-        });
-        return searchEvents;
+                });
     }
+
 
 
 

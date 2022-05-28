@@ -67,7 +67,7 @@
         </RelativeLayout>
         <!--  Top container  -->
         <RelativeLayout
-            android:id="@+id/featured_container"
+            android:id="@+id/top_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/recommended_container"
@@ -98,40 +98,40 @@
 
         </RelativeLayout>
         <!--  Featured container -->
-        <RelativeLayout
-            android:id="@+id/top_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/featured_container"
-            android:layout_marginTop="16dp">
+<!--        <RelativeLayout-->
+<!--            android:id="@+id/featured_container"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/featured_container"-->
+<!--            android:layout_marginTop="16dp">-->
 
-            <TextView
-                android:id="@+id/top"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="Featured"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
+<!--            <TextView-->
+<!--                android:id="@+id/top"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="8dp"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:layout_marginEnd="8dp"-->
+<!--                android:layout_marginBottom="8dp"-->
+<!--                android:text="Featured"-->
+<!--                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />-->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/top">
-
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerView_featured"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true" />
-
-            </LinearLayout>
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@+id/top">-->
 
 
-        </RelativeLayout>
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:id="@+id/recyclerView_featured"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_centerHorizontal="true" />-->
+
+<!--            </LinearLayout>-->
+
+
+<!--        </RelativeLayout>-->
 
         <!--        New me -->
         <RelativeLayout

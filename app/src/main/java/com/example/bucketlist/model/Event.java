@@ -1,30 +1,36 @@
 package com.example.bucketlist.model;
 
-public class Event {
+import com.google.firebase.firestore.DocumentId;
 
+public class Event {
+    @DocumentId
     private String id;
+
     private String title;
     private String info;
     private String date;
     private String venue;
+    private float rating;
     private String curator;
     private String imageResource;
-    private int price;
+    private float price;
 
 
     public Event() {
     }
-
-    public Event(String id, String title, String info, String date, String venue, String curator, String imageResource, int price) {
-        this.id = id;
-        this.title = title;
-        this.info = info;
-        this.date = date;
-        this.venue = venue;
-        this.curator = curator;
-        this.imageResource = imageResource;
-        this.price = price;
-    }
+//
+//    public Event(String id, String title, String info, String date, String venue, float rating, String curator, String imageResource, float price) {
+//        this.id = id;
+//        this.title = title;
+//        this.info = info;
+//        this.date = date;
+//        this.venue = venue;
+//        this.rating = rating;
+//        this.curator = curator;
+//        this.imageResource = imageResource;
+//        this.price = price;
+//
+//    }
 
     public String getId() {
         return id;
@@ -82,14 +88,21 @@ public class Event {
         this.imageResource = imageResource;
     }
 
-    public int getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 
 
 
+    public float getRating() {
+        return rating;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
 }

@@ -1,4 +1,4 @@
-package com.example.bucketlist.adapter;
+package com.example.bucketlist.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -47,7 +47,7 @@ public class RecommendedEventsAdapter extends RecyclerView.Adapter<RecommendedEv
 
     }
 
-   public void setEvents(List<Event> events) {
+    public void setEvents(List<Event> events) {
         mEvents = events;
         notifyDataSetChanged();
     }
@@ -63,10 +63,12 @@ public class RecommendedEventsAdapter extends RecyclerView.Adapter<RecommendedEv
 
     static class EventViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+
         TextView title;
         TextView curator;
         TextView price;
         ImageView bannerImg;
+        TextView rating;
 //        OnItemSelectedListener listener;
 
         private EventViewHolder(View itemView) {
@@ -75,18 +77,8 @@ public class RecommendedEventsAdapter extends RecyclerView.Adapter<RecommendedEv
             curator = itemView.findViewById(R.id.textView_curator);
             price = itemView.findViewById(R.id.textView_price);
             bannerImg = itemView.findViewById(R.id.imageView_banner);
-
-//            if (mContext instanceof OnItemSelectedListener) {
-//                listener = (OnItemSelectedListener) mContext;
-//            } else {
-//                throw new ClassCastException(mContext.toString()
-//                        + " must implement .OnItemSelectedListener");
-//            }
-
-//            set OnclickListener to entire view
+            rating = itemView.findViewById(R.id.textView_rating);
             itemView.setOnClickListener(this);
-
-
         }
 
         @Override
@@ -99,10 +91,13 @@ public class RecommendedEventsAdapter extends RecyclerView.Adapter<RecommendedEv
 //            Event current = mEvents.get(position);
             Intent detailIntent = new Intent(mContext, DetailActivity.class);
             detailIntent.putExtra("title", current.getTitle());
+            detailIntent.putExtra("id", current.getId());
             detailIntent.putExtra("curator", current.getCurator());
             detailIntent.putExtra("price", current.getPrice());
+            detailIntent.putExtra("rating", current.getRating());
             detailIntent.putExtra("image_resource",
                     current.getImageResource());
+            detailIntent.putExtra("info", current.getInfo());
             mContext.startActivity(detailIntent);
         }
 
@@ -110,14 +105,9 @@ public class RecommendedEventsAdapter extends RecyclerView.Adapter<RecommendedEv
             // Populate the textViews with data.
             title.setText(current.getTitle());
             curator.setText(current.getCurator());
-            price.setText(Integer.toString(current.getPrice()));
+            price.setText(Float.toString(current.getPrice()));
+            rating.setText(Float.toString(current.getRating()));
             Glide.with(mContext).load(current.getImageResource()).into(bannerImg);
         }
-
-
     }
-
-//    public Event getEventAtPosition(int position) {
-//        return mEvents.get(position);
-//    }
 }

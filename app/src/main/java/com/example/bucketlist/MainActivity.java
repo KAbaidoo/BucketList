@@ -8,18 +8,17 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.example.bucketlist.ui.CategoryFragment;
+import com.example.bucketlist.ui.SearchFragment;
 import com.example.bucketlist.ui.HomeFragment;
 import com.example.bucketlist.ui.ListFragment;
-import com.example.bucketlist.ui.SearchFragment;
+import com.example.bucketlist.ui.CategoryFragment;
 import com.example.bucketlist.util.OnItemSelectedListener;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity implements OnItemSelectedListener {
-
     HomeFragment homeFragment =new HomeFragment();
-    SearchFragment searchFragment = new SearchFragment();
+    CategoryFragment categoryFragment = new CategoryFragment();
     ListFragment listFragment = new ListFragment();
     int container = R.id.fragment_container;
     BottomNavigationView mBottomNavigationView;
@@ -44,8 +43,8 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
                 case R.id.home_page:
                     replaceFragment(homeFragment);
                     return true;
-                case R.id.search_page:
-                    replaceFragment(searchFragment);
+                case R.id.category_page:
+                    replaceFragment(categoryFragment);
                     return true;
                 case R.id.list_page:
                     replaceFragment(listFragment);
@@ -53,8 +52,13 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
             return false;
         });
     }
+
     void replaceFragment(Fragment fragment) {
-        getSupportFragmentManager().beginTransaction().replace(container, fragment).addToBackStack("fragment").commit();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(container, fragment)
+                .addToBackStack("fragment")
+                .commit();
     }
     @Override
     public void onSignOutSelected() {
@@ -66,9 +70,6 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
         Intent i = new Intent(getApplicationContext(), DetailActivity.class);
         startActivity(i);
     }
-
-
-//    }
 
 
     @Override
@@ -88,8 +89,9 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
 
     @Override
     public void onCategorySelected(String category) {
-        getSupportFragmentManager().beginTransaction()
-                .replace(container,  CategoryFragment.newInstance(category))
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(container,  SearchFragment.newInstance(category))
                 .addToBackStack(null)
                 .commit();
         showToast(category + " selected");
@@ -106,7 +108,6 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
                     // ...
                 });
         // [END auth_fui_signOut]
-
     }
 
     protected void startFirebaseAuthUiActivity() {

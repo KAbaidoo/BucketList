@@ -1,5 +1,6 @@
 package com.example.bucketlist.ui;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,8 +9,15 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bucketlist.R;
+import com.example.bucketlist.adapters.BucketListAdapter;
+import com.example.bucketlist.viewmodel.ListViewModel;
 
 
 public class ListFragment extends Fragment {
@@ -20,5 +28,24 @@ public class ListFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
         return inflater.inflate(R.layout.fragment_list,container,false);
 
+
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Context context = getContext();
+        //        setUp recyclerView
+        RecyclerView bucketListRecyclerView = view.findViewById(R.id.recyclerView_list);
+        BucketListAdapter adapter = new BucketListAdapter(context);
+
+        bucketListRecyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
+        bucketListRecyclerView.setAdapter(adapter);
+
+        FragmentActivity fragmentActivity = requireActivity();
+        LifecycleOwner lifecycleOwner = getViewLifecycleOwner();
+
+        ListViewModel viewModel = new ViewModelProvider(fragmentActivity).get(ListViewModel.class);
+        viewModel.getBucketList().observe(lifecycleOwner, events -> adapter.setEvents(events));
     }
 }

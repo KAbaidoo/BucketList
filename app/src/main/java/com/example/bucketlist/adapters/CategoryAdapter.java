@@ -1,4 +1,4 @@
-package com.example.bucketlist.adapter;
+package com.example.bucketlist.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,13 +17,13 @@ import com.example.bucketlist.model.Event;
 
 import java.util.List;
 
-public class TopEventsAdapter extends RecyclerView.Adapter<TopEventsAdapter.EventViewHolder> {
+public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.EventViewHolder> {
 
     //    Member variables
     private static List<Event> mEvents; // Cached copy of events
     private static Context mContext;
 
-    public TopEventsAdapter(Context context) {
+    public CategoryAdapter(Context context) {
         this.mContext = context;
 //        OnItemSelectedListener listener;
     }
@@ -32,11 +32,11 @@ public class TopEventsAdapter extends RecyclerView.Adapter<TopEventsAdapter.Even
     @Override
     public EventViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new EventViewHolder(LayoutInflater.from(mContext).
-                inflate(R.layout.recyclerview_item, parent, false));
+                inflate(R.layout.search_recyclerview_item, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(TopEventsAdapter.EventViewHolder holder, int position) {
+    public void onBindViewHolder(CategoryAdapter.EventViewHolder holder, int position) {
 
         Event current = mEvents.get(position);
         // Populate the textviews with data.
@@ -67,6 +67,7 @@ public class TopEventsAdapter extends RecyclerView.Adapter<TopEventsAdapter.Even
         TextView curator;
         TextView price;
         ImageView bannerImg;
+        TextView rating;
 //        OnItemSelectedListener listener;
 
         private EventViewHolder(View itemView) {
@@ -75,18 +76,8 @@ public class TopEventsAdapter extends RecyclerView.Adapter<TopEventsAdapter.Even
             curator = itemView.findViewById(R.id.textView_curator);
             price = itemView.findViewById(R.id.textView_price);
             bannerImg = itemView.findViewById(R.id.imageView_banner);
-
-//            if (mContext instanceof OnItemSelectedListener) {
-//                listener = (OnItemSelectedListener) mContext;
-//            } else {
-//                throw new ClassCastException(mContext.toString()
-//                        + " must implement .OnItemSelectedListener");
-//            }
-
-//            set OnclickListener to entire view
+            rating = itemView.findViewById(R.id.textView_rating);
             itemView.setOnClickListener(this);
-
-
         }
 
         @Override
@@ -99,10 +90,13 @@ public class TopEventsAdapter extends RecyclerView.Adapter<TopEventsAdapter.Even
 //            Event current = mEvents.get(position);
             Intent detailIntent = new Intent(mContext, DetailActivity.class);
             detailIntent.putExtra("title", current.getTitle());
+            detailIntent.putExtra("id", current.getId());
             detailIntent.putExtra("curator", current.getCurator());
             detailIntent.putExtra("price", current.getPrice());
+            detailIntent.putExtra("rating", current.getRating());
             detailIntent.putExtra("image_resource",
                     current.getImageResource());
+            detailIntent.putExtra("info", current.getInfo());
             mContext.startActivity(detailIntent);
         }
 
@@ -110,14 +104,13 @@ public class TopEventsAdapter extends RecyclerView.Adapter<TopEventsAdapter.Even
             // Populate the textViews with data.
             title.setText(current.getTitle());
             curator.setText(current.getCurator());
-            price.setText(Integer.toString(current.getPrice()));
+            price.setText(Float.toString(current.getPrice()));
+            rating.setText(Float.toString(current.getRating()));
             Glide.with(mContext).load(current.getImageResource()).into(bannerImg);
         }
 
 
     }
 
-//    public Event getEventAtPosition(int position) {
-//        return mEvents.get(position);
-//    }
+
 }

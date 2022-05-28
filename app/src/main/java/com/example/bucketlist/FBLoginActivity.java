@@ -22,7 +22,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
@@ -180,20 +179,23 @@ public class FBLoginActivity extends AppCompatActivity {
         user.put("interests", interests);
 
 
-        db.collection("users").add(user).addOnSuccessListener(
-                new OnSuccessListener<DocumentReference>() {
+        db.collection("users").document(uid)
+                .set(user)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onSuccess(DocumentReference documentReference) {
+                    public void onSuccess(Void unused) {
                         Log.d(TAG, "DocumentSnapshot successfully written!");
                         startMainActivity();
                     }
-                }
-        ).addOnFailureListener(new OnFailureListener() {
+                }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-
+                Log.w(TAG, "Error writing document", e);
             }
         });
+
+
+
     }
 
 }
