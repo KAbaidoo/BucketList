@@ -18,8 +18,10 @@ import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
 import com.firebase.ui.auth.IdpResponse;
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -64,6 +66,14 @@ public class FBLoginActivity extends AppCompatActivity {
         mPreferences = new PreferencesManager(this);
 
 
+        Button mSignOutButton = (Button) findViewById(R.id.button_signOut);
+        mSignOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signOut();
+            }
+        });
+
         // Grab button
         mSignInButton = (Button) findViewById(R.id.button_signIn);
         mSignInButton.setOnClickListener(new View.OnClickListener() {
@@ -83,7 +93,6 @@ public class FBLoginActivity extends AppCompatActivity {
             // not signed in
             createSignInIntent();
         }
-
 
     }
 
@@ -168,6 +177,18 @@ public class FBLoginActivity extends AppCompatActivity {
         toast.show();
     }
 
+    void signOut() {
+        AuthUI.getInstance()
+                .signOut(this)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    public void onComplete(@NonNull Task<Void> task) {
+                        // ...
+showToast("you signed out!");
+                    }
+                });
+    }
+
+
     public void saveUser(ArrayList interests, String uid, String email, String displayName, String phoneNumber) {
 
         Map<String, Object> user = new HashMap<>();
@@ -193,7 +214,6 @@ public class FBLoginActivity extends AppCompatActivity {
                 Log.w(TAG, "Error writing document", e);
             }
         });
-
 
 
     }

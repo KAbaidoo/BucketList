@@ -16,16 +16,14 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.Map;
+import com.google.firebase.firestore.Transaction;
 
 public class DetailActivity extends AppCompatActivity {
     FirebaseFirestore db;
     CollectionReference userListRef;
     CollectionReference eventsRef;
     FirebaseAuth auth;
-    Map doc;
-    public static final String TAG = ".DetailActivity.TAG";
+     public static final String TAG = ".DetailActivity.TAG";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,57 +35,81 @@ public class DetailActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         FirebaseUser user = auth.getCurrentUser();
         String uid = user.getUid();
+        String email = user.getEmail();
 
         userListRef = db.collection("users").document(uid).collection("list");
         eventsRef = db.collection("events");
 
         Intent intent = getIntent();
         String eventId = intent.getStringExtra("id");
-        loadEvent(eventId);
-
+//        loadEvent(eventId);
 //        Grab textViews
-        TextView eventTitle = (TextView) findViewById(R.id.textView_detail_title);
-        TextView eventPrice = (TextView) findViewById(R.id.detail_price);
-        TextView description = (TextView) findViewById(R.id.textView_description);
-        ImageView imgBanner = (ImageView) findViewById(R.id.imageView_detail);
-        RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBar_detail);
+        TextView eventTitle = findViewById(R.id.textView_detail_title);
+        TextView eventPrice = findViewById(R.id.detail_price);
+        TextView description = findViewById(R.id.textView_description);
+        ImageView imgBanner = findViewById(R.id.imageView_detail);
+        RatingBar ratingBar = findViewById(R.id.ratingBar_detail);
 
 //        Grab buttons
-        Button addToList = (Button) findViewById(R.id.button_add);
-        Button bookEvent = (Button) findViewById(R.id.button_book);
+        Button addToList = findViewById(R.id.button_add);
+        Button bookEvent = findViewById(R.id.button_book);
 
 //        Set TextViews
         eventTitle.setText(intent.getStringExtra("title"));
         description.setText(intent.getStringExtra("info"));
-        eventPrice.setText(Float.toString(intent.getFloatExtra("price", 0)));
+        Float price = intent.getFloatExtra("price", 0);
+        eventPrice.setText(Float.toString(price));
         ratingBar.setRating(intent.getFloatExtra("rating", 2));
 //        set Image banner
         Glide.with(getApplicationContext()).load(getIntent().getStringExtra("image_resource")).into(imgBanner);
 
 
-        addToList.setOnClickListener(v -> userListRef.document(eventId).set(doc)
-                .addOnSuccessListener(unused -> Log.d(TAG, "Document added successfully!"))
-                .addOnFailureListener(e -> Log.w(TAG, "Error writing document", e)));
+//        addToList.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                userListRef.document(eventId).set( doc)
+//                        .addOnSuccessListener(unused -> Log.d(TAG, "Document added successfully!"))
+//                        .addOnFailureListener(e -> Log.w(TAG, "Error writing document", e));
+//            }
+//        });
 
-    }
 
-    private void loadEvent(String eventId) {
-        eventsRef.document(eventId).get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot document = task.getResult();
-                        if (document.exists()) {
-                            doc = document.getData();
+//        Book event
+        bookEvent.setOnClickListener(v -> {
+            Intent i = new Intent(DetailActivity.this, CheckoutActivity.class);
+            i.putExtra("eventId", eventId);
+            i.putExtra("userId", uid);
+            i.putExtra("price", price);
+            i.putExtra("email", email);
+            startActivity(i);
+            finish();
+        });
 
-//                                        Log.d("DetailActivity Get", "DocumentSnapshot data: " + document.getData());
-                        } else {
-                            Log.d(TAG, "No such document");
-                        }
-                    } else {
-                        Log.d(TAG, "get failed with", task.getException());
-                    }
-                });
-    }
+//        Add event to bucket list
+        addToList.setOnClickListener(v -> db.runTransaction((Transaction.Function<Void>) transaction -> {
+            DocumentSnapshot snapShot = transaction.get(eventsRef.document(eventId));
+            transaction.set(userListRef.document(eventId), snapShot.getData());
+
+            return null;
+        }).addOnSuccessListener(unused -> Log.d(TAG, "Transaction success!")).addOnFailureListener(e -> Log.w(TAG, "Transaction failure.", e)));
+    }//        end of onCreateView
+
+//    private void loadEvent(String eventId) {
+//        eventsRef.document(eventId).get()
+//                .addOnCompleteListener(task -> {
+//                    if (task.isSuccessful()) {
+//                        DocumentSnapshot document = task.getResult();
+//                        if (document.exists()) {
+//                            doc = document.getData();
+////                                       Log.d("DetailActivity Get", "DocumentSnapshot data: " + document.getData());
+//                        } else {
+//                            Log.d(TAG, "No such document");
+//                        }
+//                    } else {
+//                        Log.d(TAG, "get failed with", task.getException());
+//                    }
+//                });
+//    }
 
 
 }

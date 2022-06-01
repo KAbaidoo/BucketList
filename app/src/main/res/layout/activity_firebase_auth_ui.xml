@@ -16,6 +16,17 @@
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="@+id/imageView" />
 
+    <Button
+        android:id="@+id/button_signOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Sign out"
+        app:layout_constraintBottom_toTopOf="@+id/button_signIn"
+        app:layout_constraintEnd_toEndOf="@+id/button_signIn"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/button_signIn" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"

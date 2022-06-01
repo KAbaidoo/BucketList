@@ -97,7 +97,6 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
         showToast(category + " selected");
     }
 
-
     public void signOut() {
         // [START auth_fui_signOut]
         AuthUI.getInstance()

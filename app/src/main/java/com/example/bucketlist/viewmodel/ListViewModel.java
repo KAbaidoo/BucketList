@@ -27,12 +27,12 @@ public class ListViewModel extends ViewModel {
         FirebaseUser user = auth.getCurrentUser();
         String uid = user.getUid();
         userListRef = db.collection("users").document(uid).collection("list");
-       loadBucketList();
+
     }
 
 
     public LiveData<List<Event>> getBucketList() {
-//       loadTopEvents();
+        loadBucketList();
         return bucketList;
     }
 
