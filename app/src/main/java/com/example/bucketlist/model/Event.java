@@ -18,19 +18,7 @@ public class Event {
 
     public Event() {
     }
-//
-//    public Event(String id, String title, String info, String date, String venue, float rating, String curator, String imageResource, float price) {
-//        this.id = id;
-//        this.title = title;
-//        this.info = info;
-//        this.date = date;
-//        this.venue = venue;
-//        this.rating = rating;
-//        this.curator = curator;
-//        this.imageResource = imageResource;
-//        this.price = price;
-//
-//    }
+
 
     public String getId() {
         return id;

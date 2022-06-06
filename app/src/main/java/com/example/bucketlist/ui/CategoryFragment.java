@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -44,28 +43,9 @@ public class CategoryFragment extends Fragment {
           rl.setOnClickListener(v -> {
 
               listener.onCategorySelected(tv.getText().toString());
-//                 showToast(tv.getText().toString());
+
           });
         }
-
-//        Get search bar
-//        SearchView searchView = view.findViewById(R.id.search_bar);
-
-//        Button mSearchButton = view.findViewById(R.id.button_search);
-//        mSearchButton.setOnClickListener(v -> listener.onSearchSelected());
-//
-//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                showToast(query);
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//                return false;
-//            }
-//        });
 
     }
 
@@ -81,8 +61,5 @@ public class CategoryFragment extends Fragment {
         }
     }
 
-    private void showToast(String msg) {
-        Toast toast = Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT);
-        toast.show();
-    }
+
 }
