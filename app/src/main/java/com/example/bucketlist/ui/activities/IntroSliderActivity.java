@@ -1,10 +1,11 @@
-package com.example.bucketlist;
+package com.example.bucketlist.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.bucketlist.R;
 import com.example.bucketlist.util.PreferencesManager;
 import com.github.appintro.AppIntro;
 import com.github.appintro.AppIntroFragment;

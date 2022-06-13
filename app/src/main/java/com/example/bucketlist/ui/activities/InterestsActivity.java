@@ -1,4 +1,4 @@
-package com.example.bucketlist;
+package com.example.bucketlist.ui.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.bucketlist.R;
 import com.google.android.material.card.MaterialCardView;
 
 import java.util.ArrayList;

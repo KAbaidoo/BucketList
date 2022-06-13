@@ -1,4 +1,4 @@
-package com.example.bucketlist;
+package com.example.bucketlist.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,10 +8,11 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.example.bucketlist.ui.SearchFragment;
-import com.example.bucketlist.ui.HomeFragment;
-import com.example.bucketlist.ui.ListFragment;
-import com.example.bucketlist.ui.CategoryFragment;
+import com.example.bucketlist.R;
+import com.example.bucketlist.ui.fragments.SearchFragment;
+import com.example.bucketlist.ui.fragments.HomeFragment;
+import com.example.bucketlist.ui.fragments.ListFragment;
+import com.example.bucketlist.ui.fragments.CategoryFragment;
 import com.example.bucketlist.util.OnItemSelectedListener;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

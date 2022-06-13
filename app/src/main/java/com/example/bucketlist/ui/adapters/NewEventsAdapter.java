@@ -1,4 +1,4 @@
-package com.example.bucketlist.adapters;
+package com.example.bucketlist.ui.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,19 +11,19 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.bucketlist.DetailActivity;
+import com.example.bucketlist.ui.activities.DetailActivity;
 import com.example.bucketlist.R;
 import com.example.bucketlist.model.Event;
 
 import java.util.List;
 
-public class TopEventsAdapter extends RecyclerView.Adapter<TopEventsAdapter.EventViewHolder> {
+public class NewEventsAdapter extends RecyclerView.Adapter<NewEventsAdapter.EventViewHolder> {
 
     //    Member variables
     private static List<Event> mEvents; // Cached copy of events
     private static Context mContext;
 
-    public TopEventsAdapter(Context context) {
+    public NewEventsAdapter(Context context) {
         this.mContext = context;
 //        OnItemSelectedListener listener;
     }
@@ -36,7 +36,7 @@ public class TopEventsAdapter extends RecyclerView.Adapter<TopEventsAdapter.Even
     }
 
     @Override
-    public void onBindViewHolder(TopEventsAdapter.EventViewHolder holder, int position) {
+    public void onBindViewHolder(NewEventsAdapter.EventViewHolder holder, int position) {
 
         Event current = mEvents.get(position);
         // Populate the textviews with data.
@@ -47,7 +47,7 @@ public class TopEventsAdapter extends RecyclerView.Adapter<TopEventsAdapter.Even
 
     }
 
-    public void setEvents(List<Event> events) {
+   public void setEvents(List<Event> events) {
         mEvents = events;
         notifyDataSetChanged();
     }
@@ -62,7 +62,6 @@ public class TopEventsAdapter extends RecyclerView.Adapter<TopEventsAdapter.Even
     }
 
     static class EventViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
 
         TextView title;
         TextView curator;
@@ -109,5 +108,7 @@ public class TopEventsAdapter extends RecyclerView.Adapter<TopEventsAdapter.Even
             rating.setText(Float.toString(current.getRating()));
             Glide.with(mContext).load(current.getImageResource()).into(bannerImg);
         }
+
     }
+
 }

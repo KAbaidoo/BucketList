@@ -1,4 +1,4 @@
-package com.example.bucketlist.ui;
+package com.example.bucketlist.ui.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bucketlist.R;
-import com.example.bucketlist.adapters.CategoryAdapter;
+import com.example.bucketlist.ui.adapters.CategoryAdapter;
 import com.example.bucketlist.viewmodel.SearchViewModel;
 
 
@@ -58,7 +58,7 @@ public class SearchFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        TextView search_title = view.findViewById(R.id.search_title);
+        TextView search_title = view.findViewById(R.id.booked_title);
         search_title.setText("Events in "+mCategory + " category." );
 
         RecyclerView mRecyclerView = view.findViewById(R.id.recyclerView_list);

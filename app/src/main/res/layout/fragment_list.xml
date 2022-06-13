@@ -6,44 +6,85 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical"
-tools:context=".ui.ListFragment">
+tools:context=".ui.fragments.ListFragment">
 
-
-
-<!-- Recommended container -->
 <RelativeLayout
-    android:id="@+id/recommended_container"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="40dp">
-
-    <TextView
-        android:id="@+id/search_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="My bucket list"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
-
-    <LinearLayout
+    android:layout_height="match_parent">
+    <!--  Bucket list container  -->
+    <RelativeLayout
+        android:id="@+id/booked_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/search_title">
+        android:layout_marginTop="40dp">
 
+        <TextView
+            android:id="@+id/booked_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="Booked"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView_list"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true" />
-
-    </LinearLayout>
+            android:layout_below="@+id/booked_title">
 
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView_booked_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+    <!-- Booked container -->
+    <RelativeLayout
+        android:id="@+id/recommended_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/booked_container">
+
+        <TextView
+            android:id="@+id/recommended_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="My bucket list"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/recommended_title">
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
 </RelativeLayout>
-<!--  Top container  -->
+
+
+
+
 
 </ScrollView>

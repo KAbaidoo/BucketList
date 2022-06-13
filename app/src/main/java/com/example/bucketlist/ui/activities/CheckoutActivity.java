@@ -1,4 +1,4 @@
-package com.example.bucketlist;
+package com.example.bucketlist.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.bucketlist.BuildConfig;
+import com.example.bucketlist.R;
 import com.google.android.material.textfield.TextInputLayout;
 
 import co.paystack.android.Paystack;

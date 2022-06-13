@@ -15,13 +15,13 @@
         android:theme="@style/Theme.Bucketlist">
 
         <activity
-            android:name=".CheckoutActivity"
+            android:name=".ui.activities.CheckoutActivity"
             android:exported="false" />
         <activity
-            android:name=".InterestsActivity"
+            android:name=".ui.activities.InterestsActivity"
             android:exported="false" />
         <activity
-            android:name=".DetailActivity"
+            android:name=".ui.activities.DetailActivity"
             android:exported="false" />
 
         <meta-data
@@ -32,10 +32,10 @@
             android:value="@string/facebook_client_token" />
 
             <activity
-            android:name=".MainActivity"
+            android:name=".ui.activities.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".IntroSliderActivity"
+            android:name=".ui.activities.IntroSliderActivity"
             android:exported="true"
             android:label="Bucket List">
             <intent-filter>
@@ -45,7 +45,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".FBLoginActivity"
+            android:name=".ui.activities.FBLoginActivity"
             android:exported="true" />
     </application>
 

@@ -1,4 +1,4 @@
-package com.example.bucketlist.ui;
+package com.example.bucketlist.ui.fragments;
 
 import android.content.Context;
 import android.os.Build;

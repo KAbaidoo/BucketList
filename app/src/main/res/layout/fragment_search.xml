@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".ui.SearchFragment">
+        tools:context=".ui.fragments.SearchFragment">
 
 
 
@@ -20,7 +20,7 @@
                 android:layout_marginTop="40dp">
 
                 <TextView
-                    android:id="@+id/search_title"
+                    android:id="@+id/booked_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -33,7 +33,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/search_title">
+                    android:layout_below="@+id/booked_title">
 
 
                     <androidx.recyclerview.widget.RecyclerView

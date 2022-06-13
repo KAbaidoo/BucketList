@@ -1,4 +1,4 @@
-package com.example.bucketlist.adapters;
+package com.example.bucketlist.ui.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,19 +11,19 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.bucketlist.DetailActivity;
+import com.example.bucketlist.ui.activities.DetailActivity;
 import com.example.bucketlist.R;
 import com.example.bucketlist.model.Event;
 
 import java.util.List;
 
-public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.EventViewHolder> {
+public class BucketListAdapter extends RecyclerView.Adapter<BucketListAdapter.EventViewHolder> {
 
     //    Member variables
     private static List<Event> mEvents; // Cached copy of events
     private static Context mContext;
 
-    public CategoryAdapter(Context context) {
+    public BucketListAdapter(Context context) {
         this.mContext = context;
 //        OnItemSelectedListener listener;
     }
@@ -36,7 +36,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.EventV
     }
 
     @Override
-    public void onBindViewHolder(CategoryAdapter.EventViewHolder holder, int position) {
+    public void onBindViewHolder(BucketListAdapter.EventViewHolder holder, int position) {
 
         Event current = mEvents.get(position);
         // Populate the textviews with data.
@@ -62,7 +62,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.EventV
     }
 
     static class EventViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
         TextView title;
         TextView curator;
         TextView price;
@@ -111,6 +110,5 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.EventV
 
 
     }
-
 
 }

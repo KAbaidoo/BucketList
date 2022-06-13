@@ -1,4 +1,4 @@
-package com.example.bucketlist.adapters;
+package com.example.bucketlist.ui.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,19 +11,19 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.bucketlist.DetailActivity;
+import com.example.bucketlist.ui.activities.DetailActivity;
 import com.example.bucketlist.R;
 import com.example.bucketlist.model.Event;
 
 import java.util.List;
 
-public class BucketListAdapter extends RecyclerView.Adapter<BucketListAdapter.EventViewHolder> {
+public class RecommendedEventsAdapter extends RecyclerView.Adapter<RecommendedEventsAdapter.EventViewHolder> {
 
     //    Member variables
     private static List<Event> mEvents; // Cached copy of events
     private static Context mContext;
 
-    public BucketListAdapter(Context context) {
+    public RecommendedEventsAdapter(Context context) {
         this.mContext = context;
 //        OnItemSelectedListener listener;
     }
@@ -32,11 +32,11 @@ public class BucketListAdapter extends RecyclerView.Adapter<BucketListAdapter.Ev
     @Override
     public EventViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new EventViewHolder(LayoutInflater.from(mContext).
-                inflate(R.layout.search_recyclerview_item, parent, false));
+                inflate(R.layout.recyclerview_item, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(BucketListAdapter.EventViewHolder holder, int position) {
+    public void onBindViewHolder(RecommendedEventsAdapter.EventViewHolder holder, int position) {
 
         Event current = mEvents.get(position);
         // Populate the textviews with data.
@@ -47,7 +47,7 @@ public class BucketListAdapter extends RecyclerView.Adapter<BucketListAdapter.Ev
 
     }
 
-   public void setEvents(List<Event> events) {
+    public void setEvents(List<Event> events) {
         mEvents = events;
         notifyDataSetChanged();
     }
@@ -62,6 +62,8 @@ public class BucketListAdapter extends RecyclerView.Adapter<BucketListAdapter.Ev
     }
 
     static class EventViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+
         TextView title;
         TextView curator;
         TextView price;
@@ -107,8 +109,5 @@ public class BucketListAdapter extends RecyclerView.Adapter<BucketListAdapter.Ev
             rating.setText(Float.toString(current.getRating()));
             Glide.with(mContext).load(current.getImageResource()).into(bannerImg);
         }
-
-
     }
-
 }
