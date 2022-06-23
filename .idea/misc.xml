@@ -3,17 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Kobby/AndroidStudioProjects/BucketList/app/src/main/res/drawable-anydpi/ic_action_name.xml" value="0.2405" />
+        <entry key="..\:/Users/Kobby/AndroidStudioProjects/BucketList/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2405" />
         <entry key="..\:/Users/Kobby/AndroidStudioProjects/BucketList/app/src/main/res/drawable/ic_baseline_chevron_right_24.xml" value="0.3828125" />
         <entry key="..\:/Users/Kobby/AndroidStudioProjects/BucketList/app/src/main/res/drawable/ic_baseline_star_24.xml" value="0.3828125" />
         <entry key="..\:/Users/Kobby/AndroidStudioProjects/BucketList/app/src/main/res/drawable/ic_humaaans_1.xml" value="0.3828125" />
         <entry key="..\:/Users/Kobby/AndroidStudioProjects/BucketList/app/src/main/res/drawable/ic_humaaans_2.xml" value="0.3828125" />
         <entry key="..\:/Users/Kobby/AndroidStudioProjects/BucketList/app/src/main/res/drawable/ic_humaaans_3.xml" value="0.3828125" />
+        <entry key="..\:/Users/Kobby/AndroidStudioProjects/BucketList/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2405" />
         <entry key="..\:/Users/Kobby/AndroidStudioProjects/BucketList/app/src/main/res/drawable/interest_background.xml" value="0.3828125" />
         <entry key="..\:/Users/Kobby/AndroidStudioProjects/BucketList/app/src/main/res/layout/activity_checkout.xml" value="0.25" />
         <entry key="..\:/Users/Kobby/AndroidStudioProjects/BucketList/app/src/main/res/layout/activity_detail.xml" value="0.4" />
         <entry key="..\:/Users/Kobby/AndroidStudioProjects/BucketList/app/src/main/res/layout/activity_firebase_auth_ui.xml" value="0.359375" />
         <entry key="..\:/Users/Kobby/AndroidStudioProjects/BucketList/app/src/main/res/layout/activity_interests.xml" value="0.25" />
-        <entry key="..\:/Users/Kobby/AndroidStudioProjects/BucketList/app/src/main/res/layout/activity_main.xml" value="0.14666666666666667" />
+        <entry key="..\:/Users/Kobby/AndroidStudioProjects/BucketList/app/src/main/res/layout/activity_main.xml" value="0.3" />
         <entry key="..\:/Users/Kobby/AndroidStudioProjects/BucketList/app/src/main/res/layout/activity_main2.xml" value="0.1" />
         <entry key="..\:/Users/Kobby/AndroidStudioProjects/BucketList/app/src/main/res/layout/activity_search.xml" value="0.22" />
         <entry key="..\:/Users/Kobby/AndroidStudioProjects/BucketList/app/src/main/res/layout/content_main.xml" value="0.16666666666666666" />

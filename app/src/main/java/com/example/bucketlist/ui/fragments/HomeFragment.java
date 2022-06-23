@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -26,6 +27,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class HomeFragment extends Fragment {
+    ProgressBar progressBar1;
 
 
     public HomeFragment() {
@@ -38,6 +40,8 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
+
+
     }
 
 
@@ -47,9 +51,11 @@ public class HomeFragment extends Fragment {
         setGreeting(view);
         Context context = getContext();
 
+        progressBar1 = view.findViewById(R.id.progress_bar_1);
+
+
 //        Set up recyclerView
         RecyclerView mRecommendedRecyclerView = view.findViewById(R.id.recyclerView_recommended);
-//        RecyclerView mFeaturedRecyclerView = view.findViewById(R.id.recyclerView_featured);
         RecyclerView mTopRecyclerView = view.findViewById(R.id.recyclerView_top);
         RecyclerView mNewRecyclerView = view.findViewById(R.id.recyclerView_new);
 
@@ -57,7 +63,6 @@ public class HomeFragment extends Fragment {
         RecommendedEventsAdapter mRAdapter = new RecommendedEventsAdapter(context);
         TopEventsAdapter mTAdapter = new TopEventsAdapter(context);
         NewEventsAdapter mNAdapter = new NewEventsAdapter(context);
-
 
 
         mRecommendedRecyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
@@ -72,14 +77,20 @@ public class HomeFragment extends Fragment {
         FragmentActivity fragmentActivity = requireActivity();
         LifecycleOwner lifecycleOwner = getViewLifecycleOwner();
 
-       HomeViewModel viewModel = new ViewModelProvider(fragmentActivity).get(HomeViewModel.class);
-        viewModel.getTopEvents().observe(lifecycleOwner, events -> mTAdapter.setEvents(events));
-        viewModel.getRecommendedEvents().observe(lifecycleOwner, events -> mRAdapter.setEvents(events));
-        viewModel.getNewEvents().observe(lifecycleOwner, events -> mNAdapter.setEvents(events));
+        HomeViewModel viewModel = new ViewModelProvider(fragmentActivity).get(HomeViewModel.class);
+        viewModel.getTopEvents().observe(lifecycleOwner, events -> {
+            mTAdapter.setEvents(events);
+            progressBar1.setVisibility(View.GONE);
+        });
+        viewModel.getRecommendedEvents().observe(lifecycleOwner, events ->
+                mRAdapter.setEvents(events)
 
+        );
+        viewModel.getNewEvents().observe(lifecycleOwner, events ->
+                mNAdapter.setEvents(events)
 
-//        mTopRecyclerView.setAdapter(mTAdapter);
-//        mNewRecyclerView.setAdapter(mNAdapter);
+        );
+
     }
 
     private void setGreeting(View v) {

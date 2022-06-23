@@ -11,9 +11,9 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.bucketlist.ui.activities.DetailActivity;
 import com.example.bucketlist.R;
 import com.example.bucketlist.model.Event;
+import com.example.bucketlist.ui.activities.DetailActivity;
 
 import java.util.List;
 
@@ -23,16 +23,19 @@ public class RecommendedEventsAdapter extends RecyclerView.Adapter<RecommendedEv
     private static List<Event> mEvents; // Cached copy of events
     private static Context mContext;
 
+
     public RecommendedEventsAdapter(Context context) {
         this.mContext = context;
-//        OnItemSelectedListener listener;
+
+
     }
 
 
     @Override
     public EventViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new EventViewHolder(LayoutInflater.from(mContext).
-                inflate(R.layout.recyclerview_item, parent, false));
+
+        return new EventViewHolder(LayoutInflater.from(mContext).inflate(R.layout.recyclerview_item, parent, false));
+
     }
 
     @Override
@@ -40,10 +43,7 @@ public class RecommendedEventsAdapter extends RecyclerView.Adapter<RecommendedEv
 
         Event current = mEvents.get(position);
         // Populate the textviews with data.
-
         holder.bindTo(current);
-
-        // Covers the case of data not being ready yet.
 
     }
 
@@ -107,7 +107,8 @@ public class RecommendedEventsAdapter extends RecyclerView.Adapter<RecommendedEv
             curator.setText(current.getCurator());
             price.setText(Float.toString(current.getPrice()));
             rating.setText(Float.toString(current.getRating()));
-            Glide.with(mContext).load(current.getImageResource()).into(bannerImg);
+            Glide.with(mContext).load(current.getImageResource()).placeholder(R.drawable.photo)
+                    .fitCenter().into(bannerImg);
         }
     }
 }

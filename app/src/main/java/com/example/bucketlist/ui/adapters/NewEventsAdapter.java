@@ -106,7 +106,8 @@ public class NewEventsAdapter extends RecyclerView.Adapter<NewEventsAdapter.Even
             curator.setText(current.getCurator());
             price.setText(Float.toString(current.getPrice()));
             rating.setText(Float.toString(current.getRating()));
-            Glide.with(mContext).load(current.getImageResource()).into(bannerImg);
+            Glide.with(mContext).load(current.getImageResource()).placeholder(R.drawable.photo)
+                    .fitCenter().into(bannerImg);
         }
 
     }

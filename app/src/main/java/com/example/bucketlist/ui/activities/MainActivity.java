@@ -9,16 +9,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.bucketlist.R;
-import com.example.bucketlist.ui.fragments.SearchFragment;
+import com.example.bucketlist.ui.fragments.CategoryFragment;
 import com.example.bucketlist.ui.fragments.HomeFragment;
 import com.example.bucketlist.ui.fragments.ListFragment;
-import com.example.bucketlist.ui.fragments.CategoryFragment;
+import com.example.bucketlist.ui.fragments.SearchFragment;
 import com.example.bucketlist.util.OnItemSelectedListener;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity implements OnItemSelectedListener {
-    HomeFragment homeFragment =new HomeFragment();
+    HomeFragment homeFragment = new HomeFragment();
     CategoryFragment categoryFragment = new CategoryFragment();
     ListFragment listFragment = new ListFragment();
     int container = R.id.fragment_container;
@@ -31,13 +31,15 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
         setContentView(R.layout.activity_main);
 
 
+
+
         if (savedInstanceState == null) {
             replaceFragment(homeFragment);
         }
 
 //        grab bottom navigation button
 //        open fragment when button clicked
-         mBottomNavigationView = findViewById(R.id.bottom_navigation);
+        mBottomNavigationView = findViewById(R.id.bottom_navigation);
         mBottomNavigationView.setOnItemSelectedListener(item -> {
 
             switch (item.getItemId()) {
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
                 .addToBackStack("fragment")
                 .commit();
     }
+
     @Override
     public void onSignOutSelected() {
         signOut();
@@ -92,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
     public void onCategorySelected(String category) {
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(container,  SearchFragment.newInstance(category))
+                .replace(container, SearchFragment.newInstance(category))
                 .addToBackStack(null)
                 .commit();
         showToast(category + " selected");

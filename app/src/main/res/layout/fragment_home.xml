@@ -11,8 +11,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-       >
+        android:layout_height="match_parent">
+
         <!--    Greeting header -->
         <RelativeLayout
             android:id="@+id/greeting_header"
@@ -49,11 +49,10 @@
                 android:text="Recommended for you"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/recommended">
-
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView_recommended"
@@ -61,7 +60,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true" />
 
-            </LinearLayout>
+            </RelativeLayout>
 
 
         </RelativeLayout>
@@ -81,11 +80,15 @@
                 android:text="Top"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/featured">
-
+                <ProgressBar
+                    android:id="@+id/progress_bar_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView_top"
@@ -93,47 +96,12 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true" />
 
-            </LinearLayout>
+            </RelativeLayout>
 
 
         </RelativeLayout>
-        <!--  Featured container -->
-<!--        <RelativeLayout-->
-<!--            android:id="@+id/featured_container"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@id/featured_container"-->
-<!--            android:layout_marginTop="16dp">-->
 
-<!--            <TextView-->
-<!--                android:id="@+id/top"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="8dp"-->
-<!--                android:layout_marginTop="8dp"-->
-<!--                android:layout_marginEnd="8dp"-->
-<!--                android:layout_marginBottom="8dp"-->
-<!--                android:text="Featured"-->
-<!--                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />-->
-
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_below="@+id/top">-->
-
-
-<!--                <androidx.recyclerview.widget.RecyclerView-->
-<!--                    android:id="@+id/recyclerView_featured"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_centerHorizontal="true" />-->
-
-<!--            </LinearLayout>-->
-
-
-<!--        </RelativeLayout>-->
-
-        <!--        New me -->
+        <!--        New  -->
         <RelativeLayout
             android:id="@+id/new_container"
             android:layout_width="match_parent"
@@ -152,11 +120,11 @@
                 android:text="New"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="34dp"
-                android:layout_below="@+id/textView_new">
+                android:layout_below="@+id/textView_new"
+                android:layout_marginBottom="34dp">
 
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -166,7 +134,7 @@
                     android:layout_centerHorizontal="true" />
 
 
-            </LinearLayout>
+            </RelativeLayout>
 
 
         </RelativeLayout>

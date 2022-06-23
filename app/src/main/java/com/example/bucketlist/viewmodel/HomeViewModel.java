@@ -33,8 +33,12 @@ public class HomeViewModel extends ViewModel {
     public static final String TAG = "homeviewmodel";
     private FirebaseFirestore db;
 
+
+
+
     public HomeViewModel() {
         this.db = FirebaseFirestore.getInstance();
+
         loadTopEvents();
         loadRecommendedEvents();
         loadNewEvents();
@@ -56,6 +60,7 @@ public class HomeViewModel extends ViewModel {
 
     // find all events with rating 4.0 and above
     private void loadTopEvents() {
+
         List<Event> list = new ArrayList<>();
         CollectionReference eventsRef = db.collection("events");
         eventsRef.whereGreaterThan("rating", 4.0)
@@ -74,6 +79,7 @@ public class HomeViewModel extends ViewModel {
 
     //    find events based on user's interests
     private void loadRecommendedEvents() {
+
 
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         final DocumentReference userRef = db.collection("users").document(user.getUid());
@@ -120,11 +126,13 @@ public class HomeViewModel extends ViewModel {
 
     }
 
-
+    //find all events that were posted recently
     private void loadNewEvents() {
         final CollectionReference eventsRef = db.collection("events");
         List<Event> list = new ArrayList<>();
-        eventsRef.get()
+        eventsRef.orderBy("posted", Query.Direction.DESCENDING)
+                .limit(10)
+                .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
