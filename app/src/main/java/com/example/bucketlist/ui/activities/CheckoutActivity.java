@@ -96,7 +96,6 @@ public class CheckoutActivity extends AppCompatActivity {
     }
 
     private void performCharge() {
-
         String cardNumber = mCardNumber.getEditText().getText().toString();
         String cardExpiry = mCardExpiry.getEditText().getText().toString();
         String cvv = mCardCVV.getEditText().getText().toString();

@@ -23,6 +23,7 @@ public class SearchViewModel extends ViewModel {
         eventsRef = db.collection("events");
     }
 
+    // fetch all events with selected category from firebase
     public LiveData<List<Event>> getEventsByCategory(String category) {
         eventsRef
                 .whereEqualTo("category", category.toLowerCase(Locale.ROOT))

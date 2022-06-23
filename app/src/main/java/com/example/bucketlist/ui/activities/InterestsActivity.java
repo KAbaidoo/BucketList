@@ -16,9 +16,10 @@ import com.example.bucketlist.R;
 import com.google.android.material.card.MaterialCardView;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class InterestsActivity extends AppCompatActivity {
-    public static final String INTERESTS = "com.example.bucketlist.viewmodel.interests";
+    public static final String INTERESTS = ".viewmodel.interests";
     private ArrayList<String> interests = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +48,12 @@ public class InterestsActivity extends AppCompatActivity {
                 if (cardView.isChecked()) {
                     cardView.setChecked(false);
                     TextView tv = (TextView) cardView.getChildAt(0);
-                    interests.remove(tv.getText().toString());
+                    interests.remove(tv.getText().toString().toLowerCase(Locale.ROOT));
                     Log.d("INTERESTS", String.valueOf(interests));
                 } else {
                     cardView.setChecked(true);
                     TextView tv = (TextView) cardView.getChildAt(0);
-                    interests.add(tv.getText().toString());
+                    interests.add(tv.getText().toString().toLowerCase(Locale.ROOT));
                     Log.d("INTERESTS", String.valueOf(interests));
                 }
             });

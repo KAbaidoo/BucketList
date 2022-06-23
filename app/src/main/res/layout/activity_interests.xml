@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/imageView_banner"
                 android:layout_gravity="center"
-                android:text="Arts"
+                android:text="Art"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                 android:textColor="?android:textColorPrimary" />
 
@@ -79,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/imageView_banner"
                 android:layout_gravity="center"
-                android:text="Travel"
+                android:text="Nature"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                 android:textColor="?android:textColorPrimary" />
 
@@ -102,7 +102,7 @@
                 android:layout_height="wrap_content"
 
                 android:layout_gravity="center"
-                android:text="Music"
+                android:text="Travel"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                 android:textColor="?android:textColorPrimary" />
 
@@ -125,7 +125,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/imageView_banner"
                 android:layout_gravity="center"
-                android:text="Sports"
+                android:text="Hiking"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                 android:textColor="?android:textColorPrimary" />
 
@@ -148,7 +148,7 @@
                 android:layout_height="wrap_content"
 
                 android:layout_gravity="center"
-                android:text="Adventure"
+                android:text="Fashion"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                 android:textColor="?android:textColorPrimary" />
 
