@@ -16,6 +16,7 @@ import java.util.List;
 
 public class ListViewModel extends ViewModel {
     private final MutableLiveData<List<Event>> bucketList = new MutableLiveData<>();
+    private final MutableLiveData<List<Event>> bookings = new MutableLiveData<>();
 
     CollectionReference userListRef;
     private FirebaseFirestore db;
@@ -36,6 +37,24 @@ public class ListViewModel extends ViewModel {
         return bucketList;
     }
 
+    public LiveData<List<Event>> getBookings() {
+        loadBookings();
+        return bookings;
+    }
+
+    private void loadBookings() {
+        List<Event> list = new ArrayList<>();
+        userListRef.get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            list.add(document.toObject(Event.class));
+                        }
+                        bookings.setValue(list);
+                    }
+                });
+    }
+
 
     private void loadBucketList() {
         List<Event> list = new ArrayList<>();
@@ -49,6 +68,7 @@ public class ListViewModel extends ViewModel {
                     }
                 });
     }
+
 
 
 }

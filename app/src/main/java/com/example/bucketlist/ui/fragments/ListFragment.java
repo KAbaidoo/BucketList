@@ -39,13 +39,21 @@ public class ListFragment extends Fragment {
         RecyclerView bucketListRecyclerView = view.findViewById(R.id.recyclerView_list);
         BucketListAdapter adapter = new BucketListAdapter(context);
 
+        RecyclerView bookedRecyclerView = view.findViewById(R.id.recyclerView_booked);
+        BucketListAdapter booked_adapter = new BucketListAdapter(context);
+
         bucketListRecyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
         bucketListRecyclerView.setAdapter(adapter);
+
+        bookedRecyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
+        bookedRecyclerView.setAdapter(booked_adapter);
 
         FragmentActivity fragmentActivity = requireActivity();
         LifecycleOwner lifecycleOwner = getViewLifecycleOwner();
 
         ListViewModel viewModel = new ViewModelProvider(fragmentActivity).get(ListViewModel.class);
         viewModel.getBucketList().observe(lifecycleOwner, events -> adapter.setEvents(events));
+        viewModel.getBookings().observe(lifecycleOwner, events -> booked_adapter.setEvents(events));
+
     }
 }

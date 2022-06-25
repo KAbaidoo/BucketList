@@ -7,6 +7,16 @@
     android:padding="16dp"
     tools:context=".ui.activities.CheckoutActivity">
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/btn_make_payment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_card_number" />
+
     <TextView
         android:id="@+id/tv_payment_prompt"
         android:layout_width="match_parent"

@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,7 +25,7 @@ public class DetailActivity extends AppCompatActivity {
     CollectionReference userListRef;
     CollectionReference eventsRef;
     FirebaseAuth auth;
-     public static final String TAG = ".DetailActivity.TAG";
+    public static final String TAG = ".DetailActivity.TAG";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,16 +66,6 @@ public class DetailActivity extends AppCompatActivity {
         Glide.with(getApplicationContext()).load(getIntent().getStringExtra("image_resource")).into(imgBanner);
 
 
-//        addToList.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                userListRef.document(eventId).set( doc)
-//                        .addOnSuccessListener(unused -> Log.d(TAG, "Document added successfully!"))
-//                        .addOnFailureListener(e -> Log.w(TAG, "Error writing document", e));
-//            }
-//        });
-
-
 //        Book event
         bookEvent.setOnClickListener(v -> {
             Intent i = new Intent(DetailActivity.this, CheckoutActivity.class);
@@ -90,27 +81,21 @@ public class DetailActivity extends AppCompatActivity {
         addToList.setOnClickListener(v -> db.runTransaction((Transaction.Function<Void>) transaction -> {
             DocumentSnapshot snapShot = transaction.get(eventsRef.document(eventId));
             transaction.set(userListRef.document(eventId), snapShot.getData());
-
             return null;
-        }).addOnSuccessListener(unused -> Log.d(TAG, "Transaction success!")).addOnFailureListener(e -> Log.w(TAG, "Transaction failure.", e)));
-    }//        end of onCreateView
+        }).addOnSuccessListener(unused -> {
+            Log.d(TAG, "Transaction success!");
+            v.setEnabled(false);
+            showSnackBar(intent.getStringExtra("title"));
+        }).addOnFailureListener(e -> Log.w(TAG, "Transaction failure.", e)));
 
-//    private void loadEvent(String eventId) {
-//        eventsRef.document(eventId).get()
-//                .addOnCompleteListener(task -> {
-//                    if (task.isSuccessful()) {
-//                        DocumentSnapshot document = task.getResult();
-//                        if (document.exists()) {
-//                            doc = document.getData();
-////                                       Log.d("DetailActivity Get", "DocumentSnapshot data: " + document.getData());
-//                        } else {
-//                            Log.d(TAG, "No such document");
-//                        }
-//                    } else {
-//                        Log.d(TAG, "get failed with", task.getException());
-//                    }
-//                });
-//    }
+
+    }
+
+    private void showSnackBar(String title) {
+
+        Toast.makeText(this, title + " added to bucket list", Toast.LENGTH_SHORT
+        ).show();
+    }
 
 
 }

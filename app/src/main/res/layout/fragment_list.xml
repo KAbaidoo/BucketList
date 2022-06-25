@@ -36,7 +36,7 @@ tools:context=".ui.fragments.ListFragment">
 
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView_booked_list"
+                android:id="@+id/recyclerView_booked"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true" />
@@ -45,7 +45,6 @@ tools:context=".ui.fragments.ListFragment">
 
 
     </RelativeLayout>
-
 
     <!-- Booked container -->
     <RelativeLayout

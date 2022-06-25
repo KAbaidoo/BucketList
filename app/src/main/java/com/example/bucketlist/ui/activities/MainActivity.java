@@ -29,13 +29,18 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-
+        Intent i = getIntent();
+        String action = i.getStringExtra("action");
 
         if (savedInstanceState == null) {
             replaceFragment(homeFragment);
         }
+
+        if (action != null){
+            replaceFragment(listFragment);
+        }
+
+
 
 //        grab bottom navigation button
 //        open fragment when button clicked

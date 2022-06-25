@@ -3,7 +3,9 @@ package com.example.bucketlist.ui.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +24,9 @@ public class CheckoutActivity extends AppCompatActivity {
     private TextInputLayout mCardNumber;
     private TextInputLayout mCardExpiry;
     private TextInputLayout mCardCVV;
+    ProgressBar pb;
+
+
     //    Button button;
     int amount;
     String email;
@@ -30,6 +35,7 @@ public class CheckoutActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
+        pb = findViewById(R.id.progress_bar);
 
         Intent i = getIntent();
         amount = (int) i.getFloatExtra("price", 0);
@@ -37,7 +43,6 @@ public class CheckoutActivity extends AppCompatActivity {
 
         initializePaystack();
         initializeFormVariables();
-
 
     }
 //
@@ -88,7 +93,7 @@ public class CheckoutActivity extends AppCompatActivity {
         mCardExpiry.getEditText().setText("05/23");
         mCardCVV.getEditText().setText("408");
 
-        Button button = findViewById(R.id.btn_make_payment);
+        Button  button = findViewById(R.id.btn_make_payment);
         String btnLabel = "PAY GH₵" + amount;
         button.setText(btnLabel);
         button.setOnClickListener(v -> performCharge());
@@ -96,6 +101,7 @@ public class CheckoutActivity extends AppCompatActivity {
     }
 
     private void performCharge() {
+        pb.setVisibility(View.VISIBLE);
         String cardNumber = mCardNumber.getEditText().getText().toString();
         String cardExpiry = mCardExpiry.getEditText().getText().toString();
         String cvv = mCardCVV.getEditText().getText().toString();
@@ -117,10 +123,14 @@ public class CheckoutActivity extends AppCompatActivity {
         PaystackSdk.chargeCard(this, charge, new Paystack.TransactionCallback() {
             @Override
             public void onSuccess(Transaction transaction) {
+                pb.setVisibility(View.GONE);
                 parseResponse(transaction.getReference());
+
                 Log.d("CheckoutActivity", "Payment Successful - " + transaction.getReference());
+
 //        Take user back to sign in activity
                 Intent i = new Intent(CheckoutActivity.this, MainActivity.class);
+                i.putExtra("action","gotoList" );
                 startActivity(i);
                 finish();
             }
@@ -142,6 +152,7 @@ public class CheckoutActivity extends AppCompatActivity {
     private void parseResponse(String transactionReference) {
         String message = "Payment Successful - " + transactionReference;
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+      
     }
 
 }

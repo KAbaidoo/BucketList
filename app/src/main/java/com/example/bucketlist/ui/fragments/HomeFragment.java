@@ -78,6 +78,7 @@ public class HomeFragment extends Fragment {
         LifecycleOwner lifecycleOwner = getViewLifecycleOwner();
 
         HomeViewModel viewModel = new ViewModelProvider(fragmentActivity).get(HomeViewModel.class);
+
         viewModel.getTopEvents().observe(lifecycleOwner, events -> {
             mTAdapter.setEvents(events);
             progressBar1.setVisibility(View.GONE);
