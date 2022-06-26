@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bucketlist.R;
+import com.example.bucketlist.ui.adapters.BookedAdapter;
 import com.example.bucketlist.ui.adapters.BucketListAdapter;
 import com.example.bucketlist.viewmodel.ListViewModel;
 
@@ -40,7 +41,7 @@ public class ListFragment extends Fragment {
         BucketListAdapter adapter = new BucketListAdapter(context);
 
         RecyclerView bookedRecyclerView = view.findViewById(R.id.recyclerView_booked);
-        BucketListAdapter booked_adapter = new BucketListAdapter(context);
+        BookedAdapter booked_adapter = new BookedAdapter(context);
 
         bucketListRecyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
         bucketListRecyclerView.setAdapter(adapter);

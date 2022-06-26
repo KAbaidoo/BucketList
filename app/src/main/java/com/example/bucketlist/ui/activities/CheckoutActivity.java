@@ -8,11 +8,20 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.bucketlist.BuildConfig;
 import com.example.bucketlist.R;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import co.paystack.android.Paystack;
 import co.paystack.android.PaystackSdk;
@@ -25,11 +34,13 @@ public class CheckoutActivity extends AppCompatActivity {
     private TextInputLayout mCardExpiry;
     private TextInputLayout mCardCVV;
     ProgressBar pb;
+    FirebaseFirestore db;
+    final String TAG = "CheckoutActivity";
 
 
     //    Button button;
     int amount;
-    String email;
+    String email,eventId, uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +48,16 @@ public class CheckoutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_checkout);
         pb = findViewById(R.id.progress_bar);
 
+        db = FirebaseFirestore.getInstance();
+
         Intent i = getIntent();
         amount = (int) i.getFloatExtra("price", 0);
         email = i.getStringExtra("email");
+        eventId = i.getStringExtra("eventId");
+        uid =i.getStringExtra("userId");
 
         initializePaystack();
         initializeFormVariables();
-
     }
 //
 //    private void initViews() {
@@ -93,7 +107,7 @@ public class CheckoutActivity extends AppCompatActivity {
         mCardExpiry.getEditText().setText("05/23");
         mCardCVV.getEditText().setText("408");
 
-        Button  button = findViewById(R.id.btn_make_payment);
+        Button button = findViewById(R.id.btn_make_payment);
         String btnLabel = "PAY GH₵" + amount;
         button.setText(btnLabel);
         button.setOnClickListener(v -> performCharge());
@@ -123,16 +137,11 @@ public class CheckoutActivity extends AppCompatActivity {
         PaystackSdk.chargeCard(this, charge, new Paystack.TransactionCallback() {
             @Override
             public void onSuccess(Transaction transaction) {
+                saveBooking();
                 pb.setVisibility(View.GONE);
                 parseResponse(transaction.getReference());
-
+                openMainActivity();
                 Log.d("CheckoutActivity", "Payment Successful - " + transaction.getReference());
-
-//        Take user back to sign in activity
-                Intent i = new Intent(CheckoutActivity.this, MainActivity.class);
-                i.putExtra("action","gotoList" );
-                startActivity(i);
-                finish();
             }
 
             @Override
@@ -149,10 +158,42 @@ public class CheckoutActivity extends AppCompatActivity {
         });
     }
 
+  void saveBooking (){
+      DocumentReference eventRef = db.collection("events").document(eventId);
+      Map<String, Object> booking = new HashMap<>();
+      booking.put("bookingDate", new Timestamp(new Date()));
+      booking.put("eventId", eventId);
+      booking.put("uid", uid);
+      booking.put("amount", amount);
+      booking.put("email", email);
+      booking.put("eventRef", eventRef);
+
+
+      db.collection("sales")
+              .add(booking)
+              .addOnSuccessListener(unused -> Log.d(TAG, "DocumentSnapshot successfully written!")).addOnFailureListener(new OnFailureListener() {
+                  @Override
+                  public void onFailure(@NonNull Exception e) {
+                      Log.w(TAG, "Error writing document", e);
+                  }
+              });
+
+
+  }
+
+
+    private void openMainActivity() {
+        //        Take user back to sign in activity
+        Intent i = new Intent(CheckoutActivity.this, MainActivity.class);
+        i.putExtra("action", "gotoList");
+        startActivity(i);
+        finish();
+    }
+
     private void parseResponse(String transactionReference) {
         String message = "Payment Successful - " + transactionReference;
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
-      
+
     }
 
 }

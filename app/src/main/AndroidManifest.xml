@@ -18,6 +18,9 @@
             android:name=".ui.activities.CheckoutActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.activities.BookedActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activities.InterestsActivity"
             android:exported="false" />
         <activity

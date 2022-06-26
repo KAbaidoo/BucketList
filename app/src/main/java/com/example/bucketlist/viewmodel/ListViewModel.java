@@ -28,9 +28,7 @@ public class ListViewModel extends ViewModel {
         FirebaseUser user = auth.getCurrentUser();
         String uid = user.getUid();
         userListRef = db.collection("users").document(uid).collection("list");
-
     }
-
 
     public LiveData<List<Event>> getBucketList() {
         loadBucketList();
@@ -44,7 +42,8 @@ public class ListViewModel extends ViewModel {
 
     private void loadBookings() {
         List<Event> list = new ArrayList<>();
-        userListRef.get()
+        userListRef
+                .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {

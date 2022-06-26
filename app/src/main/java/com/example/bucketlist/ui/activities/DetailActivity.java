@@ -42,8 +42,11 @@ public class DetailActivity extends AppCompatActivity {
         userListRef = db.collection("users").document(uid).collection("list");
         eventsRef = db.collection("events");
 
+
         Intent intent = getIntent();
         String eventId = intent.getStringExtra("id");
+        String curator = intent.getStringExtra("curator");
+
 //        loadEvent(eventId);
 //        Grab textViews
         TextView eventTitle = findViewById(R.id.textView_detail_title);
@@ -63,7 +66,9 @@ public class DetailActivity extends AppCompatActivity {
         eventPrice.setText(Float.toString(price));
         ratingBar.setRating(intent.getFloatExtra("rating", 2));
 //        set Image banner
-        Glide.with(getApplicationContext()).load(getIntent().getStringExtra("image_resource")).into(imgBanner);
+        Glide.with(getApplicationContext()).load(getIntent().getStringExtra("image_resource")).placeholder(R.drawable.photo).into(imgBanner);
+//        Glide.with(mContext).load(current.getImageResource()).placeholder(R.drawable.photo)
+//                .fitCenter().into(bannerImg);
 
 
 //        Book event
@@ -73,6 +78,7 @@ public class DetailActivity extends AppCompatActivity {
             i.putExtra("userId", uid);
             i.putExtra("price", price);
             i.putExtra("email", email);
+            i.putExtra("curator", curator);
             startActivity(i);
             finish();
         });

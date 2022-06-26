@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.bucketlist.R;
 import com.example.bucketlist.model.Event;
-import com.example.bucketlist.ui.activities.DetailActivity;
+import com.example.bucketlist.ui.activities.BookedActivity;
 
 import java.util.List;
 
@@ -86,8 +86,8 @@ public class BookedAdapter extends RecyclerView.Adapter<BookedAdapter.EventViewH
             // TODO: 5/4/2022  implement open detail view
 
             Event current = mEvents.get(getAdapterPosition());
-//            Event current = mEvents.get(position);
-            Intent detailIntent = new Intent(mContext, DetailActivity.class);
+
+            Intent detailIntent = new Intent(mContext, BookedActivity.class);
             detailIntent.putExtra("title", current.getTitle());
             detailIntent.putExtra("id", current.getId());
             detailIntent.putExtra("curator", current.getCurator());
