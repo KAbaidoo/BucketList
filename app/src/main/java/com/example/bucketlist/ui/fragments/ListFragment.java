@@ -54,7 +54,7 @@ public class ListFragment extends Fragment {
 
         ListViewModel viewModel = new ViewModelProvider(fragmentActivity).get(ListViewModel.class);
         viewModel.getBucketList().observe(lifecycleOwner, events -> adapter.setEvents(events));
-        viewModel.getBookings().observe(lifecycleOwner, events -> booked_adapter.setEvents(events));
+        viewModel.getBookings().observe(lifecycleOwner, bookings -> booked_adapter.setEvents(bookings));
 
     }
 }

@@ -2,15 +2,23 @@ package com.example.bucketlist.model;
 
 import com.google.firebase.firestore.DocumentId;
 
+import java.util.Date;
+
 public class Booking {
     @DocumentId
     private String id;
     private String title;
-    private String info;
-    private String date;
     private String venue;
-    private String time;
+    private Date dateTime;
     private String curator;
+
+    public Booking(String id, String title, String venue, Date dateTime, String curator) {
+        this.id = id;
+        this.title = title;
+        this.venue = venue;
+        this.dateTime = dateTime;
+        this.curator = curator;
+    }
 
     public Booking() {
     }
@@ -32,28 +40,20 @@ public class Booking {
         this.title = title;
     }
 
-    public String getInfo() {
-        return info;
-    }
-
-    public void setInfo(String info) {
-        this.info = info;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
     public String getVenue() {
         return venue;
     }
 
     public void setVenue(String venue) {
         this.venue = venue;
+    }
+
+    public Date getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(Date dateTime) {
+        this.dateTime = dateTime;
     }
 
     public String getCurator() {
@@ -64,19 +64,11 @@ public class Booking {
         this.curator = curator;
     }
 
-
-
-
-
-
-
-
-
-    public String getRating() {
-        return time;
-    }
-
-    public void setRating(String rating) {
-        this.time = rating;
-    }
+//    TextView mGreeting = v.findViewById(R.id.textView_greeting);
+//    String greeting;
+//    Date date = new Date();
+//    Calendar cal = Calendar.getInstance();
+//        cal.setTime(date);
+//    int hour = cal.get(Calendar.HOUR_OF_DAY);
+//
 }

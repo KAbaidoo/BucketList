@@ -2,10 +2,12 @@ package com.example.bucketlist.model;
 
 import com.google.firebase.firestore.DocumentId;
 
+import java.util.Date;
+
 public class Event {
     @DocumentId
     private String id;
-
+    private Date dateTime;
     private String title;
     private String info;
     private String date;
@@ -16,8 +18,6 @@ public class Event {
     private float price;
 
 
-    public Event() {
-    }
 
 
     public String getId() {
@@ -92,5 +92,13 @@ public class Event {
 
     public void setRating(float rating) {
         this.rating = rating;
+    }
+
+    public Date getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(Date dateTime) {
+        this.dateTime = dateTime;
     }
 }

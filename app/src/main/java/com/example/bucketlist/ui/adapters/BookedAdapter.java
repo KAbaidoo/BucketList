@@ -5,22 +5,20 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.bucketlist.R;
-import com.example.bucketlist.model.Event;
+import com.example.bucketlist.model.Booking;
 import com.example.bucketlist.ui.activities.BookedActivity;
 
 import java.util.List;
 
-public class BookedAdapter extends RecyclerView.Adapter<BookedAdapter.EventViewHolder> {
+public class BookedAdapter extends RecyclerView.Adapter<BookedAdapter.BookingViewHolder> {
 
     //    Member variables
-    private static List<Event> mEvents; // Cached copy of events
+    private static List<Booking> mBookings; // Cached copy of events
     private static Context mContext;
 
     public BookedAdapter(Context context) {
@@ -30,15 +28,15 @@ public class BookedAdapter extends RecyclerView.Adapter<BookedAdapter.EventViewH
 
 
     @Override
-    public EventViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new EventViewHolder(LayoutInflater.from(mContext).
-                inflate(R.layout.search_recyclerview_item, parent, false));
+    public BookingViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new BookingViewHolder(LayoutInflater.from(mContext).
+                inflate(R.layout.booking_recyclerview_item, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(BookedAdapter.EventViewHolder holder, int position) {
+    public void onBindViewHolder(BookingViewHolder holder, int position) {
 
-        Event current = mEvents.get(position);
+        Booking current = mBookings.get(position);
         // Populate the textviews with data.
 
         holder.bindTo(current);
@@ -47,8 +45,8 @@ public class BookedAdapter extends RecyclerView.Adapter<BookedAdapter.EventViewH
 
     }
 
-   public void setEvents(List<Event> events) {
-        mEvents = events;
+   public void setEvents(List<Booking> booking) {
+        mBookings = booking;
         notifyDataSetChanged();
     }
 
@@ -56,26 +54,23 @@ public class BookedAdapter extends RecyclerView.Adapter<BookedAdapter.EventViewH
     // mEvents has not been updated (means initially, it's null, and we can't return null).
     @Override
     public int getItemCount() {
-        if (mEvents != null)
-            return mEvents.size();
+        if (mBookings != null)
+            return mBookings.size();
         else return 0;
     }
 
-    static class EventViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView title;
-        TextView curator;
-        TextView price;
-        ImageView bannerImg;
-        TextView rating;
+    static class BookingViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        TextView title, curator, bookingId;
+
+
 //        OnItemSelectedListener listener;
 
-        private EventViewHolder(View itemView) {
+        private BookingViewHolder(View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.textView_title);
             curator = itemView.findViewById(R.id.textView_curator);
-            price = itemView.findViewById(R.id.textView_price);
-            bannerImg = itemView.findViewById(R.id.imageView_banner);
-            rating = itemView.findViewById(R.id.textView_rating);
+            bookingId = itemView.findViewById(R.id.tvBookingId);
+
             itemView.setOnClickListener(this);
         }
 
@@ -85,28 +80,24 @@ public class BookedAdapter extends RecyclerView.Adapter<BookedAdapter.EventViewH
 //            listener.onDetailSelected();
             // TODO: 5/4/2022  implement open detail view
 
-            Event current = mEvents.get(getAdapterPosition());
+            Booking current = mBookings.get(getAdapterPosition());
 
             Intent detailIntent = new Intent(mContext, BookedActivity.class);
             detailIntent.putExtra("title", current.getTitle());
             detailIntent.putExtra("id", current.getId());
             detailIntent.putExtra("curator", current.getCurator());
-            detailIntent.putExtra("price", current.getPrice());
-            detailIntent.putExtra("rating", current.getRating());
-            detailIntent.putExtra("image_resource",
-                    current.getImageResource());
-            detailIntent.putExtra("info", current.getInfo());
+//            detailIntent.putExtra("rating", current.getRating());
+//            detailIntent.putExtra("image_resource",
+//                    current.getImageResource());
+//            detailIntent.putExtra("info", current.getInfo());
             mContext.startActivity(detailIntent);
         }
 
-        void bindTo(Event current) {
+        void bindTo(Booking current) {
             // Populate the textViews with data.
             title.setText(current.getTitle());
             curator.setText(current.getCurator());
-            price.setText(Float.toString(current.getPrice()));
-            rating.setText(Float.toString(current.getRating()));
-            Glide.with(mContext).load(current.getImageResource()).placeholder(R.drawable.photo)
-                    .fitCenter().into(bannerImg);
+            bookingId.setText(current.getId());
         }
 
 
