@@ -1,4 +1,4 @@
-package com.example.bucketlist.ui.adapters;
+package com.example.bucketlist.ui.home;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,43 +11,43 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.bucketlist.activities.DetailActivity;
 import com.example.bucketlist.R;
-import com.example.bucketlist.model.Event;
-import com.example.bucketlist.ui.activities.DetailActivity;
+import com.example.bucketlist.models.Event;
 
 import java.util.List;
 
-public class RecommendedEventsAdapter extends RecyclerView.Adapter<RecommendedEventsAdapter.EventViewHolder> {
+public class NewEventsAdapter extends RecyclerView.Adapter<NewEventsAdapter.EventViewHolder> {
 
     //    Member variables
     private static List<Event> mEvents; // Cached copy of events
     private static Context mContext;
 
-
-    public RecommendedEventsAdapter(Context context) {
+    public NewEventsAdapter(Context context) {
         this.mContext = context;
-
-
+//        OnItemSelectedListener listener;
     }
 
 
     @Override
     public EventViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-        return new EventViewHolder(LayoutInflater.from(mContext).inflate(R.layout.recyclerview_item, parent, false));
-
+        return new EventViewHolder(LayoutInflater.from(mContext).
+                inflate(R.layout.recyclerview_item, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(RecommendedEventsAdapter.EventViewHolder holder, int position) {
+    public void onBindViewHolder(NewEventsAdapter.EventViewHolder holder, int position) {
 
         Event current = mEvents.get(position);
         // Populate the textviews with data.
+
         holder.bindTo(current);
+
+        // Covers the case of data not being ready yet.
 
     }
 
-    public void setEvents(List<Event> events) {
+   public void setEvents(List<Event> events) {
         mEvents = events;
         notifyDataSetChanged();
     }
@@ -62,7 +62,6 @@ public class RecommendedEventsAdapter extends RecyclerView.Adapter<RecommendedEv
     }
 
     static class EventViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
 
         TextView title;
         TextView curator;
@@ -105,10 +104,12 @@ public class RecommendedEventsAdapter extends RecyclerView.Adapter<RecommendedEv
             // Populate the textViews with data.
             title.setText(current.getTitle());
             curator.setText(current.getCurator());
-            price.setText(Float.toString(current.getPrice()));
-            rating.setText(Float.toString(current.getRating()));
+            price.setText(Long.toString(current.getPrice()));
+            rating.setText(Double.toString(current.getRating()));
             Glide.with(mContext).load(current.getImageResource()).placeholder(R.drawable.photo)
                     .fitCenter().into(bannerImg);
         }
+
     }
+
 }

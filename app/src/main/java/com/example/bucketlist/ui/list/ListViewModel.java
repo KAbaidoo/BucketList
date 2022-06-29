@@ -1,16 +1,13 @@
-package com.example.bucketlist.viewmodel;
+package com.example.bucketlist.ui.list;
 
 import android.util.Log;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.bucketlist.model.Booking;
-import com.example.bucketlist.model.Event;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.example.bucketlist.models.Booking;
+import com.example.bucketlist.models.Event;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -63,17 +60,13 @@ public class ListViewModel extends ViewModel {
                         for (QueryDocumentSnapshot document : task.getResult()) {
 
                             DocumentReference docRef = db.collection("events").document(document.get("eventId").toString());
-                           docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                               @Override
-                               public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                   DocumentSnapshot doc = task.getResult();
-                                   if (doc.exists()){
-
-                                       Event event = doc.toObject(Event.class);
-                                       list.add(new Booking("id: "+document.getId(),event.getTitle(),event.getVenue(), event.getDateTime(),event.getCurator()));
-                                       bookings.setValue(list);
-                                       Log.d("ListView", String.valueOf(list));
-                                   }
+                           docRef.get().addOnCompleteListener(task1 -> {
+                               DocumentSnapshot doc = task1.getResult();
+                               if (doc.exists()){
+                                   Event event = doc.toObject(Event.class);
+                                   list.add(new Booking("id: "+document.getId(),event.getTitle(),event.getVenue(),event.getDate(),event.getTime(), event.getDateTime(),event.getCurator()));
+                                   bookings.setValue(list);
+                                   Log.d("ListView", String.valueOf(list));
                                }
                            });
                         }

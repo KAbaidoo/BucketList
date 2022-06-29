@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".ui.fragments.CategoryFragment">
+    tools:context=".ui.category.CategoryFragment">
 
 
 <!--    <androidx.appcompat.widget.SearchView-->
@@ -106,7 +106,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_marginTop="8dp"
                 android:layout_weight="1"
-                android:text="Art"
+                android:text="Arts"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
                 android:textColor="@color/black" />
 

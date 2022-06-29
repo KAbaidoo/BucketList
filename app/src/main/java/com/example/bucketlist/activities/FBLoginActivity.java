@@ -1,4 +1,4 @@
-package com.example.bucketlist.ui.activities;
+package com.example.bucketlist.activities;
 
 import android.app.Activity;
 import android.content.Intent;

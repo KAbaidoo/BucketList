@@ -1,4 +1,4 @@
-package com.example.bucketlist.ui.adapters;
+package com.example.bucketlist.ui.list;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,9 +11,9 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.bucketlist.ui.activities.DetailActivity;
+import com.example.bucketlist.activities.DetailActivity;
 import com.example.bucketlist.R;
-import com.example.bucketlist.model.Event;
+import com.example.bucketlist.models.Event;
 
 import java.util.List;
 
@@ -103,8 +103,8 @@ public class BucketListAdapter extends RecyclerView.Adapter<BucketListAdapter.Ev
             // Populate the textViews with data.
             title.setText(current.getTitle());
             curator.setText(current.getCurator());
-            price.setText(Float.toString(current.getPrice()));
-            rating.setText(Float.toString(current.getRating()));
+            price.setText(Long.toString(current.getPrice()));
+            rating.setText(Double.toString(current.getRating()));
             Glide.with(mContext).load(current.getImageResource()).placeholder(R.drawable.photo)
                     .fitCenter().into(bannerImg);
         }

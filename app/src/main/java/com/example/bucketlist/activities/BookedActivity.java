@@ -1,4 +1,4 @@
-package com.example.bucketlist.ui.activities;
+package com.example.bucketlist.activities;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -17,14 +17,13 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
-import com.google.zxing.qrcode.QRCodeWriter;
 
 public class BookedActivity extends AppCompatActivity {
     FirebaseFirestore db;
 //    CollectionReference userListRef;
     CollectionReference eventsRef;
-//    FirebaseAuth auth;
-    QRCodeWriter qrCodeWriter;
+
+
 
 
     @Override
@@ -34,24 +33,20 @@ public class BookedActivity extends AppCompatActivity {
 
 
         db = FirebaseFirestore.getInstance();
-//        auth = FirebaseAuth.getInstance();
-//        FirebaseUser user = auth.getCurrentUser();
-//        String uid = user.getUid();
-//        String email = user.getEmail();
 
-//        userListRef = db.collection("users").document(uid).collection("list");
+
         eventsRef = db.collection("events");
 
         Intent intent = getIntent();
         String eventId = intent.getStringExtra("id");
-//        loadEvent(eventId);
-//        Grab textViews
+
         TextView eventTitle = findViewById(R.id.textView_detail_title);
         TextView description = findViewById(R.id.textView_description);
-//        ImageView imgBanner = findViewById(R.id.imageView_detail);
         RatingBar ratingBar = findViewById(R.id.ratingBar_detail);
         ImageView iv_qrcode = findViewById(R.id.iv_qrcode);
-
+        TextView mDate = findViewById(R.id.tv_date);
+        TextView mTime = findViewById(R.id.tv_time);
+        TextView mVenue = findViewById(R.id.tv_venue);
        iv_qrcode.post(new Runnable() {
            @Override
            public void run() {
@@ -64,11 +59,12 @@ public class BookedActivity extends AppCompatActivity {
 //        Set TextViews
         eventTitle.setText(intent.getStringExtra("title"));
         description.setText(intent.getStringExtra("info"));
-//        Float price = intent.getFloatExtra("price", 0);
-//        eventPrice.setText(Float.toString(price));
-        ratingBar.setRating(intent.getFloatExtra("rating", 2));
-//        set Image banner
-//        Glide.with(getApplicationContext()).load(getIntent().getStringExtra("image_resource")).into(imgBanner);
+        mDate.setText(intent.getStringExtra("date"));
+        mTime.setText(intent.getStringExtra("time"));
+        mVenue.setText(intent.getStringExtra("venue"));
+
+        ratingBar.setRating((float) intent.getDoubleExtra("rating", 2));
+
     }
 
     private Bitmap createQRcode(ImageView iv_qrcode, String id) {

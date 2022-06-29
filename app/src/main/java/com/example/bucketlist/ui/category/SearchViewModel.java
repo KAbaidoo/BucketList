@@ -1,10 +1,10 @@
-package com.example.bucketlist.viewmodel;
+package com.example.bucketlist.ui.category;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.bucketlist.model.Event;
+import com.example.bucketlist.models.Event;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 

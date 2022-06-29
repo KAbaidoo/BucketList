@@ -1,4 +1,4 @@
-package com.example.bucketlist.ui.activities;
+package com.example.bucketlist.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -51,7 +51,7 @@ public class CheckoutActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         Intent i = getIntent();
-        amount = (int) i.getFloatExtra("price", 0);
+        amount = (int) i.getLongExtra("price", 0);
         email = i.getStringExtra("email");
         eventId = i.getStringExtra("eventId");
         uid =i.getStringExtra("userId");
@@ -122,7 +122,6 @@ public class CheckoutActivity extends AppCompatActivity {
         String[] cardExpiryArray = cardExpiry.split("/");
         int expiryMonth = Integer.parseInt(cardExpiryArray[0]);
         int expiryYear = Integer.parseInt(cardExpiryArray[1]);
-//        int amt = (int) intent.getFloatExtra("price", 0);
         amount *= 100;
 
         Card card = new Card(cardNumber, expiryMonth, expiryYear, cvv);

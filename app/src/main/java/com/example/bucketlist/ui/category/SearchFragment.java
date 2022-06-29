@@ -1,4 +1,4 @@
-package com.example.bucketlist.ui.fragments;
+package com.example.bucketlist.ui.category;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,8 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bucketlist.R;
-import com.example.bucketlist.ui.adapters.CategoryAdapter;
-import com.example.bucketlist.viewmodel.SearchViewModel;
 
 
 public class SearchFragment extends Fragment {

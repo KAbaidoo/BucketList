@@ -1,4 +1,4 @@
-package com.example.bucketlist.ui.fragments;
+package com.example.bucketlist.ui.home;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -18,10 +18,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bucketlist.R;
-import com.example.bucketlist.ui.adapters.NewEventsAdapter;
-import com.example.bucketlist.ui.adapters.RecommendedEventsAdapter;
-import com.example.bucketlist.ui.adapters.TopEventsAdapter;
-import com.example.bucketlist.viewmodel.HomeViewModel;
 
 import java.util.Calendar;
 import java.util.Date;

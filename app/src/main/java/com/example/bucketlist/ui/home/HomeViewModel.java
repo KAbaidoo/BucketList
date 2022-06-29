@@ -1,4 +1,4 @@
-package com.example.bucketlist.viewmodel;
+package com.example.bucketlist.ui.home;
 
 import android.util.Log;
 
@@ -8,7 +8,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.bucketlist.model.Event;
+import com.example.bucketlist.models.Event;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

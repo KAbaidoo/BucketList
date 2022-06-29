@@ -1,4 +1,4 @@
-package com.example.bucketlist.ui.adapters;
+package com.example.bucketlist.ui.list;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,8 +10,8 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bucketlist.R;
-import com.example.bucketlist.model.Booking;
-import com.example.bucketlist.ui.activities.BookedActivity;
+import com.example.bucketlist.models.Booking;
+import com.example.bucketlist.activities.BookedActivity;
 
 import java.util.List;
 
@@ -86,7 +86,9 @@ public class BookedAdapter extends RecyclerView.Adapter<BookedAdapter.BookingVie
             detailIntent.putExtra("title", current.getTitle());
             detailIntent.putExtra("id", current.getId());
             detailIntent.putExtra("curator", current.getCurator());
-//            detailIntent.putExtra("rating", current.getRating());
+            detailIntent.putExtra("date", current.getDate());
+            detailIntent.putExtra("time", current.getTime());
+            detailIntent.putExtra("venue", current.getVenue());
 //            detailIntent.putExtra("image_resource",
 //                    current.getImageResource());
 //            detailIntent.putExtra("info", current.getInfo());

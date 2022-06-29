@@ -1,4 +1,4 @@
-package com.example.bucketlist.ui.adapters;
+package com.example.bucketlist.ui.category;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,19 +11,19 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.bucketlist.ui.activities.DetailActivity;
+import com.example.bucketlist.activities.DetailActivity;
 import com.example.bucketlist.R;
-import com.example.bucketlist.model.Event;
+import com.example.bucketlist.models.Event;
 
 import java.util.List;
 
-public class TopEventsAdapter extends RecyclerView.Adapter<TopEventsAdapter.EventViewHolder> {
+public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.EventViewHolder> {
 
     //    Member variables
     private static List<Event> mEvents; // Cached copy of events
     private static Context mContext;
 
-    public TopEventsAdapter(Context context) {
+    public CategoryAdapter(Context context) {
         this.mContext = context;
 //        OnItemSelectedListener listener;
     }
@@ -32,11 +32,11 @@ public class TopEventsAdapter extends RecyclerView.Adapter<TopEventsAdapter.Even
     @Override
     public EventViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new EventViewHolder(LayoutInflater.from(mContext).
-                inflate(R.layout.recyclerview_item, parent, false));
+                inflate(R.layout.search_recyclerview_item, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(TopEventsAdapter.EventViewHolder holder, int position) {
+    public void onBindViewHolder(CategoryAdapter.EventViewHolder holder, int position) {
 
         Event current = mEvents.get(position);
         // Populate the textviews with data.
@@ -47,7 +47,7 @@ public class TopEventsAdapter extends RecyclerView.Adapter<TopEventsAdapter.Even
 
     }
 
-    public void setEvents(List<Event> events) {
+   public void setEvents(List<Event> events) {
         mEvents = events;
         notifyDataSetChanged();
     }
@@ -62,7 +62,6 @@ public class TopEventsAdapter extends RecyclerView.Adapter<TopEventsAdapter.Even
     }
 
     static class EventViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
 
         TextView title;
         TextView curator;
@@ -105,10 +104,14 @@ public class TopEventsAdapter extends RecyclerView.Adapter<TopEventsAdapter.Even
             // Populate the textViews with data.
             title.setText(current.getTitle());
             curator.setText(current.getCurator());
-            price.setText(Float.toString(current.getPrice()));
-            rating.setText(Float.toString(current.getRating()));
+            price.setText(Long.toString(current.getPrice()));
+            rating.setText(Double.toString(current.getRating()));
             Glide.with(mContext).load(current.getImageResource()).placeholder(R.drawable.photo)
                     .fitCenter().into(bannerImg);
         }
+
+
     }
+
+
 }

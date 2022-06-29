@@ -1,4 +1,4 @@
-package com.example.bucketlist.ui.fragments;
+package com.example.bucketlist.ui.category;
 
 import android.content.Context;
 import android.os.Build;
@@ -17,6 +17,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.bucketlist.R;
 import com.example.bucketlist.util.OnItemSelectedListener;
+
+import java.util.Locale;
 
 public class CategoryFragment extends Fragment {
     private OnItemSelectedListener listener;
@@ -42,7 +44,7 @@ public class CategoryFragment extends Fragment {
            TextView tv = (TextView) rl.getChildAt(0);
           rl.setOnClickListener(v -> {
 
-              listener.onCategorySelected(tv.getText().toString());
+              listener.onCategorySelected(tv.getText().toString().toLowerCase(Locale.ROOT));
 
           });
         }

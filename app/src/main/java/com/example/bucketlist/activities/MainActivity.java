@@ -1,4 +1,4 @@
-package com.example.bucketlist.ui.activities;
+package com.example.bucketlist.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,10 +9,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.bucketlist.R;
-import com.example.bucketlist.ui.fragments.CategoryFragment;
-import com.example.bucketlist.ui.fragments.HomeFragment;
-import com.example.bucketlist.ui.fragments.ListFragment;
-import com.example.bucketlist.ui.fragments.SearchFragment;
+import com.example.bucketlist.ui.category.CategoryFragment;
+import com.example.bucketlist.ui.home.HomeFragment;
+import com.example.bucketlist.ui.list.ListFragment;
+import com.example.bucketlist.ui.category.SearchFragment;
 import com.example.bucketlist.util.OnItemSelectedListener;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
                 .replace(container, SearchFragment.newInstance(category))
                 .addToBackStack(null)
                 .commit();
-        showToast(category + " selected");
+//        showToast(category + " selected");
     }
 
     public void signOut() {

@@ -1,4 +1,4 @@
-package com.example.bucketlist.model;
+package com.example.bucketlist.models;
 
 import com.google.firebase.firestore.DocumentId;
 
@@ -11,14 +11,30 @@ public class Event {
     private String title;
     private String info;
     private String date;
+    private String time;
     private String venue;
-    private float rating;
+    private double rating;
     private String curator;
     private String imageResource;
-    private float price;
+    private long price;
 
 
+    public Event() {
+    }
 
+    public Event(String id, Date dateTime, String title, String info, String date, String time, String venue, double rating, String curator, String imageResource, long price) {
+        this.id = id;
+        this.dateTime = dateTime;
+        this.title = title;
+        this.info = info;
+        this.date = date;
+        this.time = time;
+        this.venue = venue;
+        this.rating = rating;
+        this.curator = curator;
+        this.imageResource = imageResource;
+        this.price = price;
+    }
 
     public String getId() {
         return id;
@@ -26,6 +42,14 @@ public class Event {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public Date getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(Date dateTime) {
+        this.dateTime = dateTime;
     }
 
     public String getTitle() {
@@ -52,12 +76,28 @@ public class Event {
         this.date = date;
     }
 
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
     public String getVenue() {
         return venue;
     }
 
     public void setVenue(String venue) {
         this.venue = venue;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
     }
 
     public String getCurator() {
@@ -76,29 +116,11 @@ public class Event {
         this.imageResource = imageResource;
     }
 
-    public float getPrice() {
+    public long getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(long price) {
         this.price = price;
-    }
-
-
-
-    public float getRating() {
-        return rating;
-    }
-
-    public void setRating(float rating) {
-        this.rating = rating;
-    }
-
-    public Date getDateTime() {
-        return dateTime;
-    }
-
-    public void setDateTime(Date dateTime) {
-        this.dateTime = dateTime;
     }
 }

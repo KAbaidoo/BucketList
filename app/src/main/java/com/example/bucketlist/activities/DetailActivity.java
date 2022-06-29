@@ -1,4 +1,4 @@
-package com.example.bucketlist.ui.activities;
+package com.example.bucketlist.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -62,9 +62,9 @@ public class DetailActivity extends AppCompatActivity {
 //        Set TextViews
         eventTitle.setText(intent.getStringExtra("title"));
         description.setText(intent.getStringExtra("info"));
-        Float price = intent.getFloatExtra("price", 0);
+        Long price = intent.getLongExtra("price", 0);
         eventPrice.setText(Float.toString(price));
-        ratingBar.setRating(intent.getFloatExtra("rating", 2));
+        ratingBar.setRating((float) intent.getDoubleExtra("rating", 2));
 //        set Image banner
         Glide.with(getApplicationContext()).load(getIntent().getStringExtra("image_resource")).placeholder(R.drawable.photo).into(imgBanner);
 //        Glide.with(mContext).load(current.getImageResource()).placeholder(R.drawable.photo)
