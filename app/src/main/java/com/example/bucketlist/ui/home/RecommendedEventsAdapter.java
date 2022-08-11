@@ -12,9 +12,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.bucketlist.R;
-import com.example.bucketlist.models.Event;
 import com.example.bucketlist.activities.DetailActivity;
+import com.example.bucketlist.models.Event;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class RecommendedEventsAdapter extends RecyclerView.Adapter<RecommendedEventsAdapter.EventViewHolder> {
@@ -94,10 +96,46 @@ public class RecommendedEventsAdapter extends RecyclerView.Adapter<RecommendedEv
             detailIntent.putExtra("id", current.getId());
             detailIntent.putExtra("curator", current.getCurator());
             detailIntent.putExtra("price", current.getPrice());
+            detailIntent.putExtra("dateTime", current.getDateTime());
             detailIntent.putExtra("rating", current.getRating());
             detailIntent.putExtra("image_resource",
                     current.getImageResource());
             detailIntent.putExtra("info", current.getInfo());
+
+
+            detailIntent.putExtra("venue", current.getVenue());
+
+            Calendar cal = Calendar.getInstance();
+            Date dateTime = current.getDateTime();
+            cal.setTime(dateTime);
+
+            int year = cal.get(Calendar.YEAR);
+            int month = cal.get(Calendar.MONTH);
+            int day = cal.get(Calendar.DAY_OF_MONTH);
+            StringBuilder str =  new StringBuilder()
+                    .append(day)
+                    .append("-")
+                    .append(month+1)
+                    .append("-")
+                    .append(year);
+//            Log.d("TopEvents", str.toString());
+            detailIntent.putExtra("date", str.toString());
+
+//            Time
+//            ================================================
+            int hour = cal.get(Calendar.HOUR_OF_DAY);
+            int min = cal.get(Calendar.MINUTE);
+
+
+            StringBuilder str1 =  new StringBuilder()
+                    .append(hour)
+                    .append(":")
+                    .append(min);
+
+//            Log.d("TopEvents", str1.toString());
+            detailIntent.putExtra("time", str1.toString());
+
+
             mContext.startActivity(detailIntent);
         }
 

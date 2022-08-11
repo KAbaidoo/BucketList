@@ -10,8 +10,7 @@ public class Event {
     private Date dateTime;
     private String title;
     private String info;
-    private String date;
-    private String time;
+
     private String venue;
     private double rating;
     private String curator;
@@ -22,13 +21,13 @@ public class Event {
     public Event() {
     }
 
-    public Event(String id, Date dateTime, String title, String info, String date, String time, String venue, double rating, String curator, String imageResource, long price) {
+    public Event(String id, Date dateTime, String title, String info,  String venue, double rating, String curator, String imageResource, long price) {
         this.id = id;
         this.dateTime = dateTime;
         this.title = title;
         this.info = info;
-        this.date = date;
-        this.time = time;
+
+
         this.venue = venue;
         this.rating = rating;
         this.curator = curator;
@@ -68,21 +67,11 @@ public class Event {
         this.info = info;
     }
 
-    public String getDate() {
-        return date;
-    }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
 
-    public String getTime() {
-        return time;
-    }
 
-    public void setTime(String time) {
-        this.time = time;
-    }
+
+
 
     public String getVenue() {
         return venue;

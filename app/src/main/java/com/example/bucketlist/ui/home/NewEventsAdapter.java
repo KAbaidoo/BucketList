@@ -2,6 +2,7 @@ package com.example.bucketlist.ui.home;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +12,12 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.bucketlist.activities.DetailActivity;
 import com.example.bucketlist.R;
+import com.example.bucketlist.activities.DetailActivity;
 import com.example.bucketlist.models.Event;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class NewEventsAdapter extends RecyclerView.Adapter<NewEventsAdapter.EventViewHolder> {
@@ -42,7 +45,6 @@ public class NewEventsAdapter extends RecyclerView.Adapter<NewEventsAdapter.Even
         // Populate the textviews with data.
 
         holder.bindTo(current);
-
         // Covers the case of data not being ready yet.
 
     }
@@ -87,16 +89,51 @@ public class NewEventsAdapter extends RecyclerView.Adapter<NewEventsAdapter.Even
             // TODO: 5/4/2022  implement open detail view
 
             Event current = mEvents.get(getAdapterPosition());
-//            Event current = mEvents.get(position);
             Intent detailIntent = new Intent(mContext, DetailActivity.class);
+
             detailIntent.putExtra("title", current.getTitle());
             detailIntent.putExtra("id", current.getId());
             detailIntent.putExtra("curator", current.getCurator());
+            detailIntent.putExtra("dateTime", current.getDateTime());
             detailIntent.putExtra("price", current.getPrice());
             detailIntent.putExtra("rating", current.getRating());
             detailIntent.putExtra("image_resource",
                     current.getImageResource());
             detailIntent.putExtra("info", current.getInfo());
+
+            detailIntent.putExtra("venue", current.getVenue());
+
+            Calendar cal = Calendar.getInstance();
+            Date dateTime = current.getDateTime();
+            cal.setTime(dateTime);
+
+            int year = cal.get(Calendar.YEAR);
+            int month = cal.get(Calendar.MONTH);
+            int day = cal.get(Calendar.DAY_OF_MONTH);
+            StringBuilder str =  new StringBuilder()
+                    .append(day)
+                    .append("-")
+                    .append(month+1)
+                    .append("-")
+                    .append(year);
+//            Log.d("TopEvents", str.toString());
+            detailIntent.putExtra("date", str.toString());
+
+//            Time
+//            ================================================
+            int hour = cal.get(Calendar.HOUR_OF_DAY);
+            int min = cal.get(Calendar.MINUTE);
+
+
+            StringBuilder str1 =  new StringBuilder()
+                    .append(hour)
+                    .append(":")
+                    .append(min);
+
+//            Log.d("TopEvents", str1.toString());
+            detailIntent.putExtra("time", str1.toString());
+
+
             mContext.startActivity(detailIntent);
         }
 

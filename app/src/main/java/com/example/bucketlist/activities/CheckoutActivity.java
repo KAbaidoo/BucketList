@@ -59,20 +59,7 @@ public class CheckoutActivity extends AppCompatActivity {
         initializePaystack();
         initializeFormVariables();
     }
-//
-//    private void initViews() {
-//        mCardNumber = findViewById(R.id.til_card_number);
-//        mCardExpiry = findViewById(R.id.til_card_expiry);
-//        mCardCVV = findViewById(R.id.til_card_cvv);
-//
-//
-//       Button button = findViewById(R.id.btn_make_payment);
-//        String btnLabel = "PAY GHC " + amount;
-//        button.setText(btnLabel);
-////        addTextWatcherToEditText();
-//
-//
-//    }
+
 
 
     private void initializePaystack() {
@@ -87,22 +74,7 @@ public class CheckoutActivity extends AppCompatActivity {
         mCardCVV = findViewById(R.id.til_card_cvv);
 
 
-//        Objects.requireNonNull(mCardExpiry.getEditText()).addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//                if (s.toString().length() == 2 && !s.toString().contains("/")) {
-//                    s.append("/");
-//                }
-//            }
-//        });
+
         mCardNumber.getEditText().setText("4084084084084081");
         mCardExpiry.getEditText().setText("05/23");
         mCardCVV.getEditText().setText("408");

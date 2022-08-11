@@ -125,7 +125,7 @@
                             android:textSize="16sp" />
 
                         <TextView
-                            android:id="@+id/time"
+                            android:id="@+id/tv_time"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
@@ -155,7 +155,7 @@
                             android:textSize="16sp" />
 
                         <TextView
-                            android:id="@+id/Venue"
+                            android:id="@+id/tv_venue"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 

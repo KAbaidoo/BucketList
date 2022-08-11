@@ -42,18 +42,22 @@ public class DetailActivity extends AppCompatActivity {
         userListRef = db.collection("users").document(uid).collection("list");
         eventsRef = db.collection("events");
 
-
         Intent intent = getIntent();
         String eventId = intent.getStringExtra("id");
         String curator = intent.getStringExtra("curator");
 
-//        loadEvent(eventId);
 //        Grab textViews
         TextView eventTitle = findViewById(R.id.textView_detail_title);
         TextView eventPrice = findViewById(R.id.detail_price);
         TextView description = findViewById(R.id.textView_description);
         ImageView imgBanner = findViewById(R.id.imageView_detail);
         RatingBar ratingBar = findViewById(R.id.ratingBar_detail);
+
+        TextView tvDate = findViewById(R.id.tv_date);
+        TextView tvTime = findViewById(R.id.tv_time);
+        TextView tvVenue = findViewById(R.id.tv_venue);
+
+
 
 //        Grab buttons
         Button addToList = findViewById(R.id.button_add);
@@ -62,6 +66,12 @@ public class DetailActivity extends AppCompatActivity {
 //        Set TextViews
         eventTitle.setText(intent.getStringExtra("title"));
         description.setText(intent.getStringExtra("info"));
+
+        tvDate.setText(intent.getStringExtra("date"));
+        tvTime.setText(intent.getStringExtra("time"));
+        tvVenue.setText(intent.getStringExtra("venue"));
+
+
         Long price = intent.getLongExtra("price", 0);
         eventPrice.setText(Float.toString(price));
         ratingBar.setRating((float) intent.getDoubleExtra("rating", 2));

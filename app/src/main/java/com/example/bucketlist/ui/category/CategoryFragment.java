@@ -22,6 +22,7 @@ import java.util.Locale;
 
 public class CategoryFragment extends Fragment {
     private OnItemSelectedListener listener;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

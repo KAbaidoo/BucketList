@@ -2,12 +2,15 @@ package com.example.bucketlist.ui.list;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.bucketlist.models.Booking;
 import com.example.bucketlist.models.Event;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -43,6 +46,27 @@ public class ListViewModel extends ViewModel {
         return bucketList;
     }
 
+    public void removeEvent(int position) {
+        assert position != -1;
+    Event e = bucketList.getValue().get(position);
+        userListRef.document(e.getId())
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("ListFragment", e.getTitle() + " Successfully deleted!");
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("ListFragment", "Error deleting document", e);
+                    }
+                });
+    }
+
+
     public LiveData<List<Booking>> getBookings() {
         loadBookings();
         return bookings;
@@ -64,7 +88,7 @@ public class ListViewModel extends ViewModel {
                                DocumentSnapshot doc = task1.getResult();
                                if (doc.exists()){
                                    Event event = doc.toObject(Event.class);
-                                   list.add(new Booking("id: "+document.getId(),event.getTitle(),event.getVenue(),event.getDate(),event.getTime(), event.getDateTime(),event.getCurator()));
+                                   list.add(new Booking("id: "+document.getId(),event.getTitle(),event.getVenue(), event.getDateTime(),event.getCurator()));
                                    bookings.setValue(list);
                                    Log.d("ListView", String.valueOf(list));
                                }

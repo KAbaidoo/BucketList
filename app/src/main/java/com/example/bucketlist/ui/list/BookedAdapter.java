@@ -86,8 +86,7 @@ public class BookedAdapter extends RecyclerView.Adapter<BookedAdapter.BookingVie
             detailIntent.putExtra("title", current.getTitle());
             detailIntent.putExtra("id", current.getId());
             detailIntent.putExtra("curator", current.getCurator());
-            detailIntent.putExtra("date", current.getDate());
-            detailIntent.putExtra("time", current.getTime());
+            detailIntent.putExtra("dateTime", current.getDateTime());
             detailIntent.putExtra("venue", current.getVenue());
 //            detailIntent.putExtra("image_resource",
 //                    current.getImageResource());
