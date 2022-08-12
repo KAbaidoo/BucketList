@@ -27,5 +27,19 @@
     <string name="card_expiry">Card Expiry</string>
     <string name="cvv">CVV</string>
     <string name="pay">pay</string>
+    <string name="banner_image">banner-image</string>
+    <string name="details">Details</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="venue">Venue</string>
+    <string name="currency">GH₵</string>
+    <string name="book_event_btn_txt">Book event</string>
+    <string name="save_btn_txt">save</string>
+    <string name="booked_details">Details</string>
+    <string name="barcode">barcode</string>
+    <string name="your_ticket">Your ticket</string>
+    <string name="booked_venue">Venue</string>
+    <string name="dummy_txt">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic</string>
+    <string name="booked_time">Time</string>
 
 </resources>

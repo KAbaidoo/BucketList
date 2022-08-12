@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -21,7 +22,7 @@ public class BucketListAdapter extends RecyclerView.Adapter<BucketListAdapter.Ev
 
     //    Member variables
     private static List<Event> mEvents; // Cached copy of events
-    private static Context mContext;
+    private final Context mContext;
 
     public BucketListAdapter(Context context) {
         this.mContext = context;
@@ -29,8 +30,9 @@ public class BucketListAdapter extends RecyclerView.Adapter<BucketListAdapter.Ev
     }
 
 
+    @NonNull
     @Override
-    public EventViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public EventViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new EventViewHolder(LayoutInflater.from(mContext).
                 inflate(R.layout.search_recyclerview_item, parent, false));
     }
@@ -39,7 +41,7 @@ public class BucketListAdapter extends RecyclerView.Adapter<BucketListAdapter.Ev
     public void onBindViewHolder(BucketListAdapter.EventViewHolder holder, int position) {
 
         Event current = mEvents.get(position);
-        // Populate the textviews with data.
+        // Populate the textViews with data.
 
         holder.bindTo(current);
 
@@ -61,7 +63,7 @@ public class BucketListAdapter extends RecyclerView.Adapter<BucketListAdapter.Ev
         else return 0;
     }
 
-    static class EventViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+     class EventViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView title;
         TextView curator;
         TextView price;

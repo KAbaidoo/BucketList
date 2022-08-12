@@ -2,13 +2,13 @@ package com.example.bucketlist.ui.home;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -24,7 +24,7 @@ public class NewEventsAdapter extends RecyclerView.Adapter<NewEventsAdapter.Even
 
     //    Member variables
     private static List<Event> mEvents; // Cached copy of events
-    private static Context mContext;
+    private final Context mContext;
 
     public NewEventsAdapter(Context context) {
         this.mContext = context;
@@ -32,8 +32,9 @@ public class NewEventsAdapter extends RecyclerView.Adapter<NewEventsAdapter.Even
     }
 
 
+    @NonNull
     @Override
-    public EventViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public EventViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new EventViewHolder(LayoutInflater.from(mContext).
                 inflate(R.layout.recyclerview_item, parent, false));
     }
@@ -42,7 +43,7 @@ public class NewEventsAdapter extends RecyclerView.Adapter<NewEventsAdapter.Even
     public void onBindViewHolder(NewEventsAdapter.EventViewHolder holder, int position) {
 
         Event current = mEvents.get(position);
-        // Populate the textviews with data.
+        // Populate the textview with data.
 
         holder.bindTo(current);
         // Covers the case of data not being ready yet.
@@ -63,7 +64,7 @@ public class NewEventsAdapter extends RecyclerView.Adapter<NewEventsAdapter.Even
         else return 0;
     }
 
-    static class EventViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+     class EventViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView title;
         TextView curator;
@@ -110,14 +111,13 @@ public class NewEventsAdapter extends RecyclerView.Adapter<NewEventsAdapter.Even
             int year = cal.get(Calendar.YEAR);
             int month = cal.get(Calendar.MONTH);
             int day = cal.get(Calendar.DAY_OF_MONTH);
-            StringBuilder str =  new StringBuilder()
-                    .append(day)
-                    .append("-")
-                    .append(month+1)
-                    .append("-")
-                    .append(year);
+            String str = day +
+                    "-" +
+                    (month + 1) +
+                    "-" +
+                    year;
 //            Log.d("TopEvents", str.toString());
-            detailIntent.putExtra("date", str.toString());
+            detailIntent.putExtra("date", str);
 
 //            Time
 //            ================================================
@@ -125,13 +125,12 @@ public class NewEventsAdapter extends RecyclerView.Adapter<NewEventsAdapter.Even
             int min = cal.get(Calendar.MINUTE);
 
 
-            StringBuilder str1 =  new StringBuilder()
-                    .append(hour)
-                    .append(":")
-                    .append(min);
+            String str1 = hour +
+                    ":" +
+                    min;
 
 //            Log.d("TopEvents", str1.toString());
-            detailIntent.putExtra("time", str1.toString());
+            detailIntent.putExtra("time", str1);
 
 
             mContext.startActivity(detailIntent);

@@ -36,6 +36,7 @@ public class DetailActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         FirebaseUser user = auth.getCurrentUser();
+        assert user != null;
         String uid = user.getUid();
         String email = user.getEmail();
 

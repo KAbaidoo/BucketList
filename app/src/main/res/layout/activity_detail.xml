@@ -12,6 +12,7 @@
         android:id="@+id/imageView_detail"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:contentDescription="@string/banner_image"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,8 +38,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/textView_detail_title"
@@ -46,7 +46,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:fontFamily="sans-serif-medium"
-                    android:text="Details"
+                    android:text="@string/details"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                     android:textColor="@color/black"
                     android:textSize="24sp" />
@@ -63,36 +63,38 @@
                 <TextView
                     android:id="@+id/textView_description"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-
-                    android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic" />
+                    android:layout_height="158dp"
+                    android:layout_marginTop="8dp"
+                    android:text=""
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                    tools:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic" />
 
 
                 <LinearLayout
-                    android:layout_marginTop="24dp"
+                    android:baselineAligned="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="12dp"
+                    android:orientation="horizontal">
 
                     <LinearLayout
-                        android:outlineAmbientShadowColor="@color/colorPrimary"
                         android:layout_width="0dp"
-                        android:layout_height="100dp"
-                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="8dp"
+                        android:layout_weight="1"
                         android:gravity="center_horizontal"
                         android:orientation="vertical"
+
                         android:padding="8dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Date"
-                            android:textColor="?attr/colorPrimary"
+                            android:text="@string/date"
                             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                            android:textColor="?attr/colorPrimary"
                             android:textSize="16sp" />
 
                         <TextView
@@ -100,18 +102,19 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:text="27-06-2022"
+                            android:text=""
                             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                             android:textSize="16sp" />
 
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_height="100dp"
-                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="8dp"
+                        android:layout_weight="1"
                         android:gravity="center_horizontal"
                         android:orientation="vertical"
                         android:padding="8dp">
@@ -119,9 +122,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Time"
-                            android:textColor="?attr/colorPrimary"
+                            android:text="@string/time"
                             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                            android:textColor="?attr/colorPrimary"
                             android:textSize="16sp" />
 
                         <TextView
@@ -130,18 +133,19 @@
                             android:layout_height="wrap_content"
 
                             android:layout_gravity="center_horizontal"
-                            android:text="10:00am"
+                            android:text=""
                             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                             android:textSize="16sp" />
 
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_height="100dp"
-                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="8dp"
+                        android:layout_weight="1"
                         android:gravity="center_horizontal"
                         android:orientation="vertical"
                         android:padding="8dp">
@@ -149,9 +153,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Venue"
-                            android:textColor="?attr/colorPrimary"
+                            android:text="@string/venue"
                             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                            android:textColor="?attr/colorPrimary"
                             android:textSize="16sp" />
 
                         <TextView
@@ -160,7 +164,7 @@
                             android:layout_height="wrap_content"
 
                             android:layout_gravity="center_horizontal"
-                            android:text="Kakum park"
+                            android:text=""
                             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                             android:textSize="16sp" />
 
@@ -174,7 +178,6 @@
                     android:id="@+id/price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
                     android:layout_gravity="end"
                     android:layout_marginTop="8dp"
                     android:padding="8dp">
@@ -182,7 +185,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="GH₵ "
+                        android:text="@string/currency"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                         android:textSize="20sp" />
 
@@ -191,7 +194,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
-                        android:text="50.00"
+                        tools:text="50.00"
+                        android:text=""
                         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                         android:textSize="20sp" />
 
@@ -210,16 +214,16 @@
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:text="Book event" />
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:text="@string/book_event_btn_txt" />
 
                 <Button
                     android:id="@+id/button_add"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
                     android:layout_margin="8dp"
-                    android:text="save"
+                    android:text="@string/save_btn_txt"
                     app:icon="@drawable/ic_baseline_favorite_24" />
 
             </LinearLayout>

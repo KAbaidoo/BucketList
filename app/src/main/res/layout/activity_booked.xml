@@ -35,7 +35,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:fontFamily="sans-serif-medium"
-                    android:text="Details"
+                    android:text="@string/booked_details"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                     android:textColor="@color/black"
                     android:textSize="24sp" />
@@ -50,14 +50,15 @@
                 <TextView
                     android:id="@+id/textView_description"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="120dp"
                     android:layout_marginTop="16dp"
-                    android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic" />
+                    android:text="@string/dummy_txt" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:gravity="top"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -67,13 +68,14 @@
                         android:layout_weight="1"
                         android:gravity="center_horizontal"
                         android:orientation="vertical"
-                        android:outlineAmbientShadowColor="@color/colorPrimary"
+
                         android:padding="8dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Date"
+                            tools:text="Date"
+                            android:text=""
                             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                             android:textSize="16sp" />
 
@@ -82,7 +84,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:text="27-06-2022"
+                            tools:text="27-06-2022"
+                            android:text=""
                             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                             android:textSize="16sp" />
                     </LinearLayout>
@@ -99,7 +102,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Time"
+                            android:text="@string/booked_time"
                             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                             android:textSize="16sp" />
 
@@ -108,7 +111,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:text="10:00am"
+                            tools:text="10:00am"
+                            android:text=""
                             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                             android:textSize="16sp" />
                     </LinearLayout>
@@ -125,7 +129,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Venue"
+                            android:text="@string/booked_venue"
                             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                             android:textSize="16sp" />
 
@@ -134,7 +138,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:text="Kakum park"
+                            tools:text="Kakum park"
+                            android:text=""
                             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                             android:textSize="16sp" />
                     </LinearLayout>
@@ -150,7 +155,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
             android:fontFamily="sans-serif-medium"
-            android:text="Your ticket"
+            android:text="@string/your_ticket"
             android:textColor="@color/white"
             android:textSize="34sp" />
 
@@ -174,6 +179,7 @@
 
                 <ImageView
                     android:id="@+id/iv_qrcode"
+                    android:contentDescription="@string/barcode"
                     android:layout_width="300dp"
                     android:layout_height="300dp"
                     android:layout_gravity="center_horizontal"

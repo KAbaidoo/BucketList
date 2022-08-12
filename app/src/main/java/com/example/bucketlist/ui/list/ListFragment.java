@@ -17,21 +17,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bucketlist.R;
-import com.example.bucketlist.models.Event;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.List;
-
 
 public class ListFragment extends Fragment {
     CollectionReference userListRef;
-    private FirebaseFirestore db;
     FirebaseAuth auth;
     String uid;
-    List<Event> mEvents;
+
 
     @Nullable
     @Override
@@ -46,9 +42,10 @@ public class ListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        db = FirebaseFirestore.getInstance();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         FirebaseUser user = auth.getCurrentUser();
+        assert user != null;
         uid = user.getUid();
         userListRef = db.collection("users").document(uid).collection("list");
 
@@ -73,18 +70,16 @@ public class ListFragment extends Fragment {
 
         ListViewModel viewModel = new ViewModelProvider(fragmentActivity).get(ListViewModel.class);
 
-        viewModel.getBucketList().observe(lifecycleOwner, events -> {
-             adapter.setEvents(events);
-        });
+        viewModel.getBucketList().observe(lifecycleOwner, adapter::setEvents);
         ItemTouchHelper helper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
-            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
 
                 return true;
             }
 
             @Override
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 viewModel.removeEvent(viewHolder.getAdapterPosition());
 
 
@@ -92,7 +87,7 @@ public class ListFragment extends Fragment {
         });
 
         helper.attachToRecyclerView(bucketListRecyclerView);
-        viewModel.getBookings().observe(lifecycleOwner, bookings -> booked_adapter.setEvents(bookings));
+        viewModel.getBookings().observe(lifecycleOwner, booked_adapter::setEvents);
 
     }
 }

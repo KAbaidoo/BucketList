@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bucketlist.R;
@@ -19,7 +20,7 @@ public class BookedAdapter extends RecyclerView.Adapter<BookedAdapter.BookingVie
 
     //    Member variables
     private static List<Booking> mBookings; // Cached copy of events
-    private static Context mContext;
+    private  final Context mContext;
 
     public BookedAdapter(Context context) {
         this.mContext = context;
@@ -27,8 +28,9 @@ public class BookedAdapter extends RecyclerView.Adapter<BookedAdapter.BookingVie
     }
 
 
+    @NonNull
     @Override
-    public BookingViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public BookingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new BookingViewHolder(LayoutInflater.from(mContext).
                 inflate(R.layout.booking_recyclerview_item, parent, false));
     }
@@ -37,7 +39,7 @@ public class BookedAdapter extends RecyclerView.Adapter<BookedAdapter.BookingVie
     public void onBindViewHolder(BookingViewHolder holder, int position) {
 
         Booking current = mBookings.get(position);
-        // Populate the textviews with data.
+        // Populate the textViews with data.
 
         holder.bindTo(current);
 
@@ -59,11 +61,11 @@ public class BookedAdapter extends RecyclerView.Adapter<BookedAdapter.BookingVie
         else return 0;
     }
 
-    static class BookingViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+     class BookingViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView title, curator, bookingId;
 
 
-//        OnItemSelectedListener listener;
+
 
         private BookingViewHolder(View itemView) {
             super(itemView);
@@ -88,9 +90,7 @@ public class BookedAdapter extends RecyclerView.Adapter<BookedAdapter.BookingVie
             detailIntent.putExtra("curator", current.getCurator());
             detailIntent.putExtra("dateTime", current.getDateTime());
             detailIntent.putExtra("venue", current.getVenue());
-//            detailIntent.putExtra("image_resource",
-//                    current.getImageResource());
-//            detailIntent.putExtra("info", current.getInfo());
+
             mContext.startActivity(detailIntent);
         }
 

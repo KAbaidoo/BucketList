@@ -2,8 +2,6 @@ package com.example.bucketlist.ui.home;
 
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -16,7 +14,6 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -30,8 +27,8 @@ public class HomeViewModel extends ViewModel {
     private final MutableLiveData<List<Event>> recEvents = new MutableLiveData<>();
     private final MutableLiveData<List<Event>> newEvents = new MutableLiveData<>();
 
-    public static final String TAG = "homeviewmodel";
-    private FirebaseFirestore db;
+    public static final String TAG = "HomeViewModel";
+    private final FirebaseFirestore db;
 
 
 
@@ -82,6 +79,7 @@ public class HomeViewModel extends ViewModel {
 
 
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        assert user != null;
         final DocumentReference userRef = db.collection("users").document(user.getUid());
         final CollectionReference eventsRef = db.collection("events");
 
@@ -89,40 +87,33 @@ public class HomeViewModel extends ViewModel {
         List<String> interests = new ArrayList<>();
         Task<QuerySnapshot> task = eventsRef.get();
 
-        db.runTransaction(new Transaction.Function<Void>() {
-            @Nullable
-            @Override
-            public Void apply(@NonNull Transaction transaction) throws FirebaseFirestoreException {
+        db.runTransaction((Transaction.Function<Void>) transaction -> {
 
 //                find user document
-                DocumentSnapshot snapshot = transaction.get(userRef);
+            DocumentSnapshot snapshot = transaction.get(userRef);
 //                find user interests
-                interests.addAll((List<String>) snapshot.get("interests"));
+            interests.addAll((List<String>) snapshot.get("interests"));
 
 //                find events collection
-                if (task.isSuccessful()) {
+            if (task.isSuccessful()) {
 //                    if user interest matches a tag in an event, add that event to list
-                    for (QueryDocumentSnapshot document : task.getResult()) {
+                for (QueryDocumentSnapshot document : task.getResult()) {
 
-                        List<String> tags = (List<String>) document.get("tags");
-                        if (tags != null) {
-                            test:
-                            for (String tag : tags) {
-                                if (interests.contains(tag) && list.size() < 12) {
-                                    list.add(document.toObject(Event.class));
-                                    break test;
+                    List<String> tags = (List<String>) document.get("tags");
+                    if (tags != null) {
 
-                                }
+                        for (String tag : tags) {
+                            if (interests.contains(tag) && list.size() < 12) {
+                                list.add(document.toObject(Event.class));
+                                break;
+
                             }
                         }
                     }
                 }
-                return null;
             }
-
-        }).addOnSuccessListener(unused -> {
-            recEvents.setValue(list);
-        }).addOnFailureListener(e -> Log.w(TAG, "Transaction failure.", e));
+            return null;
+        }).addOnSuccessListener(unused -> recEvents.setValue(list)).addOnFailureListener(e -> Log.w(TAG, "Transaction failure.", e));
 
     }
 

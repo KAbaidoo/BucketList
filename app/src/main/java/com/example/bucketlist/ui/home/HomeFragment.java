@@ -79,12 +79,10 @@ public class HomeFragment extends Fragment {
             mTAdapter.setEvents(events);
             progressBar1.setVisibility(View.GONE);
         });
-        viewModel.getRecommendedEvents().observe(lifecycleOwner, events ->
-                mRAdapter.setEvents(events)
+        viewModel.getRecommendedEvents().observe(lifecycleOwner, mRAdapter::setEvents
 
         );
-        viewModel.getNewEvents().observe(lifecycleOwner, events ->
-                mNAdapter.setEvents(events)
+        viewModel.getNewEvents().observe(lifecycleOwner, mNAdapter::setEvents
 
         );
 
