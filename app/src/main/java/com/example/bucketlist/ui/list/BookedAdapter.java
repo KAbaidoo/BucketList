@@ -80,6 +80,8 @@ public class BookedAdapter extends RecyclerView.Adapter<BookedAdapter.BookingVie
             itemView.setOnClickListener(this);
         }
 
+
+
         @Override
         public void onClick(View v) {
             Booking current = mBookings.get(getAdapterPosition());
