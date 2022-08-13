@@ -83,15 +83,11 @@ public class BookedAdapter extends RecyclerView.Adapter<BookedAdapter.BookingVie
         @Override
         public void onClick(View v) {
             Booking current = mBookings.get(getAdapterPosition());
-
             Intent detailIntent = new Intent(mContext, BookedActivity.class);
             detailIntent.putExtra("title", current.getTitle());
             detailIntent.putExtra("id", current.getId());
             detailIntent.putExtra("curator", current.getCurator());
             detailIntent.putExtra("venue", current.getVenue());
-
-
-
             mContext.startActivity(detailIntent);
         }
 
