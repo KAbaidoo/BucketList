@@ -11,9 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bucketlist.R;
-import com.example.bucketlist.models.Booking;
 import com.example.bucketlist.activities.BookedActivity;
+import com.example.bucketlist.models.Booking;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class BookedAdapter extends RecyclerView.Adapter<BookedAdapter.BookingViewHolder> {
@@ -24,7 +26,7 @@ public class BookedAdapter extends RecyclerView.Adapter<BookedAdapter.BookingVie
 
     public BookedAdapter(Context context) {
         this.mContext = context;
-//        OnItemSelectedListener listener;
+
     }
 
 
@@ -62,7 +64,7 @@ public class BookedAdapter extends RecyclerView.Adapter<BookedAdapter.BookingVie
     }
 
      class BookingViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView title, curator, bookingId;
+        TextView title, curator, bookingId, time, date;
 
 
 
@@ -72,24 +74,23 @@ public class BookedAdapter extends RecyclerView.Adapter<BookedAdapter.BookingVie
             title = itemView.findViewById(R.id.textView_title);
             curator = itemView.findViewById(R.id.textView_curator);
             bookingId = itemView.findViewById(R.id.tvBookingId);
+            date = itemView.findViewById(R.id.tv_date);
+            time = itemView.findViewById(R.id.tv_time);
 
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-
-//            listener.onDetailSelected();
-            // TODO: 5/4/2022  implement open detail view
-
             Booking current = mBookings.get(getAdapterPosition());
 
             Intent detailIntent = new Intent(mContext, BookedActivity.class);
             detailIntent.putExtra("title", current.getTitle());
             detailIntent.putExtra("id", current.getId());
             detailIntent.putExtra("curator", current.getCurator());
-            detailIntent.putExtra("dateTime", current.getDateTime());
             detailIntent.putExtra("venue", current.getVenue());
+
+
 
             mContext.startActivity(detailIntent);
         }
@@ -99,6 +100,42 @@ public class BookedAdapter extends RecyclerView.Adapter<BookedAdapter.BookingVie
             title.setText(current.getTitle());
             curator.setText(current.getCurator());
             bookingId.setText(current.getId());
+
+            Calendar cal = Calendar.getInstance();
+            Date dateTime = current.getDateTime();
+            cal.setTime(dateTime);
+
+//            int year = cal.get(Calendar.YEAR);
+            int month = cal.get(Calendar.MONTH);
+            int day = cal.get(Calendar.DAY_OF_MONTH);
+            String dayString = Integer.toString(day);
+            String monthString = Integer.toString(month+1);
+
+            if(dayString.length() == 1){
+                dayString= "0"+dayString;
+            }
+            if(monthString.length() == 1){
+                monthString= "0"+monthString;
+            }
+            String str = dayString +
+                    "/" +
+                    (monthString);
+            date.setText(str);
+
+
+//            Time
+//            ================================================
+            int hour = cal.get(Calendar.HOUR_OF_DAY);
+            int min = cal.get(Calendar.MINUTE);
+            String minString = Integer.toString(min);
+
+            if(minString.length() == 1){
+              minString= "0"+minString;
+            }
+            String str1 = hour +
+                    ":" +
+                    minString;
+            time.setText(str1);
         }
 
 

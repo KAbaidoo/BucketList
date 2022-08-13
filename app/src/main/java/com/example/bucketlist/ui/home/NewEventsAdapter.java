@@ -66,12 +66,10 @@ public class NewEventsAdapter extends RecyclerView.Adapter<NewEventsAdapter.Even
 
      class EventViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView title;
-        TextView curator;
-        TextView price;
+        TextView rating, title, curator, price;
         ImageView bannerImg;
-        TextView rating;
-//        OnItemSelectedListener listener;
+
+
 
         private EventViewHolder(View itemView) {
             super(itemView);
@@ -101,7 +99,6 @@ public class NewEventsAdapter extends RecyclerView.Adapter<NewEventsAdapter.Even
             detailIntent.putExtra("image_resource",
                     current.getImageResource());
             detailIntent.putExtra("info", current.getInfo());
-
             detailIntent.putExtra("venue", current.getVenue());
 
             Calendar cal = Calendar.getInstance();
@@ -116,7 +113,7 @@ public class NewEventsAdapter extends RecyclerView.Adapter<NewEventsAdapter.Even
                     (month + 1) +
                     "-" +
                     year;
-//            Log.d("TopEvents", str.toString());
+
             detailIntent.putExtra("date", str);
 
 //            Time

@@ -77,7 +77,7 @@ public class ListViewModel extends ViewModel {
                                if (doc.exists()){
                                    Event event = doc.toObject(Event.class);
                                    assert event != null;
-                                   list.add(new Booking("id: "+document.getId(),event.getTitle(),event.getVenue(), event.getDateTime(),event.getCurator()));
+                                   list.add(new Booking("id: "+document.getId(),event.getTitle(),event.getVenue(),event.getDateTime(),event.getCurator()));
                                    bookings.setValue(list);
                                    Log.d("ListView", String.valueOf(list));
                                }

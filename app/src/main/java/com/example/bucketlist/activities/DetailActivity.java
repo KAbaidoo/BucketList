@@ -53,7 +53,6 @@ public class DetailActivity extends AppCompatActivity {
         TextView description = findViewById(R.id.textView_description);
         ImageView imgBanner = findViewById(R.id.imageView_detail);
         RatingBar ratingBar = findViewById(R.id.ratingBar_detail);
-
         TextView tvDate = findViewById(R.id.tv_date);
         TextView tvTime = findViewById(R.id.tv_time);
         TextView tvVenue = findViewById(R.id.tv_venue);
@@ -67,7 +66,6 @@ public class DetailActivity extends AppCompatActivity {
 //        Set TextViews
         eventTitle.setText(intent.getStringExtra("title"));
         description.setText(intent.getStringExtra("info"));
-
         tvDate.setText(intent.getStringExtra("date"));
         tvTime.setText(intent.getStringExtra("time"));
         tvVenue.setText(intent.getStringExtra("venue"));
@@ -77,9 +75,11 @@ public class DetailActivity extends AppCompatActivity {
         eventPrice.setText(Float.toString(price));
         ratingBar.setRating((float) intent.getDoubleExtra("rating", 2));
 //        set Image banner
-        Glide.with(getApplicationContext()).load(getIntent().getStringExtra("image_resource")).placeholder(R.drawable.photo).into(imgBanner);
-//        Glide.with(mContext).load(current.getImageResource()).placeholder(R.drawable.photo)
-//                .fitCenter().into(bannerImg);
+        Glide.with(getApplicationContext())
+                        .load(getIntent()
+                        .getStringExtra("image_resource"))
+                        .placeholder(R.drawable.photo).into(imgBanner);
+
 
 
 //        Book event
@@ -90,6 +90,8 @@ public class DetailActivity extends AppCompatActivity {
             i.putExtra("price", price);
             i.putExtra("email", email);
             i.putExtra("curator", curator);
+//            i.putExtra("date", curator);
+//            i.putExtra("curator", curator);
             startActivity(i);
             finish();
         });
@@ -104,12 +106,9 @@ public class DetailActivity extends AppCompatActivity {
             v.setEnabled(false);
             showSnackBar(intent.getStringExtra("title"));
         }).addOnFailureListener(e -> Log.w(TAG, "Transaction failure.", e)));
-
-
     }
 
     private void showSnackBar(String title) {
-
         Toast.makeText(this, title + " added to bucket list", Toast.LENGTH_SHORT
         ).show();
     }

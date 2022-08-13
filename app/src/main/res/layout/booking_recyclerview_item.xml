@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="8dp"
     app:cardCornerRadius="8dp"
     app:cardElevation="0dp"
@@ -44,17 +45,23 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="29/06"
+                tools:text="29/06"
+                android:text=""
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                 android:textColor="?android:textColorPrimary" />
 
             <TextView
+                android:id="@+id/tv_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_date"
                 android:layout_alignParentEnd="true"
-                android:layout_margin="8dp"
-                android:text="10:00am"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                tools:text="10:00am"
+                android:text=""
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                 android:textColor="?android:textColorPrimary" />
 

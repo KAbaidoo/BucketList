@@ -19,11 +19,8 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 
 public class BookedActivity extends AppCompatActivity {
-    FirebaseFirestore db;
-//    CollectionReference userListRef;
+     FirebaseFirestore db;
     CollectionReference eventsRef;
-
-
 
 
     @Override
@@ -41,28 +38,21 @@ public class BookedActivity extends AppCompatActivity {
         String eventId = intent.getStringExtra("id");
 
         TextView eventTitle = findViewById(R.id.textView_detail_title);
-        TextView description = findViewById(R.id.textView_description);
         RatingBar ratingBar = findViewById(R.id.ratingBar_detail);
         ImageView iv_qrcode = findViewById(R.id.iv_qrcode);
         TextView mDate = findViewById(R.id.tv_date);
         TextView mTime = findViewById(R.id.tv_time);
         TextView mVenue = findViewById(R.id.tv_venue);
-       iv_qrcode.post(new Runnable() {
-           @Override
-           public void run() {
-               iv_qrcode.setImageBitmap(createQRcode(iv_qrcode, eventId));
-           }
-       });
+       iv_qrcode.post(() -> iv_qrcode.setImageBitmap(createQRcode(iv_qrcode, eventId)));
 
 
 
 //        Set TextViews
         eventTitle.setText(intent.getStringExtra("title"));
-        description.setText(intent.getStringExtra("info"));
+//        description.setText(intent.getStringExtra("info"));
         mDate.setText(intent.getStringExtra("date"));
         mTime.setText(intent.getStringExtra("time"));
         mVenue.setText(intent.getStringExtra("venue"));
-
         ratingBar.setRating((float) intent.getDoubleExtra("rating", 2));
 
     }
