@@ -47,18 +47,13 @@
                     android:layout_height="wrap_content"
                     android:progressTint="#F9A825" />
 
-<!--                <TextView-->
-<!--                    android:id="@+id/textView_description"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="120dp"-->
-<!--                    android:layout_marginTop="16dp"-->
-<!--                    android:text="@string/dummy_txt" />-->
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
+                    android:baselineAligned="false"
                     android:gravity="top"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
+                    android:orientation="horizontal">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -68,7 +63,6 @@
                         android:layout_weight="1"
                         android:gravity="center_horizontal"
                         android:orientation="vertical"
-
                         android:padding="8dp">
 
                         <TextView
@@ -83,10 +77,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            tools:text="27-06-2022"
-
+                            android:text=""
                             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                            android:textSize="16sp" />
+                            android:textSize="16sp"
+                            tools:text="27-06-2022" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -110,10 +104,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            tools:text="10:00am"
-
+                            android:text=""
                             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                            android:textSize="16sp" />
+                            android:textSize="16sp"
+                            tools:text="10:00am" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -137,9 +131,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            tools:text="Kakum park"
                             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                            android:textSize="16sp" />
+                            android:textSize="16sp"
+                            tools:text="Kakum park" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -147,6 +141,7 @@
             </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -173,16 +168,14 @@
                 android:orientation="vertical">
 
 
-
-
                 <ImageView
                     android:id="@+id/iv_qrcode"
-                    android:contentDescription="@string/barcode"
                     android:layout_width="300dp"
                     android:layout_height="300dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_margin="16dp"
                     android:layout_marginBottom="32dp"
+                    android:contentDescription="@string/barcode"
                     android:scaleType="centerCrop"
                     app:srcCompat="?attr/actionBarDivider" />
             </LinearLayout>

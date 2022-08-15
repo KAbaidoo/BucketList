@@ -23,12 +23,11 @@ public class BookedAdapter extends RecyclerView.Adapter<BookedAdapter.BookingVie
     //    Member variables
     private static List<Booking> mBookings; // Cached copy of events
     private  final Context mContext;
+    String timeStr,dateStr;
 
     public BookedAdapter(Context context) {
         this.mContext = context;
-
     }
-
 
     @NonNull
     @Override
@@ -42,11 +41,41 @@ public class BookedAdapter extends RecyclerView.Adapter<BookedAdapter.BookingVie
 
         Booking current = mBookings.get(position);
         // Populate the textViews with data.
+        Calendar cal = Calendar.getInstance();
+        Date dateTime = current.getDateTime();
+        cal.setTime(dateTime);
+
+//            int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        String dayString = Integer.toString(day);
+        String monthString = Integer.toString(month+1);
+
+        if(dayString.length() == 1){
+            dayString= "0"+dayString;
+        }
+        if(monthString.length() == 1){
+            monthString= "0"+monthString;
+        }
+        dateStr = dayString +
+                "/" +
+                (monthString);
+
+
+//            Time
+//            ========
+        int hour = cal.get(Calendar.HOUR_OF_DAY);
+        int min = cal.get(Calendar.MINUTE);
+        String minString = Integer.toString(min);
+
+        if(minString.length() == 1){
+            minString= "0"+minString;
+        }
+        timeStr = hour +
+                ":" +
+                minString;
 
         holder.bindTo(current);
-
-        // Covers the case of data not being ready yet.
-
     }
 
    public void setEvents(List<Booking> booking) {
@@ -69,6 +98,7 @@ public class BookedAdapter extends RecyclerView.Adapter<BookedAdapter.BookingVie
 
 
 
+
         private BookingViewHolder(View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.textView_title);
@@ -76,6 +106,7 @@ public class BookedAdapter extends RecyclerView.Adapter<BookedAdapter.BookingVie
             bookingId = itemView.findViewById(R.id.tvBookingId);
             date = itemView.findViewById(R.id.tv_date);
             time = itemView.findViewById(R.id.tv_time);
+
 
             itemView.setOnClickListener(this);
         }
@@ -90,6 +121,8 @@ public class BookedAdapter extends RecyclerView.Adapter<BookedAdapter.BookingVie
             detailIntent.putExtra("id", current.getId());
             detailIntent.putExtra("curator", current.getCurator());
             detailIntent.putExtra("venue", current.getVenue());
+            detailIntent.putExtra("time", timeStr);
+            detailIntent.putExtra("date", dateStr);
             mContext.startActivity(detailIntent);
         }
 
@@ -99,41 +132,10 @@ public class BookedAdapter extends RecyclerView.Adapter<BookedAdapter.BookingVie
             curator.setText(current.getCurator());
             bookingId.setText(current.getId());
 
-            Calendar cal = Calendar.getInstance();
-            Date dateTime = current.getDateTime();
-            cal.setTime(dateTime);
 
-//            int year = cal.get(Calendar.YEAR);
-            int month = cal.get(Calendar.MONTH);
-            int day = cal.get(Calendar.DAY_OF_MONTH);
-            String dayString = Integer.toString(day);
-            String monthString = Integer.toString(month+1);
+            time.setText(timeStr);
+            date.setText(dateStr);
 
-            if(dayString.length() == 1){
-                dayString= "0"+dayString;
-            }
-            if(monthString.length() == 1){
-                monthString= "0"+monthString;
-            }
-            String str = dayString +
-                    "/" +
-                    (monthString);
-            date.setText(str);
-
-
-//            Time
-//            ================================================
-            int hour = cal.get(Calendar.HOUR_OF_DAY);
-            int min = cal.get(Calendar.MINUTE);
-            String minString = Integer.toString(min);
-
-            if(minString.length() == 1){
-              minString= "0"+minString;
-            }
-            String str1 = hour +
-                    ":" +
-                    minString;
-            time.setText(str1);
         }
 
 
