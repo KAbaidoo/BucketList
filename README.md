@@ -13,15 +13,11 @@ The BucketList app enables users to onboard, find interesting activities and mak
 The app uses [Firebase](https://firebase.google.com/docs) as a backend including:
 [Authentication](https://firebase.google.com/docs/auth) to signup and validate users, 
 [Cloud Firestore](https://firebase.google.com/docs/firestore) for the main database 
-and [Cloud Storage](https://firebase.google.com/docs/storage) for file storage. The QR code
+and [Cloud Storage](https://firebase.google.com/docs/storage) for file storage. 
+QR encoding was implemented with [Zebra Crossing](https://zxing.github.io/zxing/library) library.
 The app works on phones running Android version 5.0 (API level 21) and above.
 
-
- 
-
-Some of the challenges you faced and features you hope to implement in the future?
-
-## Features
+###Features
 
 ## Installation
 BucketList is proof of concept and is not yet deployed to the Google play app store.
