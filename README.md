@@ -47,6 +47,13 @@ From Android Studio:
 5. Use QR code ticket at event.
 
 ### Screenshots
-![Intro screens](/screenshots/intro_screens.png)
+
+![Intro screens](screenshots/intro_screens.png)
+
+![Intro screens](screenshots/intro_screens.png)
+
+![Intro screens](screenshots/intro_screens.png)
+
+
 
 
