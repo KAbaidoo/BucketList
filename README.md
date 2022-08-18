@@ -50,9 +50,11 @@ From Android Studio:
 
 ![Intro screens](screenshots/intro_screens.png)
 
-![Intro screens](screenshots/intro_screens.png)
 
-![Intro screens](screenshots/intro_screens.png)
+![Home and categories screens](screenshots/home_screens.png)
+
+
+![Details and payments screens](screenshots/booking_screens.png)
 
 
 
