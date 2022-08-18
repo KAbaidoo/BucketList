@@ -14,9 +14,8 @@ The app uses [Firebase](https://firebase.google.com/docs) as a backend including
 [Cloud Firestore](https://firebase.google.com/docs/firestore) for the main database 
 and [Cloud Storage](https://firebase.google.com/docs/storage) for file storage. 
 QR encoding was implemented with [Zebra Crossing](https://zxing.github.io/zxing/library) library.
-Payments was implemented with [PayStack](https://paystack.com/gh/).
-
-The app works on phones running Android version 5.0 (API level 21) and above. 
+Payments was implemented with [PayStack](https://paystack.com/gh/). The app works on phones 
+running Android version 5.0 (API level 21) and above. 
 
 Some of the features that was successfully implemented are listed below.
 
