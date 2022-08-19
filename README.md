@@ -19,7 +19,7 @@ running Android version 5.0 (API level 21) and above.
 
 Some of the features that was successfully implemented are listed below.
 
-###Features
+### Features
 - Signup and selection of interests.
 - Recommendations based on interests as well as top and recently published events.
 - Add activity to a wishlist (BucketList).
@@ -54,6 +54,9 @@ From Android Studio:
 
 
 ![Details and payments screens](screenshots/booking_screens.png)
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
 
 
 
